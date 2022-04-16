@@ -1,8 +1,64 @@
 import React from "react";
+import { actionCreators as userActions } from "../redux/modules/user";
+import { useDispatch } from "react-redux";
+import { history } from "../redux/configureStore";
 
 import { Div } from "../components/ui";
 
-const Login = (props) => {
+const Signup = (props) => {
+  const dispatch = useDispatch();
+
+  const [userId, setId] = React.useState("");
+  const [userName, setUserName] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [passwordCheck, setPasswordCheck] = React.useState("");
+
+  // 아이디(이메일) 조건
+  const isId = (email) => {
+    let pattern =
+      /^[0-9a-zA-Z]([-_.0-9a-zA-Z])*@[0-9a-zA-zA]([-_.0-9a-zA-Z])*.([a-zA-Z])/;
+    return pattern.test(email); // 맞으면 true, 틀리면 false반환
+  };
+
+  // 비밀번호 조건
+  const isPwd = (pwd) => {
+    let pattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    return pattern.test(pwd); // 맞으면 true, 틀리면 false반환
+  };
+
+  const signup = () => {
+    //입력값 빠짐
+    if (
+      userId === "" ||
+      userName === "" ||
+      password === "" ||
+      passwordCheck === ""
+    ) {
+      window.alert("빈칸을 입력해주세요.");
+      return;
+    }
+
+    //이메일형식 확인
+    if (!isId(userId)) {
+      window.alert("잘못된 이메일 형식입니다.");
+      return;
+    }
+
+    //비밀번호형식 확인
+    if (!isPwd(password)) {
+      window.alert("최소 8자, 하나 이상의 문자와 숫자를 입력해주세요.");
+      return;
+    }
+
+    //비밀번호 확인
+    if (password !== passwordCheck) {
+      window.alert("비밀번호가 다릅니다.");
+      return;
+    }
+
+    dispatch(userActions.signupDB(userId, userName, password, passwordCheck));
+  };
+
   return (
     <Div
       width="350px"
@@ -17,7 +73,7 @@ const Login = (props) => {
             style={{
               fontSize: "2rem",
               lineHeigt: "55px",
-              margin: "15px 0px",
+              margin: "15px 0px 20px 0px",
             }}
           >
             Velog Login
@@ -32,7 +88,7 @@ const Login = (props) => {
           </h2>
         </Div>
         <Div height="360px">
-          <Div row margin="0px 0px 15px 0px">
+          <Div row margin="5px 0px 15px 0px">
             <Div
               row
               width="300px"
@@ -67,9 +123,11 @@ const Login = (props) => {
               height: "40px",
               lineHeight: "40px",
               margin: "10px 0px 5px 0px",
-              border: "1px solid lightgrey",
             }}
             placeholder="아이디"
+            onChange={(e) => {
+              setId(e.target.value);
+            }}
           />
           <input
             type="text"
@@ -78,31 +136,37 @@ const Login = (props) => {
               height: "40px",
               lineHeight: "40px",
               margin: "5px 0px 5px 0px",
-              border: "1px solid lightgrey",
             }}
             placeholder="사용자 이름"
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}
           />
           <input
-            type="text"
+            type="password"
             style={{
               width: "300px",
               height: "40px",
               lineHeight: "40px",
               margin: "5px 0px 5px 0px",
-              border: "1px solid lightgrey",
             }}
             placeholder="비밀번호"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
           />
           <input
-            type="text"
+            type="password"
             style={{
               width: "300px",
               height: "40px",
               lineHeight: "40px",
               margin: "5px 0px",
-              border: "1px solid lightgrey",
             }}
             placeholder="비밀번호 확인"
+            onChange={(e) => {
+              setPasswordCheck(e.target.value);
+            }}
           />
           <button
             style={{
@@ -111,6 +175,7 @@ const Login = (props) => {
               margin: "12px",
               backgroundColor: "#96f2d7",
             }}
+            onClick={signup}
           >
             가입
           </button>
@@ -131,6 +196,9 @@ const Login = (props) => {
             backgroundColor: "white",
             color: "#39b7ab",
           }}
+          onClick={() => {
+            history.push("/login");
+          }}
         >
           로그인
         </button>
@@ -139,4 +207,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default Signup;
