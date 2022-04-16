@@ -16,7 +16,7 @@ function App() {
   return (
     <React.Fragment>
       <GlobalStyle />
-      <Div>
+      <Div container>
         <Header></Header>
         <ConnectedRouter history={history}>
           <Route path="/" exact component={Main} />

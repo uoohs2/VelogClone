@@ -1,7 +1,7 @@
 import React from "react";
 
 const Write = (props) => {
-  return <React.Fragment>하이</React.Fragment>;
+  return <React.Fragment></React.Fragment>;
 };
 
 export default Write;
