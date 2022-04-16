@@ -42,11 +42,11 @@ const addPostDB = (formData) => {
     try {
       await axios({
         method: "POST",
-        url: "https://62565de452d8738c692e515a.mockapi.io/posts",
+        url: "http://3.38.253.146/api/post",
         data: formData,
         headers: {
           "Content-Type": "multipart/form-data",
-          authorization: `Bearer ${token}`,
+          // authorization: `Bearer ${token}`,
         },
       });
       dispatch(imageActions.resetPreview(post));
@@ -68,9 +68,13 @@ const addPostDB = (formData) => {
 const getPostDB = () => {
   return async function (dispatch, getState) {
     await axios
-      .get("https://62565de452d8738c692e515a.mockapi.io/posts")
+      .get("http://3.38.253.146/api/post")
       .then((response) => {
-        dispatch(getPost(response.data));
+       
+        console.log(response);
+        
+        dispatch(getPost(response.data.board));
+        
       })
       .catch((error) => {
         console.log(error);

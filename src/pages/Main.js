@@ -4,32 +4,33 @@ import { useSelector, useDispatch } from "react-redux";
 import post from "../redux/modules/post";
 import { useEffect } from "react";
 import { actionCreators as postActions } from "../redux/modules/post";
-
-
+import {GoHeart} from 'react-icons/go';
 const Main = (props) => {
   const dispatch = useDispatch();
   const post_list = useSelector((state) => state.post.list);
   console.log(post_list);
-  
+
   useEffect(() => {
     dispatch(postActions.getPostDB());
-  },[]);
+  }, []);
 
   return (
     <React.Fragment>
       <Responsive>
         <Bigbox>
-          {post_list.map((post) => (
-            <Midbox key={post._Id}>
-              <Box > {post.image}</Box>
+          {post_list.map((post, i) => (
+            <Midbox key={post + i}>
+              <Box src={post.image} />
               <Box1>
-                {" "}
-                {post.title}
-                {post.content}
+                <H4>{post.title}</H4>
+                <P>{post.content}</P>
+              </Box1>
+
+              <Box2>
                 {post.comment}
                 {post.date}
-              </Box1>
-              <Box2> {post.userName} </Box2>
+              </Box2>
+              <Box3> {post.userName} 이성영 <GoHeart size="20"/>  </Box3>
             </Midbox>
           ))}
         </Bigbox>
@@ -41,45 +42,130 @@ const Main = (props) => {
 export default Main;
 
 const Box = styled.div`
-  width: 350px;
-  height: 200px;
+  height: 167px;
+  width: 320px;
+  /* position: absolute; */
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  display: block;
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  border: 2px solid black;
-  margin: 5px 5px;
+  transform: none;
+  transition: all 0s ease 0s;
+  box-sizing: border-box;
+  background-image: url("${(props) => props.src}");
+  background-position: center;
+  background-size: cover;
 `;
 const Box1 = styled.div`
-  width: 350px;
-  height: 120px;
-  display: flex;
+  font-size: 16px;
+  text-decoration: none solid rgb(33, 37, 41);
+  word-spacing: 0px;
+  background-color: #ffffff;
+  background-position: 0% 0%;
+  position: color;
+  height: 115px;
+  width: 288px;
+  min-height: auto;
+  min-width: auto;
+  display: block;
+  cursor: pointer;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  border: 2px solid black;
-  margin: 1px 5px;
+  
+`;
+
+const H4 = styled.p`
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 24px;
+  text-decoration: none solid rgb(33, 37, 41);
+  white-space: nowrap;
+  word-spacing: 0px;
+  background-color: #ffffff;
+  height: 24px;
+  width: 288px;
+  margin: 0 0 4px 0;
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  transform: none;
+  transition: all 0s ease 0s;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+`;
+const P = styled.p`
+  font-size: 14px;
+  line-height: 21px;
+  text-decoration: none solid rgb(73, 80, 87);
+  word-spacing: 0px;
+  background-color: #ffffff;
+  height: 63px;
+  width: 288px;
+  margin: 0 0 24px 0;
+  display: -webkit-box;
+  overflow: hidden;
+  cursor: pointer;
+  transform: none;
+  transition: all 0s ease 0s;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  
 `;
 const Box2 = styled.div`
-  width: 350px;
-  height: 50px;
-  display: flex;
+  height: 18px;
+  width: 288px;
+  min-height: auto;
+  min-width: auto;
+  display: block;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  border: 2px solid black;
-  margin: 2px 5px;
+  cursor: pointer;
+  background-color: #ffffff;
+`;
+
+const Box3 = styled.div`
+  height: 45px;
+  width: 320px;
+  border-top: 1px solid #f1f3f5;
+  padding: 10px 16px 10px 16px;
+  min-height: auto;
+  min-width: auto;
+  display: flex;
+  background-color: #ffffff;
+  font-size: 12px;
+  line-height: 18px;
+  text-decoration: none solid rgb(33, 37, 41);
+  word-spacing: 0px;
+  cursor: pointer;
+  justify-content: space-between;
 `;
 
 const Midbox = styled.div`
-  width: 350px;
-  height: 400px;
+  background-color: #f8f9fa;
+  background-position: 0% 0%;
+  position: color;
+  height: 332px;
+  width: 320px;
+  padding: 16px 16px 16px 16px;
+  min-height: auto;
+  min-width: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  border: 2px solid red;
-  margin: 10px 10px;
+  transform: none;
+  transition: all 0s ease 0s;
+  box-sizing: border-box;
+
 `;
 
 const Bigbox = styled.div`
@@ -94,10 +180,19 @@ const Bigbox = styled.div`
 `;
 
 const Responsive = styled.div`
-  /* ${(prop) => prop.theme.responsiveContainer}; */
-  max-width: 100vw;
+  ${(prop) => prop.theme.responsiveContainer};
+  display: flex;
   border: 2px solid black;
-  height: 100;
+  height: 3272px;
+  width: 1056px;
+  margin: -16px -16px -16px -16px;
+  background-color: #f8f9fa;
+  background-position: 0% 0%;
+  position: color;
+  transform: none;
+  transition: all 0s ease 0s;
+
+  box-sizing: border-box;
 `;
 
 const TabContainer = styled.div`

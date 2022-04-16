@@ -5,6 +5,9 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { actionCreators as imageActions } from "../redux/modules/image";
+import { IoMdImage } from "react-icons/io";
+import { MdLink } from "react-icons/md";
+import { BsCode } from "react-icons/bs";
 
 const Write = (props) => {
   const dispatch = useDispatch();
@@ -86,16 +89,25 @@ const Write = (props) => {
 
           <HashTagWrapper>
             <Input1 type="text" placeholder="태그를 입력하세요" />
-            <AddImage
-              disabled={is_uploading}
-              type="file"
-              ref={fileInput}
-              onChange={selectFile}
-            />
+            <Wrapper1>
+              <MdLink />{" "}
+              <label htmlFor="selectFile">
+                <IoMdImage />
+              </label>
+              <input
+                id="selectFile"
+                disabled={is_uploading}
+                type="file"
+                ref={fileInput}
+                onChange={selectFile}
+                style={{ display: "none" }}
+              />
+              <BsCode />
+            </Wrapper1>
+
             <AspectOutter>
               <AspectInner src={preview ? preview : null}></AspectInner>
             </AspectOutter>
-
             <Input2
               name="content"
               value={post.content}
@@ -211,9 +223,9 @@ const Buttons = styled.div`
     }
   }
   & button.submit {
-    background-color: rgb(73, 80, 87);
+    background-color:  #63e6be;
     &:hover {
-      background-color: green;
+      background-color: #12b886;
     }
   }
 `;
@@ -223,6 +235,14 @@ const Wrapper = styled.div`
   padding: 1rem 0;
   background-color: white;
   ${(props) => props.theme.border_box}
+`;
+const Wrapper1 = styled.div`
+  width: 200px;
+  justify-content: space-between;
+  padding: 1rem 0;
+  background-color: white;
+  font-size: xx-large;
+  padding: 1px 1px;
 `;
 
 const Line = styled.div`
@@ -268,15 +288,8 @@ const Input2 = styled.input`
   white-space: normal;
 `;
 
-const AddImage = styled.input`
-  cursor: pointer;
-  margin: 16px 0px;
-  display: flex;
-  width: 35vw;
-`;
-
 const AspectOutter = styled.div`
-  width: 50%;
+  width: 30%;
   min-width: 250px;
 `;
 const AspectInner = styled.div`
