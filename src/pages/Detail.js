@@ -11,12 +11,12 @@ const Detail = (props) => {
   const params = useParams();
   const dispatch = useDispatch();
   const token = sessionStorage.getItem("token");
-  const post_list = useSelector((state) => state.post.list);
+  const post_list = useSelector((state) => state);
+  console.log(post_list);
   const post = post_list.find((p) => p._id === params.postid);
   const comments_list = useSelector((state) => state.comment.comments);
   const user_info = useSelector((state) => state.User);
   
-  console.log(post_list);
   
   const parseToken = (token = null) => {
     try {
@@ -66,7 +66,9 @@ const Detail = (props) => {
 
   return (
     <React.Fragment>
+      
       <Box>
+
         <NameTag>
           <N>
             <ImageCircle />

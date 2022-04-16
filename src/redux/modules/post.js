@@ -22,12 +22,23 @@ const initialState = {
   list: [],
 };
 
+const initialPost = {
+  title : "",
+  content : "",
+  image : "",
+};
+
 const addPostDB = (formData) => {
   return async function (dispatch, getState) {
     // for (var pair of formData.entries()) {
     //   console.log(pair[0] + ", " + pair[1]);
-    console.log(typeof formData);
-    return;
+    let post = {
+      ...initialPost,
+      formData,
+    };
+   
+    console.log(formData);
+    
     try {
       await axios({
         method: "POST",
@@ -38,7 +49,7 @@ const addPostDB = (formData) => {
           authorization: `Bearer ${token}`,
         },
       });
-      dispatch(imageActions.resetPreview());
+      dispatch(imageActions.resetPreview(post));
     } catch (error) {
       console.log(error);
     }
