@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { GoTriangleDown } from "react-icons/go";
 import { IoIosArrowDropright, IoIosArrowDropleft } from "react-icons/io";
 import { ImBookmark } from "react-icons/im";
+import DetailUser from "./DetailUser";
 
 const Card = () => {
   return (
@@ -21,7 +22,6 @@ const Card = () => {
         <SubTitle>
           <SubInfo>
             <div className="info">항해99 클론코딩 8조</div>
-
             <div class="bookmark">
               <ImBookmark />
             </div>
@@ -41,8 +41,8 @@ const Card = () => {
         </SubTitle>
         <PostImage />
       </UpperBox>
-      <MiddleBox>내용이 들어갑니다</MiddleBox>
-      <LowerBox>댓글이 들어갑니다</LowerBox>
+      <MiddleBox>어제 나는 코딩을 했다. 지금도 코딩을 하고있다. 내일도 코딩을 하고 있겠지..?</MiddleBox>
+      <DetailUser />
     </Main>
   );
 };
@@ -252,61 +252,7 @@ const MiddleBox = styled.div`
   transition: all 0s ease 0s;
   box-sizing: border-box;
   word-wrap: break-word;
-  border: 2px solid orange;
   margin: 0px auto;
 `;
-const LowerBox = styled.div`
-  background-color: #ffffff;
-  background-position: 0% 0%;
-  color: #212529;
-  height: 100%;
-  width: 768px;
-  margin: 0px auto;
-  display: block;
-  border: 2px solid green;
-`;
 
-const NameTag = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  justify-content: space-between;
-`;
 
-const PosterBox = styled.div`
-  display: flex;
-  padding: 0px 16px;
-  margin-bottom: 20px;
-  align-items: flex-start;
-`;
-
-const Button = styled.button`
-  background: transparent;
-  border-radius: 3px;
-  border: 1px solid #394481;
-  color: #394481;
-  margin: 0 1em;
-  padding: 0.6em 0.8em;
-  border-radius: 50px;
-  font-size: medium;
-  cursor: pointer;
-  &:hover {
-    border: 3px solid #394481;
-  }
-`;
-
-const SmallBox = styled.div`
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  float: left;
-`;
-
-const SmallBox1 = styled.div`
-  display: flex;
-  margin-bottom: 10px;
-  justify-content: left;
-  align-items: flex-end;
-  float: left;
-`;
