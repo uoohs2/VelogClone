@@ -12,16 +12,13 @@ ${reset};
     color: #262626;
 };
 
-h1,h2,h3{
-    font-weight: bold;
-}
-
-input{
+input, textarea{
     outline: 1px solid lightgrey;
     border:none;
     border-radius: 5px;
     padding: 5px;
 }
+
 input:focus{
     outline:2px solid lightgrey;
 }
@@ -31,6 +28,7 @@ button{
     border:none;
     border-radius: 5px;
     cursor: pointer;
+    background-color: white;
 };
     
 `;

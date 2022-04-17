@@ -5,6 +5,7 @@ const Div = (props) => {
   const {
     children,
     position,
+    display,
     width,
     height,
     margin,
@@ -13,9 +14,11 @@ const Div = (props) => {
     borderRadius,
     backgroundColor,
     container,
-    box,
+    start,
     center,
     row,
+    spaceBetween,
+    spaceAround,
     textCenter,
     inline,
     _onClick,
@@ -24,6 +27,7 @@ const Div = (props) => {
   const styles = {
     children,
     position,
+    display,
     width,
     height,
     margin,
@@ -32,25 +36,26 @@ const Div = (props) => {
     borderRadius,
     backgroundColor,
     container,
-    box,
+    start,
     center,
     row,
+    spaceBetween,
+    spaceAround,
     textCenter,
     inline,
   };
 
   return (
-    <React.Fragment>
-      <Box onClick={_onClick} {...styles}>
-        {children}
-      </Box>
-    </React.Fragment>
+    <Box onClick={_onClick} {...styles}>
+      {children}
+    </Box>
   );
 };
 
 Div.defaultProps = {
   children: null,
   position: "",
+  display: "",
   width: "",
   height: "",
   margin: "",
@@ -59,9 +64,11 @@ Div.defaultProps = {
   borderRadius: "",
   backgroundColor: "",
   container: false,
-  box: false,
+  start: false,
   center: false,
   row: false,
+  spaceBetween: false,
+  spaceAround: false,
   textCenter: false,
   inline: false,
   _onClick: () => {},
@@ -71,15 +78,29 @@ const Box = styled.div`
   ${(props) =>
     props.container ? "position:realative; width:100%; margin:0px auto;" : ""};
   position: ${(props) => props.position};
+  display: ${(props) => props.display};
   ${(props) => (props.inline ? "display:inline-block;" : "display:block")};
   ${(props) =>
+    props.start
+      ? "display:flex; flex-direction:column; align-items:center; justify-content:flex-start;"
+      : ""};
+  ${(props) =>
     props.center
-      ? "display:flex; flex-direction:column; align-items:center; justify-content:center"
+      ? "display:flex; flex-direction:column; align-items:center; justify-content:center;"
       : ""};
   ${(props) =>
     props.row
-      ? "display:flex; flex-direction:row; align-items:center; justify-content:center"
+      ? "display:flex; flex-direction:row; align-items:center; justify-content:center;"
       : ""};
+  ${(props) =>
+    props.spaceBetween
+      ? "display:flex; flex-direction:row; align-items:center; justify-content:space-between;"
+      : ""};
+  ${(props) =>
+    props.spaceAround
+      ? "display:flex; flex-direction:row; align-items:center; justify-content:space-around;"
+      : ""};
+
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};

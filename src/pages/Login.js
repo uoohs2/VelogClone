@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 
-import { Div } from "../components/ui";
+import styled from "styled-components";
+import { Button, Div, Image, Input, Text } from "../components/ui";
 
 const Login = (props) => {
   const dispatch = useDispatch();
@@ -47,90 +48,82 @@ const Login = (props) => {
         border="1px solid lightgrey"
       >
         <Div center height="100px">
-          <h1
-            style={{
-              fontSize: "2rem",
-            }}
-          >
+          <Text size="2rem" bold>
             Velog Signup
-          </h1>
+          </Text>
         </Div>
         <Div height="300px">
-          <input
+          <Input
             type="text"
-            style={{
-              width: "300px",
-              height: "40px",
-              lineHeight: "40px",
-              margin: "15px 0px 5px 0px",
-            }}
+            width="300px"
+            height="40px"
+            lineHeight="40px"
+            margin="15px 0px 5px 0px"
             placeholder="아이디"
-            onChange={(e) => {
+            _onChange={(e) => {
               setId(e.target.value);
             }}
           />
-          <input
+          <Input
             type="password"
-            style={{
-              width: "300px",
-              height: "40px",
-              lineHeight: "40px",
-              margin: "5px 0px",
-            }}
+            width="300px"
+            height="40px"
+            lineHeight="40px"
+            margin="5px 0px"
             placeholder="비밀번호"
-            onChange={(e) => {
+            _onChange={(e) => {
               setPwd(e.target.value);
             }}
           />
-          <button
-            style={{
-              width: "300px",
-              lineHeight: "35px",
-              margin: "12px",
-              backgroundColor: "#96f2d7",
-            }}
-            onClick={login}
+          <Button
+            width="300px"
+            lineHeight="35px"
+            margin="12px"
+            backgroundColor="#96f2d7"
+            _onClick={login}
           >
             로그인
-          </button>
-          <hr style={{ margin: "10px 25px", border: "1px dotted lightgrey" }} />
+          </Button>
+          <Line />
           <Div row margin="15px 0px">
-            <img
+            <Image
               src="https://w.namu.la/s/059f8bf3e629d3f2e343fe3f3f10809022d58800962db675d233429660bf98d9ceccd60e23b1324d090c87485833b10c2c4503c93a230003ba67d5fcafa527930174f8daf70b9e9cb534ed3c2d096f775663373e7e848fad3f0e0445cf2a9e7e"
               alt="kakao"
               width="20px"
               height="20px"
             />
-            <p style={{ margin: "20px 10px", fontSize: "0.9em" }}>
+            <Button margin="20px 10px" size="0.9em">
               KakaoTalk으로 로그인
-            </p>
+            </Button>
           </Div>
         </Div>
       </Div>
       <Div border="1px solid lightgrey" margin="12px 0px">
-        <p style={{ display: "inline-block", fontSize: "0.9em" }}>
+        <Text display="inline-block" size="0.9em">
           계정이 없으신가요?
-        </p>
-        <button
-          style={{
-            width: "70px",
-            height: "40px",
-            lineHeight: "40px",
-            margin: "10px 5px",
-            fontWeight: "bold",
-            fontSize: "0.9em",
-            backgroundColor: "white",
-            color: "#39b7ab",
-          }}
-          onClick={() => {
+        </Text>
+        <Button
+          width="70px"
+          height="40px"
+          lineHeight="40px"
+          margin="10px 5px"
+          bold
+          size="0.9em"
+          color="#39b7ab"
+          _onClick={() => {
             history.push("/signup");
           }}
         >
           가입하기
-        </button>
+        </Button>
       </Div>
     </Div>
   );
 };
 
 export default Login;
+
+const Line = styled.hr`
+  margin: 10px 25px;
+  border: 1px dotted lightgrey;
+`;
