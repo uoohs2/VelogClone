@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { GoTriangleDown } from "react-icons/go";
 import { IoIosArrowDropright, IoIosArrowDropleft } from "react-icons/io";
+import { ImBookmark } from "react-icons/im";
+import DetailUser from "./DetailUser";
 
 const Card = () => {
   return (
@@ -18,7 +20,13 @@ const Card = () => {
           <TagInfo> 회고</TagInfo>
         </Tags>
         <SubTitle>
-          <SubInfo>항해99 클론코딩 8조</SubInfo>
+          <SubInfo>
+            <div className="info">항해99 클론코딩 8조</div>
+            <div class="bookmark">
+              <ImBookmark />
+            </div>
+          </SubInfo>
+
           <MenuBox>
             <Menu>
               <GoTriangleDown />
@@ -31,10 +39,10 @@ const Card = () => {
             </Arrow>
           </MenuBox>
         </SubTitle>
-        <PostImage>사진이 들어갑니다</PostImage>
+        <PostImage />
       </UpperBox>
-      <MiddleBox>내용이 들어갑니다</MiddleBox>
-      <LowerBox>댓글이 들어갑니다</LowerBox>
+      <MiddleBox>어제 나는 코딩을 했다. 지금도 코딩을 하고있다. 내일도 코딩을 하고 있겠지..?</MiddleBox>
+      <DetailUser />
     </Main>
   );
 };
@@ -46,7 +54,6 @@ const Main = styled.div`
   word-spacing: 0px;
   width: 100%;
   height: 100%;
-  border: 2px solid red;
   display: block;
   background-color: #ffffff;
 `;
@@ -59,7 +66,6 @@ const Title = styled.div`
   height: 72px;
   width: 768px;
   display: block;
-  border: 2px solid green;
 `;
 const PostInfo = styled.div`
   font-size: 16px;
@@ -69,7 +75,6 @@ const PostInfo = styled.div`
   width: 768px;
   background-color: #ffffff;
   display: flex;
-  border: 2px solid orange;
 `;
 const UserId = styled.div`
   font-size: 16px;
@@ -102,7 +107,6 @@ const Tags = styled.div`
   margin: 14px 0 -14px 0;
   min-height: 14px;
   display: block;
-  border: 2px solid blue;
 `;
 const TagInfo = styled.div`
   font-size: 16px;
@@ -159,11 +163,17 @@ const SubInfo = styled.div`
   background-color: #f8f9fa;
   height: auto;
   width: auto;
-  display: inline;
+  display: flex;
+  justify-content: space-between;
   cursor: pointer;
   &:hover {
     color: #868e96;
     text-decoration: underline solid rgb(134, 142, 150);
+  }
+  .bookmark {
+    color: #495057;
+    font-size: 45px;
+    margin-top: -32px;
   }
 `;
 const MenuBox = styled.div`
@@ -173,10 +183,9 @@ const MenuBox = styled.div`
   width: 720px;
   margin: 48px 0 0 0;
   display: flex;
-  border: 1px solid red;
   justify-content: space-between;
 `;
-const Menu = styled.p`
+const Menu = styled.div`
   font-size: 16px;
   line-height: 16px;
   text-decoration: none solid rgb(33, 37, 41);
@@ -210,10 +219,9 @@ const PostImage = styled.div`
   max-height: 1742px;
   max-width: 100%;
   display: block;
-  background-image: url("${(props) => props.src}");
+  background-image: url("https://assets.entrepreneur.com/content/3x2/2000/20160628101609-Coding.jpeg");
   background-position: center;
   background-size: cover;
-  border: 1px solid yellowgreen;
 `;
 
 const UpperBox = styled.div`
@@ -224,7 +232,6 @@ const UpperBox = styled.div`
   font-size: 16px;
   text-decoration: none solid rgb(33, 37, 41);
   word-spacing: 0px;
-  border: 2px solid black;
   background-color: #ffffff;
   margin: 0px auto;
 `;
@@ -237,7 +244,7 @@ const MiddleBox = styled.div`
   word-spacing: 0px;
   background-color: #ffffff;
   background-position: 0% 0%;
-  height: 3967.03px;
+  height: 100%;
   width: 768px;
   display: block;
   color: #212529;
@@ -245,61 +252,7 @@ const MiddleBox = styled.div`
   transition: all 0s ease 0s;
   box-sizing: border-box;
   word-wrap: break-word;
-  border: 2px solid orange;
   margin: 0px auto;
 `;
-const LowerBox = styled.div`
-  background-color: #ffffff;
-  background-position: 0% 0%;
-  color: #212529;
-  height: 1163.75px;
-  width: 768px;
-  margin: 0px auto;
-  display: block;
-  border: 2px solid green;
-`;
 
-const NameTag = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  justify-content: space-between;
-`;
 
-const PosterBox = styled.div`
-  display: flex;
-  padding: 0px 16px;
-  margin-bottom: 20px;
-  align-items: flex-start;
-`;
-
-const Button = styled.button`
-  background: transparent;
-  border-radius: 3px;
-  border: 1px solid #394481;
-  color: #394481;
-  margin: 0 1em;
-  padding: 0.6em 0.8em;
-  border-radius: 50px;
-  font-size: medium;
-  cursor: pointer;
-  &:hover {
-    border: 3px solid #394481;
-  }
-`;
-
-const SmallBox = styled.div`
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  float: left;
-`;
-
-const SmallBox1 = styled.div`
-  display: flex;
-  margin-bottom: 10px;
-  justify-content: left;
-  align-items: flex-end;
-  float: left;
-`;

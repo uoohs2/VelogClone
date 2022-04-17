@@ -1482,6 +1482,16 @@
     clsx "^1.1.1"
     prop-types "^15.7.2"
     react-is "^17.0.2"
+<<<<<<< HEAD
+=======
+
+"@mui/icons-material@^5.6.1":
+  version "5.6.1"
+  resolved "https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-5.6.1.tgz#421e2b73992349abb07f8f03074d7e56e20bf7ba"
+  integrity sha512-I1x8u+FRLOmoJpRJASMx9UG+jZrSkNLyRQmBXivQQwXu3m3iasMoaKYhhI0J18t8+FWktbkNTp63oEUHE9Gw0Q==
+  dependencies:
+    "@babel/runtime" "^7.17.2"
+>>>>>>> d97018cfddcfb14d03875c5299b6a795d1b6b924
 
 "@mui/material@^5.6.1":
   version "5.6.1"
@@ -7405,7 +7415,11 @@ react-error-overlay@^6.0.11:
 
 react-icons@^4.3.1:
   version "4.3.1"
+<<<<<<< HEAD
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-4.3.1.tgz#2fa92aebbbc71f43d2db2ed1aed07361124e91ca"
+=======
+  resolved "https://registry.npmjs.org/react-icons/-/react-icons-4.3.1.tgz"
+>>>>>>> d97018cfddcfb14d03875c5299b6a795d1b6b924
   integrity sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ==
 
 react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0:
