@@ -16,9 +16,14 @@ const Header = (props) => {
         >
           velog
         </TextLogo>
-        <HeaderRight>
-          <BsFillSunFill size="25" />
-          <BsSearch size="20" />
+        <div className="rightside">
+          <div className="icon0">
+            <BsFillSunFill size="25" />
+          </div>
+          <div className="icon1">
+            <BsSearch size="20" />
+          </div>
+
           <WriteButton>새 글 작성</WriteButton>
           <WriteButton onClick={() => {}}>로그아웃</WriteButton>
 
@@ -26,7 +31,7 @@ const Header = (props) => {
             shape="circle"
             src="https://velog.velcdn.com/images/syounglee012/profile/153e8e10-0a34-4939-be81-7244fa41347c/social.png"
           />
-        </HeaderRight>
+        </div>
       </HeaderContainer>
     </React.Fragment>
   );
@@ -63,15 +68,23 @@ const CloseButton = styled.img`
 
 const HeaderContainer = styled.div`
   ${(prop) => prop.theme.responsiveContainer};
-  width: 100%;
-  max-width: 1444px;
+  width: 95%;
   margin: auto;
   height: 48px;
   padding: 16px;
   display: flex;
   box-sizing: border-box;
-  padding-bottom: 50px;
+  padding: 20px 0px 50px;
   justify-content: space-between;
+  .rightside {
+    display: flex;
+    .icon0 {
+      margin: 6px 0px;
+    }
+  }
+  .icon1 {
+    margin: 8px 20px 0px 20px;
+  }
 `;
 
 const HeaderRight = styled.div`
@@ -142,6 +155,7 @@ const ImageCircle = styled.div`
   border-radius: 50px;
   background-image: url(${(props) => props.src});
   background-size: cover;
-  margin: 3px 10px 3px 3px;
+  margin: 0px 10px 3px 3px;
+
 `;
 export default Header;
