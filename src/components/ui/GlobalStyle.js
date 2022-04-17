@@ -22,6 +22,9 @@ input{
     border-radius: 5px;
     padding: 5px;
 }
+input:focus{
+    outline:2px solid lightgrey;
+}
 
 button{
     outline: none;

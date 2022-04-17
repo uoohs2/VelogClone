@@ -10,6 +10,7 @@ const Div = (props) => {
     margin,
     padding,
     border,
+    borderRadius,
     backgroundColor,
     container,
     box,
@@ -28,6 +29,7 @@ const Div = (props) => {
     margin,
     padding,
     border,
+    borderRadius,
     backgroundColor,
     container,
     box,
@@ -54,6 +56,7 @@ Div.defaultProps = {
   margin: "",
   padding: "",
   border: "",
+  borderRadius: "",
   backgroundColor: "",
   container: false,
   box: false,
@@ -82,6 +85,7 @@ const Box = styled.div`
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   border: ${(props) => props.border};
+  border-radius: ${(props) => props.borderRadius};
   background-color: ${(props) => props.backgroundColor};
   ${(props) => (props.textCenter ? `text-align:center;` : "")};
 `;

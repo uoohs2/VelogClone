@@ -1,8 +1,36 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
+import { history } from "../redux/configureStore";
 
 import { Div } from "../components/ui";
 
-const Signup = (props) => {
+const Login = (props) => {
+  const dispatch = useDispatch();
+  const [id, setId] = React.useState("");
+  const [pwd, setPwd] = React.useState("");
+
+  //이메일형식 확인
+  const isId = (email) => {
+    let pattern =
+      /^[0-9a-zA-Z]([-_.0-9a-zA-Z])*@[0-9a-zA-zA]([-_.0-9a-zA-Z])*.([a-zA-Z])/;
+    return pattern.test(email); // 맞으면 true, 틀리면 false반환
+  };
+
+  //로그인함수
+  const login = () => {
+    if (id === "" || pwd === "") {
+      window.alert("빈칸을 입력해주세요.");
+      return;
+    }
+
+    if (!isId(id)) {
+      window.alert("잘못된 이메일 형식입니다.");
+      return;
+    }
+
+    dispatch(userActions.loginDB(id, pwd));
+  };
   return (
     <Div
       width="350px"
@@ -35,20 +63,24 @@ const Signup = (props) => {
               height: "40px",
               lineHeight: "40px",
               margin: "15px 0px 5px 0px",
-              border: "1px solid lightgrey",
             }}
             placeholder="아이디"
+            onChange={(e) => {
+              setId(e.target.value);
+            }}
           />
           <input
-            type="text"
+            type="password"
             style={{
               width: "300px",
               height: "40px",
               lineHeight: "40px",
               margin: "5px 0px",
-              border: "1px solid lightgrey",
             }}
             placeholder="비밀번호"
+            onChange={(e) => {
+              setPwd(e.target.value);
+            }}
           />
           <button
             style={{
@@ -57,6 +89,7 @@ const Signup = (props) => {
               margin: "12px",
               backgroundColor: "#96f2d7",
             }}
+            onClick={login}
           >
             로그인
           </button>
@@ -89,6 +122,9 @@ const Signup = (props) => {
             backgroundColor: "white",
             color: "#39b7ab",
           }}
+          onClick={() => {
+            history.push("/signup");
+          }}
         >
           가입하기
         </button>
@@ -97,4 +133,4 @@ const Signup = (props) => {
   );
 };
 
-export default Signup;
+export default Login;
