@@ -233,7 +233,7 @@ const Card = (props) => {
           있겠지..?
         </Text>
       </Div>
-      <DetailUser />
+      <DetailUser data={props.data}/>
     </Div>
   );
 };
