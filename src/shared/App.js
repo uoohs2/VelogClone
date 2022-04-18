@@ -35,6 +35,7 @@ function App() {
           <Route path="/signup" exact component={Signup} />
           <Route path="/detail" exact component={Detail} />
           <Route path="/write" exact component={Write} />
+          <Route path="/write/:id" exact component={Write} />
         </ConnectedRouter>
       </Div>
     </React.Fragment>

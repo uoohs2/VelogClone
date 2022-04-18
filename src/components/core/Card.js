@@ -1,10 +1,11 @@
 import React from "react";
-import styled from "styled-components";
+import DetailUser from "./DetailUser";
+import { history } from "../../redux/configureStore";
+
 import { Button, Div, Image, Input, Text } from "../ui";
 import { GoTriangleDown } from "react-icons/go";
 import { IoIosArrowDropright, IoIosArrowDropleft } from "react-icons/io";
 import { ImBookmark } from "react-icons/im";
-import DetailUser from "./DetailUser";
 import { useSelector } from "react-redux";
 
 const Card = (props) => {
@@ -37,22 +38,89 @@ const Card = (props) => {
   }
 
   return (
-    <Main>
-      <UpperBox>
+    <Div width="100%" height="100%" backgroundColor="#ffffff">
+      <Div
+        width="768px"
+        height="444px"
+        margin="88px auto 0px auto"
+        fontSize="16px"
+      >
         <Text
           size="40px"
           bold
           decoration="none solid rgb(33,37,41)"
           backgroundColor="#ffffff"
           width="768px"
-          height="72px"
+          height="auto"
+          lineHeight="72px"
+          margin="0px 0px 32px 0px"
         >
-          {postInfo.title}
+          여기에 제목이 들어갑니다.
         </Text>
-        <PostInfo>
-          <UserId>{postInfo.userName}</UserId>
-          <PostDate>{timeForToday(postInfo.date)}</PostDate>
-        </PostInfo>
+        <Div
+          display="flex"
+          width="768px"
+          height="21px"
+          backgroundColor="#ffffff"
+        >
+          <Text
+            display="inline-block"
+            padding="0px 10px 0px 0px"
+            weight="700"
+            decoration="none solid rgb(73, 80, 87)"
+            cursor="pointer"
+            colorHover="#495057"
+            decorationHover="underline"
+            size="16px"
+          >
+            닉네임
+          </Text>
+          <Text
+            display="inline-block"
+            weight="1000px"
+            decoration="none solid rgb(73, 80, 87)"
+            size="16px"
+          >
+            3일 전
+          </Text>
+          <Div float="right">
+            <Button
+              width="32px"
+              height="21px"
+              margin="0px 0px 0px 0.5rem "
+              size="16px"
+              color="#868e96"
+              colorHover="#212529"
+              _onClick={() => {}}
+            >
+              통계
+            </Button>
+            <Button
+              width="32px"
+              height="21px"
+              margin="0px 0px 0px 0.5rem "
+              size="16px"
+              color="#868e96"
+              colorHover="#212529"
+              _onClick={() => {
+                history.push("/write/:id");
+              }}
+            >
+              수정
+            </Button>
+            <Button
+              width="32px"
+              height="21px"
+              margin="0px 0px 0px 0.5rem "
+              size="16px"
+              color="#868e96"
+              colorHover="#212529"
+              _onClick={() => {}}
+            >
+              삭제
+            </Button>
+          </Div>
+        </Div>
         <Div
           width="768px"
           height="46px"
@@ -63,199 +131,111 @@ const Card = (props) => {
           <Button tagBtn> 신입개발자</Button>
           <Button tagBtn> 회고</Button>
         </Div>
-        <SubTitle>
-          <SubInfo>
-            <div className="info">{postInfo.content}</div>
-            <div class="bookmark">
-              <ImBookmark />
-            </div>
-          </SubInfo>
-
-          <MenuBox>
-            <Menu>
+        <Div
+          position="relative"
+          width="768px"
+          height="168px"
+          margin="32px 0px 0px 0px"
+          padding="32px 24px"
+          borderRadius="8px"
+          shadow="rgba(0, 0, 0, 0.06) 0px 0px 4px 0px;"
+          transition="all 0s ease 0s"
+          backgroundColor="#f8f9fa"
+        >
+          <Div
+            width="720px"
+            height="32px"
+            margin="0px 0px 20px 0px"
+            padding="0px 32px 0px 0px"
+            backgroundColor="#f8f9fa"
+            color="#495057"
+          >
+            <Text
+              size="24px"
+              weight="700"
+              cursor="pointer"
+              colorHover=" #868e96"
+              decorationHover="underline solid rgb(134, 142, 150);"
+            >
+              항해99 클론코딩 8조
+            </Text>
+          </Div>
+          <Div bookMark>
+            <ImBookmark fill="#12b886" font-size="45px" />
+          </Div>
+          <Div
+            spaceBetween
+            width="720px"
+            height="24px"
+            margin="48px 0px 0px 0px"
+            backgroundColor="#f8f9fa"
+            color="#212529"
+          >
+            <Div cursor="pointer">
               <GoTriangleDown />
-              목록보기
-            </Menu>
-            <Arrow>
+              <Text display="inline-block" margin="0px 0px 0px 4px" size="16px">
+                목록 보기
+              </Text>
+            </Div>
+            <Div spaceBetween width="80px" height="24px" fontSize="14px">
               1/3
-              <IoIosArrowDropleft size="20" color="#12B886" />
-              <IoIosArrowDropright size="20" color="" />
-            </Arrow>
-          </MenuBox>
-        </SubTitle>
-        <PostImage src={postInfo.image}/>
-      </UpperBox>
-      <MiddleBox>
-        {postInfo.content}
-      </MiddleBox>
-      <DetailUser data={props.data} />
-    </Main>
+              <Button
+                width="24px"
+                height="24px"
+                radius="50%"
+                backgroundColor="#f8f9fa"
+                BG="#12b886"
+              >
+                <IoIosArrowDropleft font-size="25px" fill="#12b886" />
+              </Button>
+              <Button
+                width="24px"
+                height="24px"
+                radius="50%"
+                backgroundColor="#f8f9fa"
+                BG="#12b886"
+              >
+                <IoIosArrowDropright font-size="25px" fill="#12b886" />
+              </Button>
+            </Div>
+          </Div>
+        </Div>
+      </Div>
+      <Div
+        width="768px"
+        height="auto"
+        margin="18px auto"
+        padding="36px 0px 0px 0px"
+        backgroundColor="#ffffff"
+      >
+        <Div width="768px" height="376px" padding="0px 51px">
+          <Image
+            display="block"
+            width="667px"
+            height="376px"
+            maxWidth="100%"
+            src="https://assets.entrepreneur.com/content/3x2/2000/20160628101609-Coding.jpeg"
+            size="cover"
+            position="center"
+          />
+        </Div>
+        <Text
+          size="18px"
+          lineHeight="30.6px"
+          margin="50px 0px"
+          decoration="none solid rgb(33, 37, 41)"
+          letterSpacing="-0.072px"
+          wordWrap="break-word"
+          color="#212529"
+          transition="all 0s ease 0s"
+        >
+          어제 나는 코딩을 했다. 지금도 코딩을 하고있다. 내일도 코딩을 하고
+          있겠지..?
+        </Text>
+      </Div>
+      <DetailUser />
+    </Div>
   );
 };
 
 export default Card;
-
-const Main = styled.div`
-  text-decoration: none solid rgb(33, 37, 41);
-  word-spacing: 0px;
-  width: 100%;
-  height: 100%;
-  display: block;
-  background-color: #ffffff;
-  margin-top: 80px;
-`;
-
-const PostInfo = styled.div`
-  font-size: 16px;
-  text-decoration: none solid rgb(73, 80, 87);
-  word-spacing: 0px;
-  height: 21px;
-  width: 768px;
-  background-color: #ffffff;
-  display: flex;
-`;
-const UserId = styled.div`
-  font-size: 16px;
-  font-weight: 1000;
-  text-decoration: none solid rgb(73, 80, 87);
-  word-spacing: 0px;
-  background-color: #ffffff;
-  height: auto;
-  width: auto;
-  display: inline;
-  cursor: pointer;
-  padding-right: 10px;
-`;
-const PostDate = styled.div`
-  font-size: 16px;
-  text-decoration: none solid rgb(73, 80, 87);
-  word-spacing: 0px;
-  background-color: #ffffff;
-  height: auto;
-  width: auto;
-  display: inline;
-`;
-const SubTitle = styled.div`
-  font-size: 16px;
-  text-decoration: none solid rgb(33, 37, 41);
-  word-spacing: 0px;
-  background-color: #f8f9fa;
-  color: #212529;
-  height: 168px;
-  width: 768px;
-  margin: 32px 0 0 0;
-  padding: 32px 24px 32px 24px;
-  position: relative;
-  top: 0px;
-  bottom: 0px;
-  right: 0px;
-  left: 0px;
-  display: block;
-  transform: none;
-  transition: all 0s ease 0s;
-  box-sizing: border-box;
-  box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 4px 0px;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-`;
-const SubInfo = styled.div`
-  font-size: 24px;
-  font-weight: 700;
-  word-spacing: 0px;
-  color: #495057;
-  background-color: #f8f9fa;
-  height: auto;
-  width: auto;
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
-  &:hover {
-    color: #868e96;
-    text-decoration: underline solid rgb(134, 142, 150);
-  }
-  .bookmark {
-    color: #12b886;
-    font-size: 45px;
-    margin-top: -32px;
-  }
-`;
-const MenuBox = styled.div`
-  background-color: #f8f9fa;
-  color: #212529;
-  height: 24px;
-  width: 720px;
-  margin: 48px 0 0 0;
-  display: flex;
-  justify-content: space-between;
-`;
-const Menu = styled.div`
-  font-size: 16px;
-  line-height: 16px;
-  text-decoration: none solid rgb(33, 37, 41);
-  word-spacing: 0px;
-  background-color: #f8f9fa;
-  background-position: 0% 0%;
-  color: #212529;
-  height: 24px;
-  width: 97.625px;
-  margin: 0 0 0 -5px;
-  min-height: auto;
-  min-width: auto;
-  display: flex;
-  cursor: pointer;
-`;
-const Arrow = styled.div`
-  background-color: #f8f9fa;
-  background-position: 0% 0%;
-  color: #212529;
-  height: 24px;
-  width: 92.9844px;
-  min-height: auto;
-  min-width: auto;
-  display: flex;
-  justify-content: space-between;
-`;
-const PostImage = styled.div`
-  height: 414px;
-  width: 768px;
-  margin: 32px 0 0 0;
-  max-height: 1742px;
-  max-width: 100%;
-  display: block;
-  background-image: url("${(props) => props.src}");
-  background-position: center;
-  background-size: cover;
-`;
-
-const UpperBox = styled.div`
-  height: 889px;
-  width: 768px;
-  margin: 88px 148px 0 148px;
-  display: block;
-  font-size: 16px;
-  text-decoration: none solid rgb(33, 37, 41);
-  word-spacing: 0px;
-  background-color: #ffffff;
-  margin: 0px auto;
-`;
-
-const MiddleBox = styled.div`
-  font-size: 18px;
-  letter-spacing: -0.072px;
-  line-height: 30.6px;
-  text-decoration: none solid rgb(33, 37, 41);
-  word-spacing: 0px;
-  background-color: #ffffff;
-  background-position: 0% 0%;
-  height: 100%;
-  width: 768px;
-  display: block;
-  color: #212529;
-  transform: none;
-  transition: all 0s ease 0s;
-  box-sizing: border-box;
-  word-wrap: break-word;
-  margin: 0px auto;
-`;

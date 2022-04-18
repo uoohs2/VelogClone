@@ -2,11 +2,26 @@ import React from "react";
 import styled from "styled-components";
 
 const Image = (props) => {
-  const { width, height, border, shape, src, src01, src02, size, position } =
-    props;
-  const styles = {
+  const {
+    display,
     width,
+    maxWidth,
     height,
+    maxHeight,
+    border,
+    shape,
+    src,
+    src01,
+    src02,
+    size,
+    position,
+  } = props;
+  const styles = {
+    display,
+    width,
+    maxWidth,
+    height,
+    maxHeight,
     border,
     src,
     src01,
@@ -34,8 +49,11 @@ const Image = (props) => {
   );
 };
 Image.defaultProps = {
+  display: "",
   width: "",
+  maxWidth: "",
   height: "",
+  maxHeight: "",
   border: "",
   shape: "",
   src: "",
@@ -48,8 +66,11 @@ Image.defaultProps = {
 
 //기본
 const ImageDefault = styled.div`
+  display: ${(props) => props.display};
   width: ${(props) => props.width};
+  max-width: ${(props) => props.maxWidth};
   height: ${(props) => props.height};
+  max-height: ${(props) => props.maxHeight};
   border: ${(props) => props.border};
   background-image: url("${(props) => props.src}");
   background-size: ${(props) => props.size};
