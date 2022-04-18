@@ -7,6 +7,7 @@ import { GoTriangleDown } from "react-icons/go";
 import { IoIosArrowDropright, IoIosArrowDropleft } from "react-icons/io";
 import { ImBookmark } from "react-icons/im";
 import { useSelector } from "react-redux";
+import post from "../../redux/modules/post";
 
 const Card = (props) => {
   console.log(props.data);
@@ -55,7 +56,7 @@ const Card = (props) => {
           lineHeight="72px"
           margin="0px 0px 32px 0px"
         >
-          여기에 제목이 들어갑니다.
+          {postInfo.title}
         </Text>
         <Div
           display="flex"
@@ -73,7 +74,7 @@ const Card = (props) => {
             decorationHover="underline"
             size="16px"
           >
-            닉네임
+            {postInfo.userName}
           </Text>
           <Text
             display="inline-block"
@@ -81,7 +82,7 @@ const Card = (props) => {
             decoration="none solid rgb(73, 80, 87)"
             size="16px"
           >
-            3일 전
+            {timeForToday(postInfo.date)}
           </Text>
           <Div float="right">
             <Button
@@ -157,7 +158,7 @@ const Card = (props) => {
               colorHover=" #868e96"
               decorationHover="underline solid rgb(134, 142, 150);"
             >
-              항해99 클론코딩 8조
+              {postInfo.title}
             </Text>
           </Div>
           <Div bookMark>
@@ -208,13 +209,13 @@ const Card = (props) => {
         padding="36px 0px 0px 0px"
         backgroundColor="#ffffff"
       >
-        <Div width="768px" height="376px" padding="0px 51px">
+        <Div>
           <Image
             display="block"
-            width="667px"
+            width="770px"
             height="376px"
             maxWidth="100%"
-            src="https://assets.entrepreneur.com/content/3x2/2000/20160628101609-Coding.jpeg"
+            src={postInfo.image}
             size="cover"
             position="center"
           />
@@ -229,8 +230,7 @@ const Card = (props) => {
           color="#212529"
           transition="all 0s ease 0s"
         >
-          어제 나는 코딩을 했다. 지금도 코딩을 하고있다. 내일도 코딩을 하고
-          있겠지..?
+          {postInfo.content}
         </Text>
       </Div>
       <DetailUser data={props.data}/>

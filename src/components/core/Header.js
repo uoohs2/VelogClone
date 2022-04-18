@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../../redux/modules/user";
 import { history } from "../../redux/configureStore";
-
+import Login from "../../pages/Login";
 import styled from "styled-components";
 import { Button, Div, Image, Text } from "../ui";
 import { BsFillSunFill, BsSearch } from "react-icons/bs";
@@ -12,14 +12,20 @@ const Header = (props) => {
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
   const isLocal = localStorage.getItem("token") ? true : false;
-
+  const [modal, setModal] = React.useState(false);
   // if (window.location.pathname === "/write") return null;
 
   //로그인 후
   if (isLocal && is_login) {
     return (
       <React.Fragment>
-        <Div spaceBetween container height="64px" padding="0px 88px" width="100v">
+        <Div
+          spaceBetween
+          container
+          height="64px"
+          padding="0px 88px"
+          width="100v"
+        >
           <Text
             font="FiraMono"
             width="71px"
@@ -122,11 +128,14 @@ const Header = (props) => {
             bold
             opacity="0.6"
             _onClick={() => {
-              history.push("/login");
+              setModal(true);
+
+              // history.push("/login");
             }}
           >
             로그인
           </Button>
+          {modal ? <Login /> : null}
         </Div>
       </Div>
     </React.Fragment>
