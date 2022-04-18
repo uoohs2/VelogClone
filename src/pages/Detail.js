@@ -9,7 +9,7 @@ import {Card} from '../components/core/index';
 const Detail = (props) => {
   const location = useLocation();
   const data = location.state.postId;
- 
+  console.log(data);
 
   return (
     <React.Fragment>

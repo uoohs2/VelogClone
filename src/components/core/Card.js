@@ -44,7 +44,7 @@ const Card = (props) => {
         width="768px"
         height="444px"
         margin="88px auto 0px auto"
-        fontSize="16px"
+        font-size="16px"
       >
         <Text
           size="40px"
@@ -104,7 +104,7 @@ const Card = (props) => {
               color="#868e96"
               colorHover="#212529"
               _onClick={() => {
-                history.push("/write/:id");
+                history.push("/write/:_id");
               }}
             >
               수정
@@ -178,7 +178,7 @@ const Card = (props) => {
                 목록 보기
               </Text>
             </Div>
-            <Div spaceBetween width="80px" height="24px" fontSize="14px">
+            <Div spaceBetween width="80px" height="24px" font-size="14px">
               1/3
               <Button
                 width="24px"

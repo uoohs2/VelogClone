@@ -4,7 +4,7 @@ import post from "../redux/modules/post";
 import { useEffect } from "react";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configureStore";
-
+import moment from "moment";
 import styled from "styled-components";
 import { Div } from "../components/ui";
 import { GoHeart } from "react-icons/go";
@@ -21,6 +21,12 @@ const Main = (props) => {
   useEffect(() => {
     dispatch(postActions.getPostDB());
   }, []);
+
+  const date = post_list.map((cur, idx) => {
+      return cur.date;
+  });
+
+  console.log(date);
 
   return (
     <React.Fragment>
@@ -69,7 +75,7 @@ const Main = (props) => {
 
               <Box2>
                 {post.comment}
-                {post.date}
+                {moment(post.date).fromNow()}
               </Box2>
               <Box3>
                 <div className="userinfo">
@@ -204,7 +210,7 @@ const Box1 = styled.div`
   background-color: #ffffff;
   background-position: 0% 0%;
   position: color;
-  height: 50%;
+  height: 200px;
   width: 100%;
   min-height: auto;
   min-width: auto;
@@ -236,13 +242,13 @@ const H4 = styled.p`
   box-sizing: border-box;
   text-overflow: ellipsis;
 `;
-const P = styled.p`
+const P = styled.div`
   font-size: 14px;
   line-height: 21px;
   text-decoration: none solid rgb(73, 80, 87);
   word-spacing: 0px;
   background-color: #ffffff;
-  height: 100%;
+  height: 68%;
   width: 100%;
   margin: 0 0 24px 0;
   display: -webkit-box;
@@ -253,6 +259,7 @@ const P = styled.p`
   box-sizing: border-box;
   text-overflow: ellipsis;
   word-wrap: break-word;
+  padding-right: 22px;
 `;
 const Box2 = styled.div`
   height: 10%;

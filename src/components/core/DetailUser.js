@@ -29,7 +29,6 @@ const DetailUser = (props) => {
         </ThreeIcons>
       </LowerUserInfo>
       <CommentList data={props}/>
-    
     </>
   );
 };

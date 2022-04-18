@@ -14,7 +14,9 @@ const Header = (props) => {
   const isLocal = localStorage.getItem("token") ? true : false;
   const [modal, setModal] = React.useState(false);
   // if (window.location.pathname === "/write") return null;
-
+  const user = useSelector((state)=>state);
+  console.log(user);
+  
   //로그인 후
   if (isLocal && is_login) {
     return (
