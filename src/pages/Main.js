@@ -1,9 +1,12 @@
 import React from "react";
-import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import post from "../redux/modules/post";
 import { useEffect } from "react";
 import { actionCreators as postActions } from "../redux/modules/post";
+import { history } from "../redux/configureStore";
+
+import styled from "styled-components";
+import { Div } from "../components/ui";
 import { GoHeart } from "react-icons/go";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -41,7 +44,19 @@ const Main = (props) => {
         </MenuBar>
         <Bigbox>
           {post_list.map((post, i) => (
-            <Midbox key={post + i}>
+            <Div
+              key={post + i}
+              display="flex"
+              flexDirection="row"
+              justifyContent="space-between"
+              width="320px"
+              height="332px"
+              margin="16px 16px 130px 16px"
+              background-color="#f8f9fa"
+              _onClick={() => {
+                history.push("/detail");
+              }}
+            >
               <Box src={post.image} />
               <Box1>
                 <H4>{post.title}</H4>
@@ -64,7 +79,7 @@ const Main = (props) => {
                   <GoHeart size="20" /> 15
                 </div>
               </Box3>
-            </Midbox>
+            </Div>
           ))}
         </Bigbox>
       </Responsive>
@@ -190,7 +205,7 @@ const Box1 = styled.div`
   justify-content: center;
   box-sizing: border-box;
   margin-top: 10px;
-  padding-left:20px;
+  padding-left: 20px;
 `;
 
 const H4 = styled.p`
@@ -211,7 +226,6 @@ const H4 = styled.p`
   transition: all 0s ease 0s;
   box-sizing: border-box;
   text-overflow: ellipsis;
-  
 `;
 const P = styled.p`
   font-size: 14px;
@@ -230,7 +244,6 @@ const P = styled.p`
   box-sizing: border-box;
   text-overflow: ellipsis;
   word-wrap: break-word;
-  
 `;
 const Box2 = styled.div`
   height: 10%;
@@ -244,7 +257,7 @@ const Box2 = styled.div`
   cursor: pointer;
   background-color: #ffffff;
   box-sizing: border-box;
-  padding-left:20px;
+  padding-left: 20px;
 `;
 
 const Box3 = styled.div`
@@ -269,19 +282,6 @@ const Box3 = styled.div`
   .likes {
     display: flex;
   }
-`;
-
-const Midbox = styled.div`
-  background-color: #f8f9fa;
-  position: color;
-  height: 332px;
-  width: 320px;
-  margin: 16px 16px 130px 16px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  box-sizing: border-box;
 `;
 
 const Bigbox = styled.div`
