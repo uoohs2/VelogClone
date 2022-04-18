@@ -19,6 +19,7 @@ const Button = (props) => {
     bold,
     text,
     is_float,
+    tagBtn,
     opacity,
     _onClick,
   } = props;
@@ -39,6 +40,7 @@ const Button = (props) => {
     bold,
     text,
     is_float,
+    tagBtn,
     opacity,
   };
 
@@ -50,6 +52,13 @@ const Button = (props) => {
     );
   }
 
+  if (tagBtn) {
+    return (
+      <React.Fragment>
+        <TagBtn onClick={_onClick}>{text ? text : children}</TagBtn>
+      </React.Fragment>
+    );
+  }
   return (
     <React.Fragment>
       <ButtonDefault {...styles} onClick={_onClick}>
@@ -76,6 +85,7 @@ Button.defaultProps = {
   bold: false,
   text: false,
   is_float: false,
+  tagBtn: false,
   opacity: "",
   _onClick: () => {},
 };
@@ -110,6 +120,30 @@ const FloatButton = styled.button`
   font-weight: bold;
   background-color: #96f2d7;
   color: white;
+`;
+
+const TagBtn = styled.button`
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none solid rgb(18, 184, 134);
+  word-spacing: 0px;
+  background-color: #f8f9fa;
+  color: #12b886;
+  height: 32px;
+  width: 112px;
+  margin: 0 14px 14px 0;
+  padding: 10px 16px 0 16px;
+  display: inline-flex;
+  justify-content: space-around;
+  transform: none;
+  transition: all 0s ease 0s;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  &:hover {
+    opacity: 0.7;
+  }
 `;
 
 export default Button;

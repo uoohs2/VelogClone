@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Button, Div, Image, Input, Text } from "../ui";
 import { GoTriangleDown } from "react-icons/go";
 import { IoIosArrowDropright, IoIosArrowDropleft } from "react-icons/io";
 import { ImBookmark } from "react-icons/im";
@@ -14,11 +15,16 @@ const Card = () => {
           <UserId>닉네임</UserId>
           <PostDate>3일 전</PostDate>
         </PostInfo>
-        <Tags>
-          <TagInfo>네이버웹툰</TagInfo>
-          <TagInfo> 신입개발자</TagInfo>
-          <TagInfo> 회고</TagInfo>
-        </Tags>
+        <Div
+          width="768px"
+          height="46px"
+          margin="14px 0px -14px 0px"
+          backgroundColor="#ffffff"
+        >
+          <Button tagBtn>네이버웹툰</Button>
+          <Button tagBtn> 신입개발자</Button>
+          <Button tagBtn> 회고</Button>
+        </Div>
         <SubTitle>
           <SubInfo>
             <div className="info">항해99 클론코딩 8조</div>
@@ -105,11 +111,11 @@ const Tags = styled.div`
   text-decoration: none solid rgb(33, 37, 41);
   word-spacing: 0px;
   background-color: #ffffff;
-  height: 46px;
-  width: 768px;
+  /* height: 46px; */
+  /* width: 768px; */
   margin: 14px 0 -14px 0;
   min-height: 14px;
-  display: block;
+  /* display: block; */
 `;
 const TagInfo = styled.div`
   font-size: 16px;
