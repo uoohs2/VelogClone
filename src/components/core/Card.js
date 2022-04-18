@@ -10,7 +10,16 @@ const Card = () => {
   return (
     <Main>
       <UpperBox>
-        <Title>여기는 제목이 들어갑니다</Title>
+        <Text
+          size="40px"
+          bold
+          decoration="none solid rgb(33,37,41)"
+          backgroundColor="#ffffff"
+          width="768px"
+          height="72px"
+        >
+          여기는 제목이 들어갑니다
+        </Text>
         <PostInfo>
           <UserId>닉네임</UserId>
           <PostDate>3일 전</PostDate>
@@ -66,16 +75,7 @@ const Main = styled.div`
   display: block;
   background-color: #ffffff;
 `;
-const Title = styled.div`
-  font-size: 40px;
-  font-weight: 600;
-  text-decoration: none solid rgb(33, 37, 41);
-  word-spacing: 0px;
-  background-color: #ffffff;
-  height: 72px;
-  width: 768px;
-  display: block;
-`;
+
 const PostInfo = styled.div`
   font-size: 16px;
   text-decoration: none solid rgb(73, 80, 87);

@@ -38,8 +38,8 @@ const signupDB = (id, name, pwd) => {
 
 // 로그인
 const loginDB = (id, pwd) => {
-  return (dispatch, getState, { history }) => {
-    axios
+  return async function (dispatch, getState, { history }) {
+    await axios
       .post("http://3.38.253.146/user/login", {
         userId: id,
         password: pwd,
@@ -59,10 +59,15 @@ const loginDB = (id, pwd) => {
 
 // 로그인유지
 const loginCheckDB = () => {
-  return (dispatch, getState, { history }) => {
-    axios
-      .get("http://3.38.253.146/user/loginCheck")
+  return async function (dispatch, getState, { history }) {
+    await axios
+      .get("http://3.38.253.146/user/loginCheck", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((res) => {
+        console.log(res);
         dispatch(setUser(res));
       })
       .catch((err) => {
