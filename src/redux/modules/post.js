@@ -23,9 +23,9 @@ const initialState = {
 };
 
 const initialPost = {
-  title : "",
-  content : "",
-  image : "",
+  title: "",
+  content: "",
+  image: "",
 };
 
 const addPostDB = (formData) => {
@@ -36,9 +36,9 @@ const addPostDB = (formData) => {
       ...initialPost,
       formData,
     };
-   
+
     console.log(formData);
-    
+
     try {
       await axios({
         method: "POST",
@@ -46,7 +46,7 @@ const addPostDB = (formData) => {
         data: formData,
         headers: {
           "Content-Type": "multipart/form-data",
-           authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
       dispatch(addPost(post));
@@ -71,11 +71,9 @@ const getPostDB = () => {
     await axios
       .get("http://3.38.253.146/api/post")
       .then((response) => {
-       
         console.log(response);
-        
+
         dispatch(getPost(response.data.board));
-        
       })
       .catch((error) => {
         console.log(error);
