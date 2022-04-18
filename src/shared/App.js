@@ -1,6 +1,8 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 
 import Login from "../pages/Login";
@@ -13,17 +15,26 @@ import { Header } from "../components/core";
 import { Div, GlobalStyle } from "../components/ui";
 
 function App() {
+  const dispatch = useDispatch();
+  const isLocal = localStorage.getItem("token") ? true : false;
+
+  React.useEffect(() => {
+    if (isLocal) {
+      dispatch(userActions.loginCheckDB());
+    }
+  }, []);
+
   return (
     <React.Fragment>
       <GlobalStyle />
-      <Div>
+      <Div container>
         <Header></Header>
         <ConnectedRouter history={history}>
           <Route path="/" exact component={Main} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
-          <Route path="/write" exact component={Write} />
           <Route path="/detail/" exact component={Detail} />
+          <Route path="/write" exact component={Write} />
         </ConnectedRouter>
       </Div>
     </React.Fragment>
