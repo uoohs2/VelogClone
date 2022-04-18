@@ -12,11 +12,18 @@ ${reset};
     color: #262626;
 };
 
-input, textarea{
+h1,h2,h3{
+    font-weight: bold;
+}
+
+input{
     outline: 1px solid lightgrey;
     border:none;
     border-radius: 5px;
     padding: 5px;
+}
+input:focus{
+    outline:2px solid lightgrey;
 }
 
 button{
@@ -24,7 +31,6 @@ button{
     border:none;
     border-radius: 5px;
     cursor: pointer;
-    background-color: white;
 };
     
 `;

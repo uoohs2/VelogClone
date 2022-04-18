@@ -57,16 +57,22 @@ const loginDB = (id, pwd) => {
   };
 };
 
-// 로그인유지
+// 로그인 유지
 const loginCheckDB = () => {
   return (dispatch, getState, { history }) => {
+    let user = getState().user.userInfo;
+    console.log(user);
     axios
-      .get("http://3.38.253.146/user/loginCheck")
-      .then((res) => {
-        dispatch(setUser(res));
+      .post("http://3.38.253.146/user/login", {
+        token: localStorage.getItem("token"),
       })
-      .catch((err) => {
-        console.log(err);
+      .then((res) => {
+        console.log(user);
+        dispatch(setUser({ ...user }));
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 };
@@ -77,7 +83,6 @@ const logoutDB = () => {
     console.log("로그아웃 되었습니다!");
     localStorage.removeItem("token");
     dispatch(logout());
-    history.replace("/");
   };
 };
 

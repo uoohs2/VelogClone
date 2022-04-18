@@ -35,16 +35,13 @@ const Card = () => {
             <Arrow>
               1/3
               <IoIosArrowDropleft size="20" color="#12B886" />
-              <IoIosArrowDropright size="20" color="" />
+              <IoIosArrowDropright size="20" color="#12B886" />
             </Arrow>
           </MenuBox>
         </SubTitle>
         <PostImage />
       </UpperBox>
-      <MiddleBox>
-        어제 나는 코딩을 했다. 지금도 코딩을 하고있다. 내일도 코딩을 하고
-        있겠지..?
-      </MiddleBox>
+      <MiddleBox>어제 나는 코딩을 했다. 지금도 코딩을 하고있다. 내일도 코딩을 하고 있겠지..?</MiddleBox>
       <DetailUser />
     </Main>
   );
@@ -174,7 +171,7 @@ const SubInfo = styled.div`
     text-decoration: underline solid rgb(134, 142, 150);
   }
   .bookmark {
-    color: #12b886;
+    color: #495057;
     font-size: 45px;
     margin-top: -32px;
   }
@@ -257,3 +254,5 @@ const MiddleBox = styled.div`
   word-wrap: break-word;
   margin: 0px auto;
 `;
+
+
