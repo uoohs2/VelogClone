@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configureStore";
 import moment from "moment";
+import "moment/locale/ko";
 import styled from "styled-components";
 import { Div } from "../components/ui";
 import { GoHeart } from "react-icons/go";
@@ -24,7 +25,7 @@ const Main = (props) => {
   }, []);
 
   const date = post_list.map((cur, idx) => {
-      return cur.date;
+    return cur.date;
   });
 
   console.log(date);
@@ -39,7 +40,7 @@ const Main = (props) => {
               <div className="menu0_1">트렌딩</div>
             </div>
             <div className="menu1">
-              <AccessTimeIcon color="disabled" /> 
+              <AccessTimeIcon color="disabled" />
               <div className="menu1_1"> 최신 </div>
             </div>
             <div className="menu2">
@@ -148,7 +149,7 @@ const MenuBar = styled.div`
     justify-content: space-evenly;
     padding-top: 15px;
     margin: auto 15px;
-    .menu1_1{
+    .menu1_1 {
       padding-top: 5px;
     }
   }

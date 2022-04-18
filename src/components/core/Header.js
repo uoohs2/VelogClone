@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../../redux/modules/user";
 import { actionCreators as postActions } from "../../redux/modules/post";
 import { history } from "../../redux/configureStore";
+
 import Login from "../../pages/Login";
+
 import styled from "styled-components";
 import { Button, Div, Image, Text } from "../ui";
 import { BsFillSunFill, BsSearch } from "react-icons/bs";
@@ -14,10 +16,10 @@ const Header = (props) => {
   const is_login = useSelector((state) => state.user.is_login);
   const isLocal = localStorage.getItem("token") ? true : false;
   const [modal, setModal] = React.useState(false);
+
   // if (window.location.pathname === "/write") return null;
-  const user = useSelector((state)=>state);
+  const user = useSelector((state) => state);
   console.log(user);
-  
 
   const logoChange = window.location.pathname === "/detail";
   const userName = useSelector((state) => state.post.list);
@@ -185,8 +187,6 @@ const Header = (props) => {
             opacity="0.6"
             _onClick={() => {
               setModal(true);
-
-              // history.push("/login");
             }}
           >
             로그인

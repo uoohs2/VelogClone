@@ -208,7 +208,7 @@ const Card = (props) => {
           {postInfo.content}
         </Text>
       </Div>
-      <DetailUser data={props.data}/>
+      <DetailUser data={props.data} />
     </Div>
   );
 };
