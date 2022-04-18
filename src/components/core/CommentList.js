@@ -34,7 +34,7 @@ const CommentList = () => {
         </div>
         <p className="comment">코드스니펫 딸깍~!</p>
         <p className="reply">
-          <p className="text"> 1개의 답글</p>
+          <p className="p"> 1개의 답글</p>
         </p>
       </LowerBox>
     </>
@@ -140,7 +140,7 @@ const LowerBox = styled.div`
     width: 768px;
     margin: 12px 0 20px 0;
     cursor: pointer;
-    .text {
+    .p {
       color: #20c997;
       font-size: 16px;
       font-weight: 700;

@@ -7,10 +7,6 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import {Card} from '../components/core/index';
 
 const Detail = (props) => {
- const post_list = useSelector((state) => state);
- console.log(post_list);
-  
-  
   return (
     <React.Fragment>
       <Card />

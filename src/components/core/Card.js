@@ -4,17 +4,8 @@ import { GoTriangleDown } from "react-icons/go";
 import { IoIosArrowDropright, IoIosArrowDropleft } from "react-icons/io";
 import { ImBookmark } from "react-icons/im";
 import DetailUser from "./DetailUser";
-import {useSelector, useDispatch} from "react-redux"; 
 
-const Card = (props) => {
-    const post_list = useSelector((state) => state.post.list);
-    
-    console.log(post_list);
-
-
-
-
-
+const Card = () => {
   return (
     <Main>
       <UpperBox>
