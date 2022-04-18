@@ -14,7 +14,7 @@ import Detail from "../pages/Detail";
 import { Header } from "../components/core";
 import { Div, GlobalStyle } from "../components/ui";
 
-function App(props) {
+function App() {
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
   const is_session = localStorage.getItem("token") ? true : false;
