@@ -33,8 +33,8 @@ function App() {
           <Route path="/" exact component={Main} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
-          <Route path="/write" exact component={Write} />
           <Route path="/detail/" exact component={Detail} />
+          <Route path="/write" exact component={Write} />
         </ConnectedRouter>
       </Div>
     </React.Fragment>

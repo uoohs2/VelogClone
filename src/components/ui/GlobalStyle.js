@@ -19,10 +19,6 @@ input, textarea{
     padding: 5px;
 }
 
-input:focus{
-    outline:2px solid lightgrey;
-}
-
 button{
     outline: none;
     border:none;

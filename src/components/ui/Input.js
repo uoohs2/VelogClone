@@ -15,6 +15,7 @@ const Input = (props) => {
     _onChange,
     type,
     multiLine,
+    repeat,
     value,
     rows,
     is_submit,
@@ -43,6 +44,20 @@ const Input = (props) => {
       </Div>
     );
   }
+
+  if (repeat) {
+    return (
+      <Div>
+        <UserInput
+          {...styles}
+          type={type}
+          placeholder={placeholder}
+          onChange={_onChange}
+        />
+      </Div>
+    );
+  }
+
   return (
     <Div>
       {label && <Text>{label}</Text>}
@@ -78,6 +93,7 @@ Input.defaultProps = {
   padding: "",
   border: "",
   multiLine: false,
+  repeat: false,
   label: false,
   type: "",
   placeholder: "",
@@ -95,6 +111,16 @@ const InputDefault = styled.input`
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   border: ${(props) => props.border};
+`;
+
+const UserInput = styled.input`
+  width: 300px;
+  height: 40px;
+  line-height: 40px;
+  margin: 5px 0px;
+  :focus {
+    outline: 2px solid lightgrey;
+  }
 `;
 
 const Textarea = styled.textarea`

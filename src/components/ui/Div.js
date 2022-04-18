@@ -6,6 +6,8 @@ const Div = (props) => {
     children,
     position,
     display,
+    flexDirection,
+    justifyContent,
     width,
     height,
     margin,
@@ -28,6 +30,8 @@ const Div = (props) => {
     children,
     position,
     display,
+    flexDirection,
+    justifyContent,
     width,
     height,
     margin,
@@ -56,6 +60,8 @@ Div.defaultProps = {
   children: null,
   position: "",
   display: "",
+  flexDirection: "",
+  justifyContent: "",
   width: "",
   height: "",
   margin: "",
@@ -79,6 +85,8 @@ const Box = styled.div`
     props.container ? "position:realative; width:100%; margin:0px auto;" : ""};
   position: ${(props) => props.position};
   display: ${(props) => props.display};
+  flex-direction: ${(props) => props.flexDirection};
+  justify-content: ${(props) => props.justifyContent};
   ${(props) => (props.inline ? "display:inline-block;" : "display:block")};
   ${(props) =>
     props.start

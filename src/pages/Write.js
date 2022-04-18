@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { actionCreators as imageActions } from "../redux/modules/image";
@@ -11,7 +11,6 @@ import { BsCode } from "react-icons/bs";
 
 const Write = (props) => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const fileInput = React.useRef(null);
   const preview = useSelector((state) => state.image.preview);
   const posts = useSelector((state) => state.post.list);
@@ -104,10 +103,11 @@ const Write = (props) => {
               />
               <BsCode />
             </Wrapper1>
-
-            <AspectOutter>
-              <AspectInner src={preview ? preview : null}></AspectInner>
-            </AspectOutter>
+            {preview && (
+              <AspectOutter>
+                <AspectInner src={preview ? preview : null}></AspectInner>
+              </AspectOutter>
+            )}
             <Input2
               name="content"
               value={post.content}
@@ -123,7 +123,7 @@ const Write = (props) => {
         <button
           className="exit"
           onClick={() => {
-            props.history.push("/");
+            history.goBack();
           }}
         >
           <span>나가기</span>
@@ -145,8 +145,9 @@ export default Write;
 
 const Container = styled.div`
   ${(props) => props.theme.border_box};
-  padding: 0 1rem;
+  padding: 0 48px;
   width: 100vw;
+  margin: -68px 0px 0px 0px;
 `;
 
 const Footer = styled.div`
@@ -223,9 +224,9 @@ const Buttons = styled.div`
     }
   }
   & button.submit {
-    background-color:  #63e6be;
+    background-color: #12b886;
     &:hover {
-      background-color: #12b886;
+      background-color: #63e6be;
     }
   }
 `;
@@ -239,6 +240,7 @@ const Wrapper = styled.div`
 const Wrapper1 = styled.div`
   width: 200px;
   justify-content: space-between;
+  margin: 5px 0px;
   padding: 1rem 0;
   background-color: white;
   font-size: xx-large;
@@ -251,15 +253,16 @@ const Line = styled.div`
   background: rgb(73, 80, 87);
   height: 6px;
   width: 4rem;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
   border-radius: 1px;
 `;
 const Title = styled.input`
-  font-size: 1.8rem;
+  font-size: 2.5rem;
   outline: none;
   border: none;
   font-weight: bold;
+  padding: 30px 0px 0px 0px;
   width: 100%;
   ${(props) => props.theme.border_box}
 `;
@@ -285,6 +288,7 @@ const Input2 = styled.input`
   line-height: 1.5rem;
   font-size: 1rem;
   width: 50vw;
+  margin: 10px 0px;
   white-space: normal;
 `;
 
@@ -297,5 +301,6 @@ const AspectInner = styled.div`
   padding-top: 75%;
   overflow: hidden;
   background-image: url("${(props) => props.src}");
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
 `;

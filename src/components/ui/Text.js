@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import "../../shared/App.css";
 
 const Text = (props) => {
   const {
@@ -18,6 +19,7 @@ const Text = (props) => {
     bold,
     textAlign,
     cursor,
+    font,
     _onClick,
   } = props;
 
@@ -36,6 +38,7 @@ const Text = (props) => {
     bold,
     textAlign,
     cursor,
+    font,
   };
 
   return (
@@ -61,6 +64,7 @@ Text.defaultProps = {
   bold: false,
   textAlign: false,
   cursor: "",
+  font: false,
   _onClick: () => {},
 };
 
@@ -81,6 +85,7 @@ const P = styled.p`
   &:hover {
     cursor: ${(props) => props.cursor};
   }
+  font-family: ${(props) => props.font};
 `;
 
 export default Text;
