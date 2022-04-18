@@ -3,6 +3,7 @@ import produce from "immer";
 import axios from "axios";
 import { actionCreators as imageActions } from "./image";
 
+
 const SET_POST = "SET_POST";
 const ADD_POST = "ADD_POST";
 const GET_POST = "GET_POST";
@@ -29,7 +30,7 @@ const initialPost = {
 };
 
 const addPostDB = (formData) => {
-  return async function (dispatch, getState) {
+  return async function (dispatch, getState, {history}) {
     // for (var pair of formData.entries()) {
     //   console.log(pair[0] + ", " + pair[1]);
     let post = {
@@ -49,7 +50,8 @@ const addPostDB = (formData) => {
           // authorization: `Bearer ${token}`,
         },
       });
-      dispatch(imageActions.resetPreview(post));
+      dispatch(addPost(post));
+      dispatch(imageActions.setPreview(null));
     } catch (error) {
       console.log(error);
     }
@@ -146,6 +148,7 @@ export default handleActions(
       }),
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
+        console.log(state, draft);
         draft.list.unshift(action.payload.post);
       }),
     [DEL_POST]: (state, action) =>

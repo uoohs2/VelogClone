@@ -68,13 +68,13 @@ const CloseButton = styled.img`
 
 const HeaderContainer = styled.div`
   ${(prop) => prop.theme.responsiveContainer};
-  width: 95%;
+  width: 100%;
   margin: auto;
   height: 48px;
   padding: 16px;
   display: flex;
   box-sizing: border-box;
-  padding: 20px 0px 50px;
+  padding: 20px 0px 50px 0px;
   justify-content: space-between;
   .rightside {
     display: flex;
