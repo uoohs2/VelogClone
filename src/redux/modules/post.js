@@ -46,9 +46,10 @@ const addPostDB = (formData) => {
         data: formData,
         headers: {
           "Content-Type": "multipart/form-data",
-          // authorization: `Bearer ${token}`,
+           authorization: `Bearer ${token}`,
         },
       });
+      dispatch(addPost(post));
       dispatch(imageActions.resetPreview(post));
     } catch (error) {
       console.log(error);
