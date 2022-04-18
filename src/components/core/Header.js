@@ -16,7 +16,7 @@ const Header = (props) => {
   // if (window.location.pathname === "/write") return null;
 
   //로그인 후
-  if (isLocal) {
+  if (isLocal && is_login) {
     return (
       <React.Fragment>
         <Div spaceBetween container height="64px" padding="0px 88px">
