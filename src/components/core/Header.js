@@ -18,9 +18,7 @@ const Header = (props) => {
   const [modal, setModal] = React.useState(false);
 
   // if (window.location.pathname === "/write") return null;
-  const user = useSelector((state) => state);
-  console.log(user);
-
+ 
   const logoChange = window.location.pathname === "/detail";
   const userName = useSelector((state) => state.post.list);
   console.log(userName);

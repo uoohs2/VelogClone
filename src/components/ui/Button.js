@@ -79,7 +79,7 @@ Button.defaultProps = {
   margin: "",
   padding: "",
   border: "",
-  radius: false,
+  radius: "false",
   backgroundColor: "",
   BG: "",
   color: "",
