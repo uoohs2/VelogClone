@@ -11,7 +11,6 @@ import Main from "../pages/Main";
 import Write from "../pages/Write";
 import Detail from "../pages/Detail";
 
-import { Header } from "../components/core";
 import { Div, GlobalStyle } from "../components/ui";
 
 function App() {
@@ -28,7 +27,6 @@ function App() {
     <React.Fragment>
       <GlobalStyle />
       <Div container>
-        <Header></Header>
         <ConnectedRouter history={history}>
           <Route path="/" exact component={Main} />
           <Route path="/login" exact component={Login} />

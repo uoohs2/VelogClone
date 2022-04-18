@@ -1,9 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import post from "../redux/modules/post";
 import { useEffect } from "react";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configureStore";
+
+import { Header } from "../components/core";
+
 import moment from "moment";
 import "moment/locale/ko";
 import styled from "styled-components";
@@ -27,10 +29,9 @@ const Main = (props) => {
     return cur.date;
   });
 
-  console.log(date);
-
   return (
     <React.Fragment>
+      <Header></Header>
       <Responsive>
         <MenuBar>
           <div className="menu">

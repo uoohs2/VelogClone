@@ -147,7 +147,6 @@ const Container = styled.div`
   ${(props) => props.theme.border_box};
   padding: 0 48px;
   width: 100vw;
-  margin: -68px 0px 0px 0px;
 `;
 
 const Footer = styled.div`

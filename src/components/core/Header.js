@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../../redux/modules/user";
-import { actionCreators as postActions } from "../../redux/modules/post";
 import { history } from "../../redux/configureStore";
 
 import Login from "../../pages/Login";
@@ -15,26 +14,19 @@ const Header = (props) => {
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
   const isLocal = localStorage.getItem("token") ? true : false;
+  const logoChange = window.location.pathname === "/detail";
+  const user = useSelector((state) => state.user.userInfo);
+  const post = props.data;
   const [modal, setModal] = React.useState(false);
 
   // if (window.location.pathname === "/write") return null;
-  const user = useSelector((state) => state);
-  console.log(user);
-
-  const logoChange = window.location.pathname === "/detail";
-  const userName = useSelector((state) => state.post.list);
-  console.log(userName);
-
-  // React.useEffect(() => {
-  //   console.log(userName);
-  // }, []);
 
   //로그인 후
   if (isLocal && is_login) {
     return (
       <React.Fragment>
         <Div spaceBetween container height="64px" padding="0px 88px">
-          {/* {logoChange && (
+          {logoChange && (
             <Div row>
               <Image
                 width="28px"
@@ -59,7 +51,7 @@ const Header = (props) => {
                   history.push("/");
                 }}
               >
-                userName.log
+                {post.userName}.log
               </Text>
             </Div>
           )}
@@ -81,24 +73,7 @@ const Header = (props) => {
                 velog
               </Text>
             </Div>
-          )} */}
-          <Div row>
-            <Text
-              font="FiraMono"
-              width="auto"
-              height="24px"
-              size="24px"
-              weight="700"
-              wordSpacing="0px"
-              decoration="none solid rgb(33, 37, 41);"
-              cursor="pointer"
-              _onClick={() => {
-                history.push("/");
-              }}
-            >
-              velog
-            </Text>
-          </Div>
+          )}
           <Div spaceBetween width="350px" height="40px">
             <Button width="40px" height="40px" radius="50%" BG="#ECECEC">
               <BsFillSunFill size="24" />
@@ -131,6 +106,7 @@ const Header = (props) => {
               bold
               opacity="0.6"
               _onClick={() => {
+                setModal(false);
                 dispatch(userActions.logoutDB());
               }}
             >
@@ -153,21 +129,54 @@ const Header = (props) => {
   return (
     <React.Fragment>
       <Div spaceBetween container height="64px" padding="0px 88px">
-        <Text
-          font="FiraMono"
-          width="auto"
-          height="24px"
-          size="24px"
-          weight="700"
-          wordSpacing="0px"
-          decoration="none solid rgb(33, 37, 41);"
-          cursor="pointer"
-          _onClick={() => {
-            history.push("/");
-          }}
-        >
-          velog
-        </Text>
+        {logoChange && (
+          <Div row>
+            <Image
+              width="28px"
+              height="28px"
+              src="https://nitter.net/pic/pbs.twimg.com%2Fprofile_images%2F1228368893321736193%2FOv0og7E8_400x400.jpg"
+              alt="logo"
+              size="cover"
+              position="center"
+              radius="4px"
+            />
+            <Text
+              font="FiraMono"
+              width="auto"
+              height="24px"
+              margin="0px 0px 0px 16px"
+              size="24px"
+              weight="700"
+              wordSpacing="0px"
+              decoration="none solid rgb(33, 37, 41);"
+              cursor="pointer"
+              _onClick={() => {
+                history.push("/");
+              }}
+            >
+              {post.userName}.log
+            </Text>
+          </Div>
+        )}
+        {!logoChange && (
+          <Div row>
+            <Text
+              font="FiraMono"
+              width="auto"
+              height="24px"
+              size="24px"
+              weight="700"
+              wordSpacing="0px"
+              decoration="none solid rgb(33, 37, 41);"
+              cursor="pointer"
+              _onClick={() => {
+                history.push("/");
+              }}
+            >
+              velog
+            </Text>
+          </Div>
+        )}
         <Div spaceBetween width="172px" height="40px">
           <Button width="40px" height="40px" radius="50%" BG="#ECECEC">
             <BsFillSunFill size="24" />

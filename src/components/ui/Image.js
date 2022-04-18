@@ -16,7 +16,9 @@ const Image = (props) => {
     src02,
     size,
     position,
+    repeat,
   } = props;
+
   const styles = {
     display,
     width,
@@ -30,6 +32,7 @@ const Image = (props) => {
     src02,
     size,
     position,
+    repeat,
   };
 
   if (shape === "rectangle") {
@@ -65,6 +68,7 @@ Image.defaultProps = {
   src02: "",
   size: false,
   position: false,
+  repeat: false,
 };
 
 //기본
@@ -79,6 +83,7 @@ const ImageDefault = styled.div`
   background-image: url("${(props) => props.src}");
   background-size: ${(props) => props.size};
   background-position: ${(props) => props.position};
+  background-repeat: ${(props) => props.repeat};
 `;
 
 //4:3비율 직사각형

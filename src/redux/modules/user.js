@@ -11,7 +11,11 @@ const setUser = createAction(SET_USER, (user) => ({ user }));
 const logout = createAction(LOG_OUT, (user) => ({ user }));
 
 const initialState = {
-  userInfo: null,
+  userInfo: {
+    userId: "test",
+    userName: "yoonji",
+    userNo: null,
+  },
   is_login: false,
 };
 
@@ -67,8 +71,7 @@ const loginCheckDB = () => {
         },
       })
       .then((res) => {
-        console.log(res);
-        dispatch(setUser(res));
+        dispatch(setUser(res.data));
       })
       .catch((err) => {
         console.log(err);
@@ -79,7 +82,6 @@ const loginCheckDB = () => {
 // 로그아웃
 const logoutDB = () => {
   return (dispatch, getState, { history }) => {
-    console.log("로그아웃 되었습니다!");
     localStorage.removeItem("token");
     dispatch(logout());
     history.replace("/");
