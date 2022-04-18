@@ -137,7 +137,7 @@ const Card = (props) => {
             </Text>
           </Div>
           <Div bookMark>
-            <ImBookmark fill="#12b886" font-size="45px" />
+            <ImBookmark fill="#12b886" fontSize="45px" />
           </Div>
           <Div
             spaceBetween
@@ -162,7 +162,7 @@ const Card = (props) => {
                 backgroundColor="#f8f9fa"
                 BG="#12b886"
               >
-                <IoIosArrowDropleft font-size="25px" fill="#12b886" />
+                <IoIosArrowDropleft fontSize="25px" fill="#12b886" />
               </Button>
               <Button
                 width="24px"
@@ -171,7 +171,7 @@ const Card = (props) => {
                 backgroundColor="#f8f9fa"
                 BG="#12b886"
               >
-                <IoIosArrowDropright font-size="25px" fill="#12b886" />
+                <IoIosArrowDropright fontSize="25px" fill="#12b886" />
               </Button>
             </Div>
           </Div>

@@ -11,32 +11,32 @@ const CommentList = (props) => {
       <LowerBox>
         <div className="user">
           <div className="info">
-            <div className="image" src="" />
+            <div className="image" src=""/>
             <div className="userinfo">
-              <p className="name">황현선매니저</p>
-              <p className="date">2022년 4월 18일</p>
+              <div className="name">황현선매니저</div>
+              <div className="date">2022년 4월 18일</div>
             </div>
           </div>
         </div>
-        <p className="comment">코드스니펫 딸깍~!</p>
-        <p className="reply">
-          <p className="p"> 1개의 답글</p>
-        </p>
+        <div className="comment">코드스니펫 딸깍~!</div>
+        <div className="reply">
+          <div className="p"> 1개의 답글</div>
+        </div>
       </LowerBox>
       <LowerBox>
         <div className="user">
           <div className="info">
             <div className="image" src=""/>
             <div className="userinfo">
-              <p className="name">황현선매니저</p>
-              <p className="date">2022년 4월 18일</p>
+              <div className="name">황현선매니저</div>
+              <div className="date">2022년 4월 18일</div>
             </div>
           </div>
         </div>
-        <p className="comment">코드스니펫 딸깍~!</p>
-        <p className="reply">
-          <p className="p"> 1개의 답글</p>
-        </p>
+        <div className="comment">코드스니펫 딸깍~!</div>
+        <div className="reply">
+          <div className="p"> 1개의 답글</div>
+        </div>
       </LowerBox>
     </>
   );
