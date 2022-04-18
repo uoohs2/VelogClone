@@ -8,13 +8,20 @@ const Div = (props) => {
     display,
     flexDirection,
     justifyContent,
+    float,
     width,
     height,
     margin,
     padding,
     border,
     borderRadius,
+    shadow,
+    transition,
     backgroundColor,
+    color,
+    cursor,
+    opacity,
+    colorHover,
     container,
     start,
     center,
@@ -22,7 +29,9 @@ const Div = (props) => {
     spaceBetween,
     spaceAround,
     textCenter,
+    fontSize,
     inline,
+    bookMark,
     _onClick,
   } = props;
 
@@ -32,13 +41,20 @@ const Div = (props) => {
     display,
     flexDirection,
     justifyContent,
+    float,
     width,
     height,
     margin,
     padding,
     border,
     borderRadius,
+    shadow,
+    transition,
     backgroundColor,
+    color,
+    cursor,
+    opacity,
+    colorHover,
     container,
     start,
     center,
@@ -46,9 +62,19 @@ const Div = (props) => {
     spaceBetween,
     spaceAround,
     textCenter,
+    fontSize,
     inline,
+    bookMark,
   };
-
+  if (bookMark) {
+    return (
+      <React.Fragment>
+        <Bookmark onClick={_onClick} {...styles}>
+          {children}
+        </Bookmark>
+      </React.Fragment>
+    );
+  }
   return (
     <Box onClick={_onClick} {...styles}>
       {children}
@@ -62,13 +88,20 @@ Div.defaultProps = {
   display: "",
   flexDirection: "",
   justifyContent: "",
+  float: false,
   width: "",
   height: "",
   margin: "",
   padding: "",
   border: "",
   borderRadius: "",
+  shadow: false,
+  transition: "",
   backgroundColor: "",
+  color: "",
+  cursor: "",
+  opacity: "",
+  colorHover: false,
   container: false,
   start: false,
   center: false,
@@ -76,7 +109,9 @@ Div.defaultProps = {
   spaceBetween: false,
   spaceAround: false,
   textCenter: false,
+  fontSize: false,
   inline: false,
+  bookMark: false,
   _onClick: () => {},
 };
 
@@ -87,6 +122,7 @@ const Box = styled.div`
   display: ${(props) => props.display};
   flex-direction: ${(props) => props.flexDirection};
   justify-content: ${(props) => props.justifyContent};
+  float: ${(props) => props.float};
   ${(props) => (props.inline ? "display:inline-block;" : "display:block")};
   ${(props) =>
     props.start
@@ -115,8 +151,26 @@ const Box = styled.div`
   padding: ${(props) => props.padding};
   border: ${(props) => props.border};
   border-radius: ${(props) => props.borderRadius};
+  box-shadow: ${(props) => props.shadow};
+  transition: ${(props) => props.transition};
   background-color: ${(props) => props.backgroundColor};
   ${(props) => (props.textCenter ? `text-align:center;` : "")};
+  font-size: ${(props) => props.fontSize};
+  color: ${(props) => props.color};
+  &:hover {
+    cursor: ${(props) => props.cursor};
+    opacity: ${(props) => props.opacity};
+    color: ${(props) => props.colorHover};
+  }
+`;
+
+const Bookmark = styled.div`
+  position: absolute;
+  top: 0;
+  right: 24px;
+  display: block;
+  width: 32px;
+  height: 48px;
 `;
 
 export default Div;

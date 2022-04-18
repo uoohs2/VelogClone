@@ -15,6 +15,7 @@ const Button = (props) => {
     backgroundColor,
     BG,
     color,
+    colorHover,
     size,
     bold,
     text,
@@ -36,6 +37,7 @@ const Button = (props) => {
     backgroundColor,
     BG,
     color,
+    colorHover,
     size,
     bold,
     text,
@@ -81,6 +83,7 @@ Button.defaultProps = {
   backgroundColor: "",
   BG: "",
   color: "",
+  colorHover: false,
   size: "14px",
   bold: false,
   text: false,
@@ -106,6 +109,7 @@ const ButtonDefault = styled.button`
   &:hover {
     background-color: ${(props) => props.BG};
     opacity: ${(props) => props.opacity};
+    color: ${(props) => props.colorHover};
   }
 `;
 

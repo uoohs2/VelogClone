@@ -18,12 +18,16 @@ const Text = (props) => {
     color,
     decoration,
     wordSpacing,
+    letterSpacing,
+    wordWrap,
     size,
     weight,
     bold,
     textAlign,
     cursor,
     opacity,
+    colorHover,
+    decorationHover,
     transform,
     transition,
     font,
@@ -44,12 +48,16 @@ const Text = (props) => {
     color,
     decoration,
     wordSpacing,
+    letterSpacing,
+    wordWrap,
     size,
     weight,
     bold,
     textAlign,
     cursor,
     opacity,
+    colorHover,
+    decorationHover,
     transform,
     transition,
     font,
@@ -77,12 +85,16 @@ Text.defaultProps = {
   color: "",
   decoration: "",
   wordSpacing: "",
+  letterSpacing: "",
+  wordWrap: "",
   size: "14px",
   weight: false,
   bold: false,
   textAlign: false,
   cursor: "",
   opacity: "",
+  colorHover: false,
+  decorationHover: false,
   transform: "",
   transition: "",
   font: false,
@@ -103,6 +115,8 @@ const P = styled.p`
   color: ${(props) => props.color};
   text-decoration: ${(props) => props.decoration};
   word-spacing: ${(props) => props.wordSpacing};
+  letter-spacing: ${(props) => props.letterSpacing};
+  word-wrap: ${(props) => props.wordWrap};
   font-size: ${(props) => props.size};
   font-weight: ${(props) => props.weight};
   ${(props) => (props.bold ? "font-weight:600;" : "")};
@@ -110,6 +124,8 @@ const P = styled.p`
   &:hover {
     cursor: ${(props) => props.cursor};
     opacity: ${(props) => props.opacity};
+    color: ${(props) => props.colorHover};
+    text-decoration: ${(props) => props.decorationHover};
   }
   transform: ${(props) => props.transform};
   transition: ${(props) => props.transition};
