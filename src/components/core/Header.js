@@ -27,10 +27,10 @@ const Header = (props) => {
           <WriteButton>새 글 작성</WriteButton>
           <WriteButton onClick={() => {}}>로그아웃</WriteButton>
 
-          <ImageCircle
+          {/* <ImageCircle
             shape="circle"
             src="https://velog.velcdn.com/images/syounglee012/profile/153e8e10-0a34-4939-be81-7244fa41347c/social.png"
-          />
+          /> */}
         </div>
       </HeaderContainer>
     </React.Fragment>
