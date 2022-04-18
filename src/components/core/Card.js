@@ -106,39 +106,6 @@ const PostDate = styled.div`
   width: auto;
   display: inline;
 `;
-const Tags = styled.div`
-  font-size: 16px;
-  text-decoration: none solid rgb(33, 37, 41);
-  word-spacing: 0px;
-  background-color: #ffffff;
-  /* height: 46px; */
-  /* width: 768px; */
-  margin: 14px 0 -14px 0;
-  min-height: 14px;
-  /* display: block; */
-`;
-const TagInfo = styled.div`
-  font-size: 16px;
-  font-weight: 500;
-  text-decoration: none solid rgb(18, 184, 134);
-  word-spacing: 0px;
-  background-color: #f8f9fa;
-  color: #12b886;
-  height: 32px;
-  width: 112px;
-  margin: 0 14px 14px 0;
-  padding: 10px 16px 0 16px;
-  display: inline-flex;
-  justify-content: space-around;
-  cursor: pointer;
-  box-sizing: border-box;
-  transform: none;
-  transition: all 0s ease 0s;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-`;
 const SubTitle = styled.div`
   font-size: 16px;
   text-decoration: none solid rgb(33, 37, 41);

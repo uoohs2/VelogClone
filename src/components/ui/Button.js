@@ -132,7 +132,7 @@ const TagBtn = styled.button`
   height: 32px;
   width: 112px;
   margin: 0 14px 14px 0;
-  padding: 10px 16px 0 16px;
+  padding: 5px 16px 0 16px;
   display: inline-flex;
   justify-content: space-around;
   transform: none;
