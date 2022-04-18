@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 
+import Signup from "./Signup";
+
 import styled from "styled-components";
 import { Button, Div, Image, Input, Text } from "../components/ui";
 
@@ -10,6 +12,7 @@ const Login = (props) => {
   const dispatch = useDispatch();
   const [id, setId] = React.useState("");
   const [pwd, setPwd] = React.useState("");
+  const [modal, setModal] = React.useState(false);
 
   //이메일형식 확인
   const isId = (email) => {
@@ -32,9 +35,10 @@ const Login = (props) => {
 
     dispatch(userActions.loginDB(id, pwd));
   };
+
   return (
-    <Container>
-      <Box>
+    <Div modalContainer>
+      <Div modalBox>
         <Div
           width="500px"
           height="680px"
@@ -123,15 +127,16 @@ const Login = (props) => {
               size="0.9em"
               color="#20c997"
               _onClick={() => {
-                history.push("/signup");
+                setModal(true);
               }}
             >
               가입하기
             </Button>
+            {modal ? <Signup /> : null}
           </Div>
         </Div>
-      </Box>
-    </Container>
+      </Div>
+    </Div>
   );
 };
 
@@ -140,30 +145,4 @@ export default Login;
 const Line = styled.hr`
   margin: 10px 25px;
   border: 1px dotted lightgrey;
-`;
-
-const Container = styled.div`
-  background-color: rgba(0, 0, 0, 0.4);
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 9999;
-`;
-
-const Box = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  width: 900px;
-  height: 700px;
-  padding: auto 0px;
-  border-radius: 10px;
-  display: flex;
-  
 `;
