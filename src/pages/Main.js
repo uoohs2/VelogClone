@@ -12,6 +12,7 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { GoTriangleDown } from "react-icons/go";
+import "moment/locale/ko";
 
 const Main = (props) => {
   const dispatch = useDispatch();
