@@ -5,7 +5,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import CommentList from "./CommentList";
 
-const DetailUser = () => {
+const DetailUser = (props) => {
+  console.log(props);
   return (
     <>
       <LowerUserInfo>
@@ -16,7 +17,7 @@ const DetailUser = () => {
               src="https://img1.daumcdn.net/thumb/S1200x630/?fname=https://t1.daumcdn.net/news/202010/26/NEWS1/20201026063015355wgfm.jpg"
             />
           </div>
-          <UserName>이범규</UserName>
+          <UserName>{props.data.userName}</UserName>
         </User>
         <hr className="line" />
         <ThreeIcons>
@@ -27,7 +28,7 @@ const DetailUser = () => {
           <EmailOutlinedIcon sx={{ fontSize: 35 }} />
         </ThreeIcons>
       </LowerUserInfo>
-      <CommentList/>
+      <CommentList data={props}/>
     
     </>
   );

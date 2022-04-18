@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import CommentWrite from "./CommentWrite";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
-const CommentList = () => {
+const CommentList = (props) => {
+  console.log(props);
   return (
     <>
       <CommentWrite />

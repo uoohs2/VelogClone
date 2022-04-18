@@ -54,7 +54,11 @@ const Main = (props) => {
               margin="16px 16px 130px 16px"
               background-color="#f8f9fa"
               _onClick={() => {
-                history.push("/detail");
+                history.push({
+                  pathname: "/detail",
+                  state: { postId: post},
+                  
+                });
               }}
             >
               <Box src={post.image} />

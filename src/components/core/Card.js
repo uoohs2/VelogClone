@@ -5,8 +5,37 @@ import { GoTriangleDown } from "react-icons/go";
 import { IoIosArrowDropright, IoIosArrowDropleft } from "react-icons/io";
 import { ImBookmark } from "react-icons/im";
 import DetailUser from "./DetailUser";
+import { useSelector } from "react-redux";
 
-const Card = () => {
+const Card = (props) => {
+  console.log(props.data);
+  const postInfo = props.data;
+
+  function timeForToday(value) {
+    const today = new Date();
+    const timeValue = new Date(value);
+
+    const betweenTime = Math.floor(
+      (today.getTime() - timeValue.getTime()) / 1000 / 60
+    );
+    if (betweenTime < 1) return "방금전";
+    if (betweenTime < 60) {
+      return `${betweenTime}분전`;
+    }
+
+    const betweenTimeHour = Math.floor(betweenTime / 60);
+    if (betweenTimeHour < 24) {
+      return `${betweenTimeHour}시간전`;
+    }
+
+    const betweenTimeDay = Math.floor(betweenTime / 60 / 24);
+    if (betweenTimeDay < 365) {
+      return `${betweenTimeDay}일전`;
+    }
+
+    return `${Math.floor(betweenTimeDay / 365)}년전`;
+  }
+
   return (
     <Main>
       <UpperBox>
@@ -18,11 +47,11 @@ const Card = () => {
           width="768px"
           height="72px"
         >
-          여기는 제목이 들어갑니다
+          {postInfo.title}
         </Text>
         <PostInfo>
-          <UserId>닉네임</UserId>
-          <PostDate>3일 전</PostDate>
+          <UserId>{postInfo.userName}</UserId>
+          <PostDate>{timeForToday(postInfo.date)}</PostDate>
         </PostInfo>
         <Div
           width="768px"
@@ -36,7 +65,7 @@ const Card = () => {
         </Div>
         <SubTitle>
           <SubInfo>
-            <div className="info">항해99 클론코딩 8조</div>
+            <div className="info">{postInfo.content}</div>
             <div class="bookmark">
               <ImBookmark />
             </div>
@@ -54,13 +83,12 @@ const Card = () => {
             </Arrow>
           </MenuBox>
         </SubTitle>
-        <PostImage />
+        <PostImage src={postInfo.image}/>
       </UpperBox>
       <MiddleBox>
-        어제 나는 코딩을 했다. 지금도 코딩을 하고있다. 내일도 코딩을 하고
-        있겠지..?
+        {postInfo.content}
       </MiddleBox>
-      <DetailUser />
+      <DetailUser data={props.data} />
     </Main>
   );
 };
@@ -195,7 +223,7 @@ const PostImage = styled.div`
   max-height: 1742px;
   max-width: 100%;
   display: block;
-  background-image: url("https://assets.entrepreneur.com/content/3x2/2000/20160628101609-Coding.jpeg");
+  background-image: url("${(props) => props.src}");
   background-position: center;
   background-size: cover;
 `;
