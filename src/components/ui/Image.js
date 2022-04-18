@@ -9,6 +9,7 @@ const Image = (props) => {
     height,
     maxHeight,
     border,
+    radius,
     shape,
     src,
     src01,
@@ -23,6 +24,7 @@ const Image = (props) => {
     height,
     maxHeight,
     border,
+    radius,
     src,
     src01,
     src02,
@@ -55,6 +57,7 @@ Image.defaultProps = {
   height: "",
   maxHeight: "",
   border: "",
+  radius: "",
   shape: "",
   src: "",
   src01:
@@ -72,6 +75,7 @@ const ImageDefault = styled.div`
   height: ${(props) => props.height};
   max-height: ${(props) => props.maxHeight};
   border: ${(props) => props.border};
+  border-radius: ${(props) => props.radius};
   background-image: url("${(props) => props.src}");
   background-size: ${(props) => props.size};
   background-position: ${(props) => props.position};

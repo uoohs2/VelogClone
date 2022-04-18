@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../../redux/modules/user";
+import { actionCreators as postActions } from "../../redux/modules/post";
 import { history } from "../../redux/configureStore";
 import Login from "../../pages/Login";
 import styled from "styled-components";
@@ -17,32 +18,85 @@ const Header = (props) => {
   const user = useSelector((state)=>state);
   console.log(user);
   
+
+  const logoChange = window.location.pathname === "/detail";
+  const userName = useSelector((state) => state.post.list);
+  console.log(userName);
+
+  // React.useEffect(() => {
+  //   console.log(userName);
+  // }, []);
+
   //로그인 후
   if (isLocal && is_login) {
     return (
       <React.Fragment>
-        <Div
-          spaceBetween
-          container
-          height="64px"
-          padding="0px 88px"
-          width="100v"
-        >
-          <Text
-            font="FiraMono"
-            width="71px"
-            height="24px"
-            size="24px"
-            weight="700"
-            wordSpacing="0px"
-            decoration="none solid rgb(33, 37, 41);"
-            cursor="pointer"
-            _onClick={() => {
-              history.push("/");
-            }}
-          >
-            velog
-          </Text>
+        <Div spaceBetween container height="64px" padding="0px 88px">
+          {/* {logoChange && (
+            <Div row>
+              <Image
+                width="28px"
+                height="28px"
+                src="https://nitter.net/pic/pbs.twimg.com%2Fprofile_images%2F1228368893321736193%2FOv0og7E8_400x400.jpg"
+                alt="logo"
+                size="cover"
+                position="center"
+                radius="4px"
+              />
+              <Text
+                font="FiraMono"
+                width="auto"
+                height="24px"
+                margin="0px 0px 0px 16px"
+                size="24px"
+                weight="700"
+                wordSpacing="0px"
+                decoration="none solid rgb(33, 37, 41);"
+                cursor="pointer"
+                _onClick={() => {
+                  history.push("/");
+                }}
+              >
+                userName.log
+              </Text>
+            </Div>
+          )}
+          {!logoChange && (
+            <Div row>
+              <Text
+                font="FiraMono"
+                width="auto"
+                height="24px"
+                size="24px"
+                weight="700"
+                wordSpacing="0px"
+                decoration="none solid rgb(33, 37, 41);"
+                cursor="pointer"
+                _onClick={() => {
+                  history.push("/");
+                }}
+              >
+                velog
+              </Text>
+            </Div>
+          )} */}
+          <Div row>
+            <Text
+              font="FiraMono"
+              width="auto"
+              height="24px"
+              size="24px"
+              weight="700"
+              wordSpacing="0px"
+              decoration="none solid rgb(33, 37, 41);"
+              cursor="pointer"
+              _onClick={() => {
+                history.push("/");
+              }}
+            >
+              velog
+            </Text>
+          </Div>
           <Div spaceBetween width="350px" height="40px">
             <Button width="40px" height="40px" radius="50%" BG="#ECECEC">
               <BsFillSunFill size="24" />
@@ -99,7 +153,7 @@ const Header = (props) => {
       <Div spaceBetween container height="64px" padding="0px 88px">
         <Text
           font="FiraMono"
-          width="71px"
+          width="auto"
           height="24px"
           size="24px"
           weight="700"
