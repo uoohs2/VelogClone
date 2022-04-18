@@ -102,6 +102,7 @@ const Main = styled.div`
   height: 100%;
   display: block;
   background-color: #ffffff;
+  margin-top: 80px;
 `;
 
 const PostInfo = styled.div`

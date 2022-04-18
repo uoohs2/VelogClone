@@ -19,7 +19,7 @@ const Header = (props) => {
   if (isLocal && is_login) {
     return (
       <React.Fragment>
-        <Div spaceBetween container height="64px" padding="0px 88px">
+        <Div spaceBetween container height="64px" padding="0px 88px" width="100v">
           <Text
             font="FiraMono"
             width="71px"

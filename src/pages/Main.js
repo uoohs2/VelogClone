@@ -29,10 +29,11 @@ const Main = (props) => {
           <div className="menu">
             <div className="menu0">
               <TrendingUpIcon sx={{ fontSize: 30 }} />
-              트렌딩
+              <div className="menu0_1">트렌딩</div>
             </div>
             <div className="menu1">
-              <AccessTimeIcon color="disabled" /> 최신
+              <AccessTimeIcon color="disabled" /> 
+              <div className="menu1_1"> 최신 </div>
             </div>
             <div className="menu2">
               이번 주 <GoTriangleDown />
@@ -56,8 +57,7 @@ const Main = (props) => {
               _onClick={() => {
                 history.push({
                   pathname: "/detail",
-                  state: { postId: post},
-                  
+                  state: { postId: post },
                 });
               }}
             >
@@ -124,6 +124,9 @@ const MenuBar = styled.div`
     cursor: pointer;
     justify-content: space-evenly;
     padding-top: 15px;
+    .menu0_1 {
+      padding-top: 6px;
+    }
   }
   .menu1 {
     font-size: 18px;
@@ -138,6 +141,9 @@ const MenuBar = styled.div`
     justify-content: space-evenly;
     padding-top: 15px;
     margin: auto 15px;
+    .menu1_1{
+      padding-top: 5px;
+    }
   }
   .menu2 {
     font-size: 16px;
@@ -149,7 +155,7 @@ const MenuBar = styled.div`
     color: #495057;
     height: 32px;
     width: 96px;
-    padding: 0 8px 0 8px;
+    padding: 0px 8px 0 8px;
     min-height: auto;
     min-width: auto;
     display: flex;
@@ -161,11 +167,11 @@ const MenuBar = styled.div`
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     justify-content: space-evenly;
-    margin-top: 10px;
+    margin-top: 12px;
     padding-top: 8px;
   }
   .menu3 {
-    padding-top: 10px;
+    padding-top: 15px;
     background-color: #f8f9fa;
   }
 `;
@@ -208,10 +214,9 @@ const Box1 = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   box-sizing: border-box;
-  margin-top: 10px;
+  padding-top: 10px;
   padding-left: 20px;
 `;
-
 const H4 = styled.p`
   font-size: 19px;
   font-weight: 700;
