@@ -81,7 +81,7 @@ Text.defaultProps = {
   padding: "",
   backgroundColor: "",
   border: "",
-  radius: false,
+  radius: "false",
   color: "",
   decoration: "",
   wordSpacing: "",

@@ -191,8 +191,9 @@ const Card = (props) => {
             height="376px"
             maxWidth="100%"
             src={postInfo.image}
-            size="cover"
+            size="contain"
             position="center"
+            repeat="no-repeat"
           />
         </Div>
         <Text
@@ -208,7 +209,7 @@ const Card = (props) => {
           {postInfo.content}
         </Text>
       </Div>
-      <DetailUser data={props.data}/>
+      <DetailUser data={props.data} />
     </Div>
   );
 };

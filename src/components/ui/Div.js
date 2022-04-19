@@ -32,6 +32,8 @@ const Div = (props) => {
     fontSize,
     inline,
     bookMark,
+    modalContainer,
+    modalBox,
     _onClick,
   } = props;
 
@@ -65,6 +67,8 @@ const Div = (props) => {
     fontSize,
     inline,
     bookMark,
+    modalContainer,
+    modalBox,
   };
   if (bookMark) {
     return (
@@ -75,6 +79,27 @@ const Div = (props) => {
       </React.Fragment>
     );
   }
+
+  if (modalContainer) {
+    return (
+      <React.Fragment>
+        <ModalContainer onClick={_onClick} {...styles}>
+          {children}
+        </ModalContainer>
+      </React.Fragment>
+    );
+  }
+
+  if (modalBox) {
+    return (
+      <React.Fragment>
+        <ModalBox onClick={_onClick} {...styles}>
+          {children}
+        </ModalBox>
+      </React.Fragment>
+    );
+  }
+
   return (
     <Box onClick={_onClick} {...styles}>
       {children}
@@ -109,9 +134,10 @@ Div.defaultProps = {
   spaceBetween: false,
   spaceAround: false,
   textCenter: false,
-  fontSize: false,
+  fontSize: "false",
   inline: false,
   bookMark: false,
+  modal: false,
   _onClick: () => {},
 };
 
@@ -171,6 +197,32 @@ const Bookmark = styled.div`
   display: block;
   width: 32px;
   height: 48px;
+`;
+
+const ModalContainer = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  z-index: 9999;
+`;
+
+const ModalBox = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: flex;
+  width: 1000px;
+  height: 700px;
+  padding: auto 0px;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 10px;
 `;
 
 export default Div;
