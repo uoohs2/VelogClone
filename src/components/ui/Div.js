@@ -128,7 +128,7 @@ Div.defaultProps = {
   opacity: "",
   colorHover: false,
   container: false,
-  start: false,
+  start: "",
   center: false,
   row: false,
   spaceBetween: false,
