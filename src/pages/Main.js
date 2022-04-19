@@ -5,17 +5,16 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configureStore";
 
 import { Header } from "../components/core";
+import { Div } from "../components/ui";
 
 import moment from "moment";
 import "moment/locale/ko";
 import styled from "styled-components";
-import { Div } from "../components/ui";
 import { GoHeart } from "react-icons/go";
+import { GoTriangleDown } from "react-icons/go";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { GoTriangleDown } from "react-icons/go";
-import "moment/locale/ko";
 
 const Main = (props) => {
   const dispatch = useDispatch();
@@ -65,7 +64,7 @@ const Main = (props) => {
               background-color="#f8f9fa"
               _onClick={() => {
                 history.push({
-                  pathname: "/detail",
+                  pathname: `/detail/${post._id}`,
                   state: { postId: post },
                 });
               }}

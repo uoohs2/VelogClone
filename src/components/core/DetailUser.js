@@ -1,9 +1,9 @@
 import React from "react";
+
 import styled from "styled-components";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import HomeIcon from "@mui/icons-material/Home";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
-import CommentList from "./CommentList";
 
 const DetailUser = (props) => {
   console.log(props);
@@ -28,7 +28,6 @@ const DetailUser = (props) => {
           <EmailOutlinedIcon sx={{ fontSize: 35 }} />
         </ThreeIcons>
       </LowerUserInfo>
-      <CommentList data={props}/>
     </>
   );
 };
