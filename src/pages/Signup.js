@@ -12,7 +12,6 @@ import { Button, Div, Image, Input, Text } from "../components/ui";
 const Signup = (props) => {
   const dispatch = useDispatch();
 
-
   const [userId, setId] = React.useState("");
   const [userName, setUserName] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -77,6 +76,12 @@ const Signup = (props) => {
     dispatch(userActions.signupDB(userId, userName, password, passwordCheck));
   };
 
+  //카카오
+  //카카오
+  const REST_API_KEY = "ebb64769e9ae562700e77df6554c840d";
+  const REDIRECT_URI = "http://localhost:3000/oauth/kakao/callback";
+  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+
   return (
     <React.Fragment>
       <Div modalContainer>
@@ -134,7 +139,7 @@ const Signup = (props) => {
                     borderRadius="5px"
                     backgroundColor="#63e6be"
                   >
-                    <Div inline width="20px" margin="0px 5px">
+                    <Div inline width="20px">
                       <Image
                         src="https://w.namu.la/s/059f8bf3e629d3f2e343fe3f3f10809022d58800962db675d233429660bf98d9ceccd60e23b1324d090c87485833b10c2c4503c93a230003ba67d5fcafa527930174f8daf70b9e9cb534ed3c2d096f775663373e7e848fad3f0e0445cf2a9e7e"
                         alt="kakao"
@@ -142,8 +147,12 @@ const Signup = (props) => {
                         height="20px"
                       />
                     </Div>
-                    <Button width="150px" backgroundColor="#63e6be">
-                      KakaoTalk으로 로그인
+                    <Button
+                      width="170px"
+                      backgroundColor="#63e6be"
+                      // _onClick={kakaoLogin}
+                    >
+                      <a href={KAKAO_AUTH_URL}>KakaoTalk으로 로그인</a>
                     </Button>
                   </Div>
                 </Div>

@@ -11,6 +11,8 @@ import Main from "../pages/Main";
 import Write from "../pages/Write";
 import Detail from "../pages/Detail";
 import Edit from "../components/core/Edit";
+import Auth2 from "../shared/Auth2";
+
 import { Div, GlobalStyle } from "../components/ui";
 
 function App() {
@@ -31,6 +33,7 @@ function App() {
           <Route path="/" exact component={Main} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
+          <Route path="/oauth/kakao/callback" exact component={Auth2}></Route>
           <Route path="/write" exact component={Write} />
           <Route path="/Edit/:id" exact component={Edit} />
           <Route path="/detail/:id" exact component={Detail} />
