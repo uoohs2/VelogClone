@@ -207,33 +207,5 @@ const Header = (props) => {
   );
 };
 
-// const modalStyle = {
-//   overlay: {
-//     position: "fixed",
-//     top: 0,
-//     left: 0,
-//     right: 0,
-//     bottom: 0,
-//     backgroundColor: "rgba(247, 247, 247, 0.8)",
-//     transition: "opacity 2000ms ease-in-out",
-//   },
-//   content: {
-//     width: "650px",
-//     height: "510px",
-//     margin: "auto",
-//     border: "none",
-//     boxShadow: "0 2px 12px 0 rgba(0, 0, 0, 0.1)",
-//   },
-// };
-
-// const CloseButton = styled.img`
-//   width: 11px;
-//   position: absolute;
-//   top: 30px;
-//   right: 30px;
-//   &:hover {
-//     cursor: pointer;
-//   }
-// `;
 
 export default Header;

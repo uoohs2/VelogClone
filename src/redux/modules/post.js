@@ -37,8 +37,7 @@ const addPostDB = (formData) => {
       formData,
     };
 
-    console.log(formData);
-
+   
     try {
       await axios({
         method: "POST",
@@ -49,6 +48,7 @@ const addPostDB = (formData) => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
+      
       dispatch(addPost(post));
       dispatch(imageActions.resetPreview(post));
     } catch (error) {
@@ -73,7 +73,7 @@ const getPostDB = () => {
       .then((response) => {
         console.log(response);
 
-        dispatch(getPost(response.data.board));
+        dispatch(getPost(response.data.post));
       })
       .catch((error) => {
         console.log(error);

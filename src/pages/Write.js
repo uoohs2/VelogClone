@@ -64,17 +64,6 @@ const Write = (props) => {
     history.push("/");
   };
 
-  const editPost = () => {
-    const file = fileInput.current.files[0];
-
-    const formData = new FormData();
-
-    formData.append("title", post.title);
-    formData.append("image", file);
-    formData.append("content", post.content);
-    return dispatch(postActions.editPostDB(postId, formData));
-  };
-
   return (
     <React.Fragment>
       <Container>

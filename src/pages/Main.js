@@ -25,10 +25,6 @@ const Main = (props) => {
     dispatch(postActions.getPostDB());
   }, []);
 
-  const date = post_list.map((cur, idx) => {
-    return cur.date;
-  });
-
   return (
     <React.Fragment>
       <Header></Header>

@@ -18,14 +18,16 @@ const Edit = (props) => {
   const postId = props.match.params.id;
   console.log(posts);
   let post = posts.find((p) => p._id === postId);
-  console.log(post)
+  console.log(post);
 
-  
-  // const [contents, setContents] = React.useState(postInfo.content);
-  const edit_post = () => {
-    //  dispatch(postActions.editPostDB(postId, { contents: contents }));
+  const [title, setTitle] = React.useState(posts.title);
+  const [contents, setContents] = React.useState(posts.content);
+  const changeContents = (e) => {
+    setContents(e.target.value);
   };
-  
+  const changeTitle = (e) =>{
+    setTitle(e.target.value);
+  }
 
   const selectFile = (e) => {
     console.log(e.target.files);
@@ -41,17 +43,15 @@ const Edit = (props) => {
 
   const is_uploading = useSelector((state) => state.image.uploading);
 
- 
-  const editPost = () => {
+  const edit_post = () => {
     const file = fileInput.current.files[0];
-    
+
     const formData = new FormData();
 
-    formData.append("title", post.title);
+    formData.append("title", title);
     formData.append("image", file);
-    formData.append("content", post.content);
-    // return dispatch(postActions.editPostDB(postId, formData));
-
+    formData.append("content", contents);
+    return dispatch(postActions.editPostDB(postId, formData));
   };
 
   return (
@@ -60,9 +60,9 @@ const Edit = (props) => {
         <Wrapper>
           <Title
             name="title"
-            value={post.title}
+            value={title}
             placeholder="제목을 입력하세요"
-            // onChange={handleForm}
+            onChange={changeTitle}
           ></Title>
           <Line />
 
@@ -90,10 +90,10 @@ const Edit = (props) => {
             )}
             <Input2
               name="content"
-              value={post.content}
+              value={contents}
               type="text"
               placeholder="당신의 이야기를 적어보세요..."
-              // onChange={handleForm}
+              onChange={changeContents}
             />
           </HashTagWrapper>
         </Wrapper>
@@ -109,10 +109,10 @@ const Edit = (props) => {
           <span>나가기</span>
         </button>
         <Buttons>
-          <button className="cancle" onClick={editPost}>
+          <button className="cancle" onClick={edit_post}>
             임시저장
           </button>
-          <button className="submit" onClick={editPost}>
+          <button className="submit" onClick={edit_post}>
             출간하기
           </button>
         </Buttons>
