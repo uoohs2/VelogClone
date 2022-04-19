@@ -4,7 +4,7 @@ import styled from "styled-components";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 
 const CommentList = (props) => {
-  console.log(props);
+
   return (
     <>
       <LowerBox>

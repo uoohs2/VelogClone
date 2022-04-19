@@ -17,7 +17,7 @@ const editPost = createAction(EDIT_POST, (postId, post) => ({
   postId,
   post,
 }));
-const token = sessionStorage.getItem("token");
+
 const initialState = {
   list: [],
 };
@@ -71,7 +71,6 @@ const getPostDB = () => {
     await axios
       .get("http://3.38.253.146/api/post")
       .then((response) => {
-        console.log(response);
         dispatch(getPost(response.data.post));
       })
       .catch((error) => {
@@ -96,10 +95,8 @@ const deletePostDB = (postId) => {
 };
 
 const editPostDB = (postId, formData) => {
-  console.log(postId, formData);
-  return async function (dispatch, getState, { history }) {
-    console.log(postId, formData);
-    await axios({
+    return async function (dispatch, getState, { history }) {
+       await axios({
       method: "POST",
       url: `http://3.38.253.146/api/modify/${postId}`,
       data: formData,
@@ -109,7 +106,6 @@ const editPostDB = (postId, formData) => {
       },
     })
       .then((res) => {
-        console.log(res);
         dispatch(editPost(res));
         history.push("/");
       })

@@ -16,10 +16,9 @@ const Header = (props) => {
   const is_login = useSelector((state) => state.user.is_login);
   const isLocal = localStorage.getItem("token") ? true : false;
   const user = useSelector((state) => state.user.userInfo);
-  // const post = useSelector((state) => state.post.list);
-  // console.log(post);
-  const post = props.data;
-  console.log(post);
+
+
+ 
 
   // const logoMain = window.location.pathname === "/";
   // const logoDetail = window.location.pathname === "/detail";

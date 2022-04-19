@@ -15,7 +15,7 @@ import {
 const Detail = (props) => {
   const location = useLocation();
   const data = location.state.postId;
-  console.log(data);
+  
   // const id = props.match.params.id;
 
   return (

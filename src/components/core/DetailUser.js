@@ -6,7 +6,6 @@ import HomeIcon from "@mui/icons-material/Home";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 
 const DetailUser = (props) => {
-  console.log(props);
   return (
     <>
       <LowerUserInfo>

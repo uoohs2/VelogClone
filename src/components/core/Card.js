@@ -1,7 +1,6 @@
 import React from "react";
 import { history } from "../../redux/configureStore";
 import post from "../../redux/modules/post";
-
 import { Button, Div, Image, Input, Text } from "../ui";
 
 import moment from "moment";
