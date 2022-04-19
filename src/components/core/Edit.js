@@ -15,19 +15,21 @@ const Edit = (props) => {
   const preview = useSelector((state) => state.image.preview);
   const posts = useSelector((state) => state.post.list);
   // const [post, setPost] = useState({});
-  const postId = props.match.params.id;
+  const post_id = props.match.params.id;
   console.log(posts);
-  let post = posts.find((p) => p._id === postId);
-  console.log(post);
+  let post = posts.find((p) => p._id === post_id);
+  let postId = post.postId;
+  console.log(postId);
 
-  const [title, setTitle] = React.useState(posts.title);
+  const [titles, setTitles] = React.useState(posts.title);
   const [contents, setContents] = React.useState(posts.content);
   const changeContents = (e) => {
     setContents(e.target.value);
   };
-  const changeTitle = (e) =>{
-    setTitle(e.target.value);
-  }
+
+  const changeTitle = (e) => {
+    setTitles(e.target.value);
+  };
 
   const selectFile = (e) => {
     console.log(e.target.files);
@@ -48,7 +50,7 @@ const Edit = (props) => {
 
     const formData = new FormData();
 
-    formData.append("title", title);
+    formData.append("title", titles);
     formData.append("image", file);
     formData.append("content", contents);
     return dispatch(postActions.editPostDB(postId, formData));
@@ -60,7 +62,7 @@ const Edit = (props) => {
         <Wrapper>
           <Title
             name="title"
-            value={title}
+            value={titles}
             placeholder="제목을 입력하세요"
             onChange={changeTitle}
           ></Title>

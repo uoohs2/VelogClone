@@ -97,34 +97,22 @@ const deletePostDB = (postId) => {
 };
 
 const editPostDB = (postId, formData) => {
+  console.log(postId, formData);
   return async function (dispatch, getState, { history }) {
-    if (!postId) {
-      console.log("게시물 정보를 찾을 수 없어요.");
-      return;
-    }
-    const _image = getState().image.preview;
-
-    const _post_index = getState().post.list.findIndex(
-      (p) => p.postId === postId
-    );
-    const _post = getState().post.list[_post_index];
-    let post = {
-      ..._post,
-      formData,
-    };
-
+    console.log(postId, formData);
     await axios({
-      method: "post",
-      url: "http://3.38.253.146/api/modified/:postId",
+      method: "POST",
+      url: `http://3.38.253.146/api/modify/${postId}`,
       data: formData,
       headers: {
-        "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
+        "Content-Type": `multipart/form-data;`,
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
       .then((res) => {
-        dispatch(editPost(post));
-        history.push("/main");
+        console.log(res);
+        dispatch(editPost(res));
+        history.push("/");
       })
       .catch((error) => {
         window.alert("이미지,제목,내용 수정이 필요합니다.");
@@ -153,6 +141,7 @@ export default handleActions(
       }),
     [EDIT_POST]: (state, action) =>
       produce(state, (draft) => {
+        console.log(state, action);
         let index = draft.list.findIndex((p) => p.id === action.payload.postId);
         draft.list[index] = { ...draft.list[index], ...action.payload.post };
       }),
