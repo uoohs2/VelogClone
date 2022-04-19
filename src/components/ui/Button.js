@@ -21,6 +21,7 @@ const Button = (props) => {
     text,
     is_float,
     tagBtn,
+    cmtBtn,
     opacity,
     _onClick,
   } = props;
@@ -43,6 +44,7 @@ const Button = (props) => {
     text,
     is_float,
     tagBtn,
+    cmtBtn,
     opacity,
   };
 
@@ -61,6 +63,15 @@ const Button = (props) => {
       </React.Fragment>
     );
   }
+
+  if (cmtBtn) {
+    return (
+      <React.Fragment>
+        <CmtBtn onClick={_onClick}>{text ? text : children}</CmtBtn>
+      </React.Fragment>
+    );
+  }
+
   return (
     <React.Fragment>
       <ButtonDefault {...styles} onClick={_onClick}>
@@ -89,6 +100,7 @@ Button.defaultProps = {
   text: false,
   is_float: false,
   tagBtn: false,
+  cmtBtn: false,
   opacity: "",
   _onClick: () => {},
 };
@@ -148,6 +160,30 @@ const TagBtn = styled.button`
   &:hover {
     opacity: 0.7;
   }
+`;
+
+const CmtBtn = styled.button`
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none solid rgb(255, 255, 255);
+  text-align: center;
+  word-spacing: 0px;
+  background-color: #20c997;
+  background-position: 0% 0%;
+  color: #ffffff;
+  height: 32px;
+  width: 109.625px;
+  padding: 5px 20px 0 20px;
+  margin-left: 655px;
+  min-height: auto;
+  min-width: auto;
+  display: flex;
+  cursor: pointer;
+  box-sizing: border-box;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 `;
 
 export default Button;

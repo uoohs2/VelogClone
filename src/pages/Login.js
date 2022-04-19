@@ -19,6 +19,7 @@ const Login = (props) => {
   const [modal, setModal] = React.useState(false);
   const _modal = props.modal;
   const isModal = props.setModal;
+  const [_isModal, setIsModal] = useState(isModal === true);
   // const [isOpen, setIsOpen] = useState(false);
   // const outModal = useRef();
   // const closeModal = (e) => {
@@ -55,7 +56,7 @@ const Login = (props) => {
         modalContainer
         //ref={outModal}
         _onClick={(e) => {
-          isModal(!_modal);
+          _isModal(false);
           //closeModal(e);
         }}
       >

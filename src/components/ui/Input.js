@@ -62,7 +62,7 @@ const Input = (props) => {
     <Div>
       {label && <Text>{label}</Text>}
       {is_submit ? (
-        <InputDefault
+        <CommentInput
           {...styles}
           type={type}
           placeholder={placeholder}
@@ -130,6 +130,32 @@ const Textarea = styled.textarea`
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   border: ${(props) => props.border};
+`;
+
+const CommentInput = styled.input`
+  font-size: 16px;
+  line-height: 28px;
+  text-decoration: none solid rgb(33, 37, 41);
+  white-space: pre-wrap;
+  word-spacing: 0px;
+  background-color: #ffffff;
+  background-position: 0% 0%;
+  color: #212529;
+  height: 98px;
+  width: 100%;
+  border: 1px solid #f1f3f5;
+  margin: 0 0 24px 0;
+  padding: 16px 16px 24px 16px;
+  min-height: 98px;
+  display: inline-block;
+  overflow: auto;
+  cursor: text;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 `;
 
 export default Input;

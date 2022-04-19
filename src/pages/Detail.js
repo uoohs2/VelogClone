@@ -15,6 +15,7 @@ import {
 const Detail = (props) => {
   const location = useLocation();
   const data = location.state.postId;
+  console.log(data);
   // const id = props.match.params.id;
 
   return (
@@ -22,7 +23,7 @@ const Detail = (props) => {
       <Header data={data}></Header>
       <Card data={data} />
       <DetailUser data={data} />
-      <CommentWrite data={data} />
+      <CommentWrite postId={data._id} />
       <CommentList data={data} />
     </React.Fragment>
   );
