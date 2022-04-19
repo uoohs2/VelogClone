@@ -10,7 +10,7 @@ import Signup from "../pages/Signup";
 import Main from "../pages/Main";
 import Write from "../pages/Write";
 import Detail from "../pages/Detail";
-
+import Edit from "../components/core/Edit";
 import { Div, GlobalStyle } from "../components/ui";
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
           <Route path="/signup" exact component={Signup} />
           <Route path="/detail" exact component={Detail} />
           <Route path="/write" exact component={Write} />
-          <Route path="/write/:id" exact component={Write} />
+          <Route path="/Edit/:id" exact component={Edit} />
         </ConnectedRouter>
       </Div>
     </React.Fragment>

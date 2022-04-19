@@ -4,14 +4,19 @@ import { history } from "../../redux/configureStore";
 import moment from "moment"; import "moment/locale/ko";
 import { Button, Div, Image, Input, Text } from "../ui";
 import { GoTriangleDown } from "react-icons/go";
+import { useSelector, useDispatch } from "react-redux";
 import { IoIosArrowDropright, IoIosArrowDropleft } from "react-icons/io";
+import { actionCreators as postActions } from "../../redux/modules/post";
 import { ImBookmark } from "react-icons/im";
-import { useSelector } from "react-redux";
 import post from "../../redux/modules/post";
 
+
 const Card = (props) => {
-  console.log(props.data);
   const postInfo = props.data;
+  const dispatch = useDispatch();
+  
+  console.log(postInfo._id);
+
 
   return (
     <Div width="100%" height="100%" backgroundColor="#ffffff">
@@ -79,7 +84,7 @@ const Card = (props) => {
               color="#868e96"
               colorHover="#212529"
               _onClick={() => {
-                history.push("/write/:_id");
+                history.push(`/Edit/${postInfo._id}`);
               }}
             >
               수정
@@ -91,7 +96,8 @@ const Card = (props) => {
               size="16px"
               color="#868e96"
               colorHover="#212529"
-              _onClick={() => {}}
+              // _onClick={delete_post}
+
             >
               삭제
             </Button>

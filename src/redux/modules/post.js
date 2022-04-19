@@ -85,7 +85,7 @@ const deletePostDB = (postId) => {
   return async function (dispatch, getState, { history }) {
     await axios({
       method: "DELETE",
-      url: `http://15.164.163.116/api/post/delete/${postId}`,
+      url: "http://3.38.253.146/api/delete/:postId",
       headers: {
         authorization: `Bearer ${token}`,
       },
@@ -115,7 +115,7 @@ const editPostDB = (postId, formData) => {
 
     await axios({
       method: "post",
-      url: `http://52.78.194.238/api/postEdit/${postId}`,
+      url: "http://3.38.253.146/api/modified/:postId",
       data: formData,
       headers: {
         "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
