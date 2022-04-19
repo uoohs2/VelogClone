@@ -12,8 +12,8 @@ const logout = createAction(LOG_OUT, (user) => ({ user }));
 
 const initialState = {
   userInfo: {
-    userId: "test",
-    userName: "yoonji",
+    userId: "",
+    userName: "",
     userNo: null,
   },
   is_login: false,
@@ -43,14 +43,13 @@ const signupDB = (id, name, pwd) => {
 // 로그인
 const loginDB = (id, pwd) => {
   return async function (dispatch, getState, { history }) {
-    
     await axios
       .post("http://3.38.253.146/user/login", {
         userId: id,
         password: pwd,
       })
-      .then((res) =>{
-        console.log(res)
+      .then((res) => {
+        console.log(res);
         const token = res.data.token;
         localStorage.setItem("token", token);
         dispatch(setUser(res));

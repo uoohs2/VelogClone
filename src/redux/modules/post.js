@@ -72,7 +72,6 @@ const getPostDB = () => {
       .get("http://3.38.253.146/api/post")
       .then((response) => {
         console.log(response);
-
         dispatch(getPost(response.data.post));
       })
       .catch((error) => {
