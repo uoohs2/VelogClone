@@ -20,6 +20,7 @@ const Login = (props) => {
 
   //로그인함수
   const login = () => {
+    
     if (id === "" || pwd === "") {
       window.alert("빈칸을 입력해주세요.");
       return;
@@ -92,7 +93,7 @@ const Login = (props) => {
                 lineHeight="35px"
                 margin="12px"
                 backgroundColor="#63e6be"
-                _onClick={login}
+                _onClick={()=>{login()}}
               >
                 로그인
               </Button>
