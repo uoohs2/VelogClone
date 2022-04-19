@@ -85,12 +85,12 @@ const deletePostDB = (postId) => {
   return async function (dispatch, getState, { history }) {
     await axios({
       method: "DELETE",
-      url: "http://3.38.253.146/api/delete/:postId",
+      url: `http://3.38.253.146/api/delete/${postId}`,
       headers: {
-        authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     }).then((response) => {
-      // dispatch(deletePost(postId))
+      dispatch(deletePost(response))
       history.replace("/");
     });
   };

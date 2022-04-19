@@ -14,8 +14,15 @@ import { ImBookmark } from "react-icons/im";
 
 
 const Card = (props) => {
+  const dispatch = useDispatch();
   const postInfo = props.data;
-  console.log(props.data);
+  const postId = props.data.postId;
+
+  const delete_post = () => {
+    dispatch(postActions.deletePostDB(postId));
+
+  }
+
 
   return (
     <Div width="100%" height="100%" backgroundColor="#ffffff">
@@ -95,7 +102,7 @@ const Card = (props) => {
               size="16px"
               color="#868e96"
               colorHover="#212529"
-              // _onClick={delete_post}
+              _onClick={delete_post}
 
             >
               삭제
