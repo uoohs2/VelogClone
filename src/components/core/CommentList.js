@@ -1,17 +1,16 @@
 import React from "react";
+
 import styled from "styled-components";
-import CommentWrite from "./CommentWrite";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+
 const CommentList = (props) => {
   console.log(props);
   return (
     <>
-      <CommentWrite />
-
       <LowerBox>
         <div className="user">
           <div className="info">
-            <div className="image" src=""/>
+            <div className="image" src="" />
             <div className="userinfo">
               <div className="name">황현선매니저</div>
               <div className="date">2022년 4월 18일</div>
@@ -26,7 +25,7 @@ const CommentList = (props) => {
       <LowerBox>
         <div className="user">
           <div className="info">
-            <div className="image" src=""/>
+            <div className="image" src="" />
             <div className="userinfo">
               <div className="name">황현선매니저</div>
               <div className="date">2022년 4월 18일</div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
@@ -10,9 +11,21 @@ import { Button, Div, Image, Input, Text } from "../components/ui";
 
 const Login = (props) => {
   const dispatch = useDispatch();
+
   const [id, setId] = React.useState("");
   const [pwd, setPwd] = React.useState("");
+
+  //모달
   const [modal, setModal] = React.useState(false);
+  const _modal = props.modal;
+  const isModal = props.setModal;
+  // const [isOpen, setIsOpen] = useState(false);
+  // const outModal = useRef();
+  // const closeModal = (e) => {
+  //   if (_modal && outModal.current === e.target) {
+  //     isModal(!_modal);
+  //   }
+  // };
 
   //이메일형식 확인
   const isId = (email) => {
@@ -23,7 +36,6 @@ const Login = (props) => {
 
   //로그인함수
   const login = () => {
-    
     if (id === "" || pwd === "") {
       window.alert("빈칸을 입력해주세요.");
       return;
@@ -39,8 +51,20 @@ const Login = (props) => {
 
   return (
     <React.Fragment>
-      <Div modalContainer>
-        <Div modalBox>
+      <Div
+        modalContainer
+        //ref={outModal}
+        _onClick={(e) => {
+          isModal(!_modal);
+          //closeModal(e);
+        }}
+      >
+        <Div
+          modalBox
+          _onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
           <Div
             width="500px"
             height="680px"
@@ -128,7 +152,7 @@ const Login = (props) => {
                 bold
                 size="0.9em"
                 color="#20c997"
-                _onClick={() => {
+                _onClick={(e) => {
                   setModal(true);
                 }}
               >

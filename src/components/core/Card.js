@@ -1,22 +1,21 @@
 import React from "react";
-import DetailUser from "./DetailUser";
 import { history } from "../../redux/configureStore";
-import moment from "moment"; import "moment/locale/ko";
+import post from "../../redux/modules/post";
+
 import { Button, Div, Image, Input, Text } from "../ui";
+
+import moment from "moment";
+import "moment/locale/ko";
 import { GoTriangleDown } from "react-icons/go";
 import { useSelector, useDispatch } from "react-redux";
 import { IoIosArrowDropright, IoIosArrowDropleft } from "react-icons/io";
 import { actionCreators as postActions } from "../../redux/modules/post";
 import { ImBookmark } from "react-icons/im";
-import post from "../../redux/modules/post";
 
 
 const Card = (props) => {
   const postInfo = props.data;
-  const dispatch = useDispatch();
-  
-  console.log(postInfo._id);
-
+  console.log(props.data);
 
   return (
     <Div width="100%" height="100%" backgroundColor="#ffffff">
@@ -215,7 +214,6 @@ const Card = (props) => {
           {postInfo.content}
         </Text>
       </Div>
-      <DetailUser data={props.data} />
     </Div>
   );
 };
