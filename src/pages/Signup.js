@@ -16,11 +16,17 @@ const Signup = (props) => {
   const [userName, setUserName] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [passwordCheck, setPasswordCheck] = React.useState("");
-  const [modal, setModal] = React.useState(false);
-  const outModal = useRef();
-  const [isOpen, setOpen] = useState(false);
 
-  React.useEffect(() => {}, []);
+  //모달
+  const [modal, setModal] = React.useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+  // const outModal = useRef();
+  // const isModal = props.setModal;
+  // const closeModal = (e) => {
+  //   if (modal && outModal.current === e.target) {
+  //     isModal(false);
+  //   }
+  // };
 
   // 아이디(이메일) 조건
   const isId = (email) => {
@@ -72,7 +78,7 @@ const Signup = (props) => {
 
   return (
     <React.Fragment>
-      <Div modalContainer ref={outModal}>
+      <Div modalContainer>
         <Div modalBox>
           <Div
             width="500px"
@@ -196,7 +202,7 @@ const Signup = (props) => {
                 bold
                 size="0.9em"
                 color="#20c997"
-                _onClick={() => {
+                _onClick={(e) => {
                   setModal(true);
                 }}
               >

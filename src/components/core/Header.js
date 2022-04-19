@@ -200,7 +200,7 @@ const Header = (props) => {
           >
             로그인
           </Button>
-          {modal ? <Login /> : null}
+          {modal ? <Login modal={modal} setModal={setModal} /> : null}
         </Div>
       </Div>
     </React.Fragment>
