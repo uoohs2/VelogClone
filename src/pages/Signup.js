@@ -12,6 +12,7 @@ import { Button, Div, Image, Input, Text } from "../components/ui";
 const Signup = (props) => {
   const dispatch = useDispatch();
 
+
   const [userId, setId] = React.useState("");
   const [userName, setUserName] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -72,7 +73,7 @@ const Signup = (props) => {
 
   return (
     <React.Fragment>
-      <Div modalContainer ref={outModal}>
+      <Div modalContainer forwardRef={outModal}>
         <Div modalBox>
           <Div
             width="500px"
