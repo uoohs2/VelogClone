@@ -5,12 +5,14 @@ import { actionCreators as imageActions } from "./image";
 
 const SET_POST = "SET_POST";
 const ADD_POST = "ADD_POST";
+const ADD_TAG = "ADD_TAG";
 const GET_POST = "GET_POST";
 const DEL_POST = "DEL_POST";
 const EDIT_POST = "EDIT_Post";
 
 const setPost = createAction(SET_POST, (post_list) => ({ post_list }));
 const addPost = createAction(ADD_POST, (post) => ({ post }));
+const addHashTag = createAction(ADD_TAG, (tagList) => ({ tagList }));
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
 const deletePost = createAction(DEL_POST, (postId) => ({ postId }));
 const editPost = createAction(EDIT_POST, (postId, post) => ({
@@ -28,38 +30,70 @@ const initialPost = {
   image: "",
 };
 
-const addPostDB = (formData) => {
-  return async function (dispatch, getState, {history}) {
-    // for (var pair of formData.entries()) {
-    //   console.log(pair[0] + ", " + pair[1]);
-    let post = {
-      ...initialPost,
-      formData,
+const addHashTagDB = (tagList) => {
+  return async function (dispatch, getState) {
+    console.log(tagList);
+    let tag = {
+      tagList: tagList,
     };
-
-      await axios({
-        method: "POST",
-        url: "http://3.38.253.146/api/post",
-        data: formData,
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
+    await axios({
+      method: "POST",
+      url: "http://3.38.253.146/api/post",
+      data: JSON.stringify(tag),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
       .then((res) => {
-        dispatch(addPost(post));
-
-        history.push("/");
+        console.log(res);
+        dispatch(addHashTag(tag));
       })
-      .catch((error) => {
-
-        console.log("게시물 작성이 실패했습니다.", error);
+      .catch((err) => {
+        console.log(err);
       });
   };
 };
 
+const addPostDB = (tagList, formData) => {
+  return async function (dispatch, getState) {
+    // for (var pair of formData.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    console.log(tagList);
+    let post = {
+      ...initialPost,
+      tagList,
+      formData,
+    };
 
-   
+    try {
+      await axios({
+        method: "POST",
+        url: "http://3.38.253.146/api/post",
+        data: tagList,
+        formData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+
+      dispatch(addPost(post));
+      dispatch(imageActions.resetPreview(post));
+    } catch (error) {
+      console.log(error);
+    }
+
+    // axios({
+    //   method: "post",
+    //   url: 'http://3.38.253.146/write_modify/user/postadd',
+    //   data: formData,
+    // headers:
+    // { "Content-Type": "multipart/form-data",
+    // Authorization: localStorage.getItem("access_token") }
+    // })
+  };
+};
 
 const getPostDB = () => {
   return async function (dispatch, getState) {
@@ -83,15 +117,15 @@ const deletePostDB = (postId) => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     }).then((response) => {
-      dispatch(deletePost(response))
+      dispatch(deletePost(response));
       history.replace("/");
     });
   };
 };
 
 const editPostDB = (postId, formData) => {
-    return async function (dispatch, getState, { history }) {
-       await axios({
+  return async function (dispatch, getState, { history }) {
+    await axios({
       method: "POST",
       url: `http://3.38.253.146/api/modify/${postId}`,
       data: formData,
@@ -125,6 +159,10 @@ export default handleActions(
       produce(state, (draft) => {
         draft.list.unshift(action.payload.post);
       }),
+    [ADD_TAG]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list.unshift(action.payload.tagList);
+      }),
     [DEL_POST]: (state, action) =>
       produce(state, (draft) => {
         draft.list = draft.list.filter((d) => d.id !== action.payload.postId);
@@ -142,9 +180,11 @@ export default handleActions(
 const actionCreators = {
   setPost,
   addPost,
+  addHashTag,
   getPost,
   deletePost,
   addPostDB,
+  addHashTagDB,
   getPostDB,
   deletePostDB,
   editPostDB,
