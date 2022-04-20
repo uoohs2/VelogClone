@@ -17,38 +17,44 @@ const Header = (props) => {
   const user = useSelector((state) => state.user.userInfo);
   const post = useSelector((state) => state.comment);
   console.log(post._id);
-
-  // const logoMain = window.location.pathname === "/";
-  // const logoDetail = window.location.pathname === "/detail";
-  // const logoDetail = window.location.pathname === `/detail/${post._id}`;
-
   const [modal, setModal] = React.useState(false);
 
-  // if (window.location.pathname === "/write") return null;
+  // 메인페이지일때
+  const logoMain = window.location.pathname === "/";
+
+  // 상세페이지일때
+  if()
+  let _id = props.match.params.id;
+  const logoDetail = window.location.pathname === `/detail/${_id}`;
+  if (!logoMain && logoDetail) {
+    console.log(props.data);
+  }
 
   //로그인 후
   if (isLocal && is_login) {
     return (
       <React.Fragment>
         <Div spaceBetween container height="64px" padding="0px 88px">
-          <Div row>
-            <Text
-              font="FiraMono"
-              width="auto"
-              height="24px"
-              size="24px"
-              weight="700"
-              wordSpacing="0px"
-              decoration="none solid rgb(33, 37, 41);"
-              cursor="pointer"
-              _onClick={() => {
-                history.push("/");
-              }}
-            >
-              velog
-            </Text>
-          </Div>
-          {/* {logoDetail && (
+          {logoMain && (
+            <Div row>
+              <Text
+                font="FiraMono"
+                width="auto"
+                height="24px"
+                size="24px"
+                weight="700"
+                wordSpacing="0px"
+                decoration="none solid rgb(33, 37, 41);"
+                cursor="pointer"
+                _onClick={() => {
+                  history.push("/");
+                }}
+              >
+                velog
+              </Text>
+            </Div>
+          )}
+          {!logoMain && (
             <Div row>
               <Image
                 width="28px"
@@ -76,7 +82,7 @@ const Header = (props) => {
                 {post.userName}.log
               </Text>
             </Div>
-          )} */}
+          )}
           <Div spaceBetween width="350px" height="40px">
             <Button width="40px" height="40px" radius="50%" BG="#ECECEC">
               <BsFillSunFill size="24" />
