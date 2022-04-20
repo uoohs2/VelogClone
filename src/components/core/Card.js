@@ -12,7 +12,6 @@ import { IoIosArrowDropright, IoIosArrowDropleft } from "react-icons/io";
 import { actionCreators as postActions } from "../../redux/modules/post";
 import { ImBookmark } from "react-icons/im";
 
-
 const Card = (props) => {
   const dispatch = useDispatch();
   const postInfo = props.data;
@@ -20,9 +19,7 @@ const Card = (props) => {
 
   const delete_post = () => {
     dispatch(postActions.deletePostDB(postId));
-
-  }
-
+  };
 
   return (
     <Div width="100%" height="100%" backgroundColor="#ffffff">
@@ -103,7 +100,6 @@ const Card = (props) => {
               color="#868e96"
               colorHover="#212529"
               _onClick={delete_post}
-
             >
               삭제
             </Button>
