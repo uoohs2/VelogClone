@@ -69,7 +69,7 @@ const kakaoLogin = (code) => {
     axios
       .get(`http://3.38.253.146/oauth/kakao/callback?code=${code}`)
       .then((res) => {
-        console.log("res", res);
+        // console.log("res", res);
         const token = res.data.user.token;
         const userId = res.data.user.userId;
         const userName = res.data.user.userName;
@@ -78,13 +78,13 @@ const kakaoLogin = (code) => {
         localStorage.setItem("userId", userId);
         localStorage.setItem("userName", userName);
         dispatch(loginCheckDB());
-        console.log("확인");
-        // window.location.replace("/"); // 토큰 받고 로그인되면 화면 전환(메인으로)
+        console.log("로그인 확인");
+        window.location.replace("/"); // 토큰 받고 로그인되면 화면 전환(메인으로)
       })
       .catch((err) => {
         console.log("소셜로그인 에러", err);
         window.alert("로그인에 실패하였습니다.");
-        // window.location.replace("/"); // 로그인 실패하면 로그인화면으로 보내기
+        window.location.replace("/"); // 로그인 실패하면 로그인화면으로 보내기
       });
   };
 };

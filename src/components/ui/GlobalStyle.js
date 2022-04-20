@@ -13,7 +13,6 @@ ${reset};
 };
 
 a{
-    display: block;
     text-decoration: none;
 }
 input, textarea{

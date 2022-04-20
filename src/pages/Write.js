@@ -101,7 +101,7 @@ const Write = (props) => {
         <Div>
           <Title
             name="title"
-            value={post.title}
+            value={post.title || ""}
             placeholder="제목을 입력하세요"
             onChange={handleForm}
           ></Title>
@@ -168,7 +168,7 @@ const Write = (props) => {
             )}
             <Input2
               name="content"
-              value={post.content}
+              value={post.content || ""}
               type="text"
               placeholder="당신의 이야기를 적어보세요..."
               onChange={handleForm}
