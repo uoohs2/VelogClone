@@ -50,6 +50,11 @@ const Write = (props) => {
   //   for (var pair of formData.entries()) {
   // }
   const createPost = () => {
+    if (!fileInput.current || fileInput.current.files.length === 0) {
+      window.alert("게시물을 모두 작성해주세요.");
+      return;
+    }
+
     if (post.title === null || post.content === null) {
       window.alert("내용을 추가 해주세요");
       return;
@@ -67,7 +72,6 @@ const Write = (props) => {
     }
     console.log(formData);
     dispatch(postActions.addPostDB(formData));
-    
   };
 
   //해시태그
@@ -102,7 +106,7 @@ const Write = (props) => {
         <Div>
           <Title
             name="title"
-            value={post.title}
+            value={post.title || ""}
             placeholder="제목을 입력하세요"
             onChange={handleForm}
           ></Title>
@@ -169,7 +173,7 @@ const Write = (props) => {
             )}
             <Input2
               name="content"
-              value={post.content}
+              value={post.content || ""}
               type="text"
               placeholder="당신의 이야기를 적어보세요..."
               onChange={handleForm}

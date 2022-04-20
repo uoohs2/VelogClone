@@ -139,14 +139,12 @@ const Signup = (props) => {
                     borderRadius="5px"
                     backgroundColor="#63e6be"
                   >
-                    <Div inline width="20px">
-                      <Image
-                        src="https://w.namu.la/s/059f8bf3e629d3f2e343fe3f3f10809022d58800962db675d233429660bf98d9ceccd60e23b1324d090c87485833b10c2c4503c93a230003ba67d5fcafa527930174f8daf70b9e9cb534ed3c2d096f775663373e7e848fad3f0e0445cf2a9e7e"
-                        alt="kakao"
-                        width="20px"
-                        height="20px"
-                      />
-                    </Div>
+                    <Image
+                      src="https://w.namu.la/s/059f8bf3e629d3f2e343fe3f3f10809022d58800962db675d233429660bf98d9ceccd60e23b1324d090c87485833b10c2c4503c93a230003ba67d5fcafa527930174f8daf70b9e9cb534ed3c2d096f775663373e7e848fad3f0e0445cf2a9e7e"
+                      alt="kakao"
+                      width="20px"
+                      height="20px"
+                    />
                     <Button
                       width="170px"
                       backgroundColor="#63e6be"

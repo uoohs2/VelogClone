@@ -11,13 +11,11 @@ const CommentWrite = (props) => {
   const post = useSelector((state) => state.post.list);
   const postId = props.postId.postId;
   const userId = props.postId.userId;
-  
+
   console.log(postId, token);
 
   const [comment, setComment] = React.useState();
- 
 
- 
   const postComment = () => {
     // if (!user.is_login) {
     //   alert("로그인이 필요합니다.");
@@ -32,7 +30,6 @@ const CommentWrite = (props) => {
   React.useEffect(() => {
     dispatch(commentsActions.getCommentsDB(postId));
   }, []);
-
 
   const onChange = (e) => {
     setComment(e.target.value);

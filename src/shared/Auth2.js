@@ -11,8 +11,8 @@ const Auth2 = (props) => {
   // let state = new URL(window.location.href).searchParams.get("state");
   console.log(code);
 
-  React.useEffect(() => {
-    dispatch(userActions.kakaoLogin(code));
+  React.useEffect(async () => {
+    await dispatch(userActions.kakaoLogin(code));
     // dispatch(userActions.naverLogin(code, state));
   }, []);
 

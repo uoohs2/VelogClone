@@ -67,8 +67,10 @@ const Login = (props) => {
 
   //카카오
   const REST_API_KEY = "ebb64769e9ae562700e77df6554c840d";
-  const REDIRECT_URI = "http://localhost:3000/oauth/kakao/callback";
+  const REDIRECT_URI =
+    "http://inburst.shop.s3-website.ap-northeast-2.amazonaws.com/oauth/kakao/callback";
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+  // const KAKAO_AUTH_URL = `http://3.38.253.146/oauth/kakao`;
 
   // const kakaoLogin = () => {
   //   window.location.assign("http://3.38.253.146/auth/kakao/callback");
@@ -175,7 +177,13 @@ const Login = (props) => {
                   로그인
                 </Button>
                 <Line />
-                <Div row margin="15px 0px">
+                <Div
+                  row
+                  width="300px"
+                  height="35px"
+                  margin="20px auto"
+                  borderRadius="5px"
+                >
                   <Image
                     src="https://w.namu.la/s/059f8bf3e629d3f2e343fe3f3f10809022d58800962db675d233429660bf98d9ceccd60e23b1324d090c87485833b10c2c4503c93a230003ba67d5fcafa527930174f8daf70b9e9cb534ed3c2d096f775663373e7e848fad3f0e0445cf2a9e7e"
                     alt="kakao"
