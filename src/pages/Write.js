@@ -1,10 +1,13 @@
 import React from "react";
-import styled from "styled-components";
 import { useState } from "react";
-import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { actionCreators as imageActions } from "../redux/modules/image";
+import { history } from "../redux/configureStore";
+
+import { Div, Text } from "../components/ui";
+
+import styled from "styled-components";
 import { IoMdImage } from "react-icons/io";
 import { MdLink } from "react-icons/md";
 import { BsCode } from "react-icons/bs";
@@ -46,13 +49,15 @@ const Write = (props) => {
   //   for (var pair of formData.entries()) {
   // }
   const createPost = () => {
-    if (post.title === "" || post.content === "") {
+    if (post.title === null || post.content === null) {
       window.alert("내용을 추가 해주세요");
       return;
     }
     if (fileInput === null) {
       window.alert("이미지를 추가 해주세요");
+      return;
     }
+
     const formData = new FormData();
     if (fileInput.current) {
       formData.append("title", post.title);
@@ -64,10 +69,36 @@ const Write = (props) => {
     history.push("/");
   };
 
+  //해시태그
+  const [tagItem, setTagItem] = React.useState("");
+  const [tagList, setTagList] = React.useState([]);
+
+  const onKeyPress = (e) => {
+    if (e.target.value.length !== 0 && e.key === "Enter") {
+      submitTagItem();
+    }
+  };
+
+  const submitTagItem = () => {
+    let updatedTagList = [...tagList];
+    updatedTagList.push(tagItem);
+    setTagList(updatedTagList);
+    setTagItem("");
+    console.log(updatedTagList);
+  };
+
+  const deleteTagItem = (e) => {
+    const deleteTagItem = e.target.parentElement.firstChild.innerText;
+    const filteredTagList = tagList.filter(
+      (tagItem) => tagItem !== deleteTagItem
+    );
+    setTagList(filteredTagList);
+  };
+
   return (
     <React.Fragment>
       <Container>
-        <Wrapper>
+        <Div>
           <Title
             name="title"
             value={post.title}
@@ -75,11 +106,48 @@ const Write = (props) => {
             onChange={handleForm}
           ></Title>
           <Line />
-
+          <WholeBox>
+            <TagBox>
+              {tagList.map((tagItem, index) => {
+                return (
+                  <Div
+                    key={index}
+                    spaceBetween
+                    width="auto"
+                    height="30px"
+                    lineHeight="20px"
+                    margin="0px 0px 10px 10px"
+                    borderRadius="30px"
+                    backgroundColor="#f8f9fa"
+                    cursor="pointer"
+                    _onClick={deleteTagItem}
+                  >
+                    <Text
+                      display="flex"
+                      justifyContent="space-between"
+                      margin="5px"
+                      padding="10px"
+                      size="16px"
+                      color="#12b886"
+                    >
+                      {tagItem}
+                    </Text>
+                  </Div>
+                );
+              })}
+              <TagInput
+                type="text"
+                placeholder="태그를 입력하세요"
+                tabIndex={2}
+                onChange={(e) => setTagItem(e.target.value)}
+                value={tagItem}
+                onKeyPress={onKeyPress}
+              />
+            </TagBox>
+          </WholeBox>
           <HashTagWrapper>
-            <Input1 type="text" placeholder="태그를 입력하세요" />
             <Wrapper1>
-              <MdLink />{" "}
+              <MdLink />
               <label htmlFor="selectFile">
                 <IoMdImage />
               </label>
@@ -106,7 +174,7 @@ const Write = (props) => {
               onChange={handleForm}
             />
           </HashTagWrapper>
-        </Wrapper>
+        </Div>
         {/* editor는 토스트 ui사용 */}
       </Container>
       <Footer>
@@ -119,10 +187,14 @@ const Write = (props) => {
           <span>나가기</span>
         </button>
         <Buttons>
-          <button className="cancle">
-            임시저장
-          </button>
-          <button className="submit" onClick={createPost}>
+          <button className="cancle">임시저장</button>
+          <button
+            className="submit"
+            onClick={() => {
+              createPost();
+              dispatch(postActions.addHashTagDB(tagList));
+            }}
+          >
             출간하기
           </button>
         </Buttons>
@@ -176,18 +248,6 @@ const Footer = styled.div`
     }
   }
 `;
-const Tag = styled.div`
-  ${(props) => props.theme.flex_row};
-  color: ${(props) => props.theme.velog_green};
-  background-color: ${(props) => props.theme.post_bg};
-  padding: 0 0.75rem;
-  height: 1.5rem;
-  border-radius: 0.75rem;
-  font-size: 12px;
-  margin: 0.5rem 0;
-  cursor: pointer;
-  margin-right: 0.5rem;
-`;
 
 const Buttons = styled.div`
   display: flex;
@@ -220,20 +280,20 @@ const Buttons = styled.div`
   }
 `;
 
-const Wrapper = styled.div`
-  width: 100%;
-  padding: 1rem 0;
-  background-color: white;
-  ${(props) => props.theme.border_box}
-`;
+// const Wrapper = styled.div`
+//   width: 100%;
+//   padding: 1rem 0;
+//   background-color: white;
+//   ${(props) => props.theme.border_box}
+// `;
+
 const Wrapper1 = styled.div`
   width: 200px;
   justify-content: space-between;
-  margin: 5px 0px;
+  margin: 10px 0px;
   padding: 1rem 0;
   background-color: white;
   font-size: xx-large;
-  padding: 1px 1px;
 `;
 
 const Line = styled.div`
@@ -257,18 +317,10 @@ const Title = styled.input`
 `;
 
 const HashTagWrapper = styled.div`
-  ${(props) => props.theme.flex_row};
-  flex-wrap: wrap;
-  justify-content: flex;
-  align-items: center;
-  display: grid;
-`;
-
-const Input1 = styled.input`
-  outline: none;
-  border: none;
-  line-height: 1.5rem;
-  font-size: 1rem;
+  /* flex-wrap: wrap; */
+  /* justify-content: flex; */
+  /* align-items: center; */
+  /* display: grid; */
 `;
 
 const Input2 = styled.input`
@@ -292,4 +344,96 @@ const AspectInner = styled.div`
   background-image: url("${(props) => props.src}");
   background-size: contain;
   background-repeat: no-repeat;
+`;
+
+// const HashTag = (props) => {
+//   const [tagItem, setTagItem] = React.useState("");
+//   const [tagList, setTagList] = React.useState([]);
+
+//   const onKeyPress = (e) => {
+//     if (e.target.value.length !== 0 && e.key === "Enter") {
+//       submitTagItem();
+//     }
+//   };
+
+//   const submitTagItem = () => {
+//     let updatedTagList = [...tagList];
+//     updatedTagList.push(tagItem);
+//     setTagList(updatedTagList);
+//     setTagItem("");
+//     console.log(updatedTagList);
+//   };
+
+//   const deleteTagItem = (e) => {
+//     const deleteTagItem = e.target.parentElement.firstChild.innerText;
+//     const filteredTagList = tagList.filter(
+//       (tagItem) => tagItem !== deleteTagItem
+//     );
+//     setTagList(filteredTagList);
+//   };
+
+//   return (
+//     <WholeBox>
+//       <TagBox>
+//         {tagList.map((tagItem, index) => {
+//           return (
+//             <Div
+//               key={index}
+//               spaceBetween
+//               width="auto"
+//               height="30px"
+//               lineHeight="20px"
+//               margin="0px 0px 10px 10px"
+//               borderRadius="30px"
+//               backgroundColor="#f8f9fa"
+//               cursor="pointer"
+//               _onClick={deleteTagItem}
+//             >
+//               <Text
+//                 display="flex"
+//                 justifyContent="space-between"
+//                 margin="5px"
+//                 padding="10px"
+//                 size="16px"
+//                 color="#12b886"
+//               >
+//                 {tagItem}
+//               </Text>
+//             </Div>
+//           );
+//         })}
+//         <TagInput
+//           type="text"
+//           placeholder="태그를 입력하세요"
+//           tabIndex={2}
+//           onChange={(e) => setTagItem(e.target.value)}
+//           value={tagItem}
+//           onKeyPress={onKeyPress}
+//         />
+//       </TagBox>
+//     </WholeBox>
+//   );
+// };
+
+const WholeBox = styled.div`
+  height: 50px;
+`;
+
+const TagBox = styled.div`
+  display: flex;
+  align-items: center;
+  flex-flow: wrap;
+  width: 700px;
+  margin: 15px 0px;
+`;
+
+const TagInput = styled.input`
+  display: inline-flex;
+  margin-left: 5px;
+  background: transparent;
+  outline: none;
+  line-height: 1.5rem;
+  font-size: 1.1rem;
+  color: #212529;
+  cursor: text;
 `;

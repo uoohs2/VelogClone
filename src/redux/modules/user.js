@@ -70,9 +70,9 @@ const kakaoLogin = (code) => {
       .get(`http://3.38.253.146/oauth/kakao/callback?code=${code}`)
       .then((res) => {
         console.log("res", res);
-        const token = res.data.token;
-        const userId = res.data.userId;
-        const userName = res.data.userName;
+        const token = res.data.user.token;
+        const userId = res.data.user.userId;
+        const userName = res.data.user.userName;
         console.log(userName);
         localStorage.setItem("token", token); //예시로 로컬에 저장
         localStorage.setItem("userId", userId);
@@ -84,7 +84,7 @@ const kakaoLogin = (code) => {
       .catch((err) => {
         console.log("소셜로그인 에러", err);
         window.alert("로그인에 실패하였습니다.");
-        window.location.replace("/"); // 로그인 실패하면 로그인화면으로 보내기
+        // window.location.replace("/"); // 로그인 실패하면 로그인화면으로 보내기
       });
   };
 };
