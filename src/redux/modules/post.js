@@ -49,7 +49,7 @@ const addPostDB = (formData) => {
       .then((res) => {
         dispatch(addPost(post));
 
-        history.push("/");
+        history.push("/main");
       })
       .catch((error) => {
 

@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import axios from "axios";
 import produce from "immer";
+import { CommentSharp } from "@material-ui/icons";
 // action
 const ADD = "comment/ADD";
 const LOAD = "comment/LOAD";
@@ -46,13 +47,15 @@ export const getCommentsDB = (postId) => async (dispatch, getState) => {
 
 export const addCommentDB = (token, comment, postId) => {
   return async function (dispatch, getState, {history}) {
+    let comments = {
+      postId: postId,
+      comment: comment,
+    }
     await axios({
       method: "POST",
       url: `http://3.38.253.146/api/comment/${postId}`,
       data: {
-        token: token,
-        postId: postId,
-        comment: comment,
+        ...comments,
       },
       headers: {
         authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -60,7 +63,7 @@ export const addCommentDB = (token, comment, postId) => {
     })
       .then((response) => {
         console.log(response);
-        dispatch(addComment(token, postId, comment));
+        dispatch(addComment(postId, comment));
       })
       .catch(function (error) {
         console.log(error);
@@ -92,8 +95,16 @@ const deleteCommentDB = (token, commentId, postId) => {
 // reducer
 export default handleActions(
   {
+    [ADD]: (state, action) =>
+    produce(state, (draft) => {
+      draft.comments[action.payload.postId] = action.payload.comment;
+    }),
+   
+   
+   
+   
     [ADD]: (state, action) => {
-      console.log(action.payload.comments);
+      
       return {
         ...state,
         comments: state.comments.concat(action.payload.comments),
