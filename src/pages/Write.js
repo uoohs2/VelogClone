@@ -11,6 +11,7 @@ import styled from "styled-components";
 import { IoMdImage } from "react-icons/io";
 import { MdLink } from "react-icons/md";
 import { BsCode } from "react-icons/bs";
+import { push } from "connected-react-router";
 
 const Write = (props) => {
   const dispatch = useDispatch();
@@ -66,7 +67,7 @@ const Write = (props) => {
     }
     console.log(formData);
     dispatch(postActions.addPostDB(formData));
-    history.push("/");
+    
   };
 
   //해시태그

@@ -15,7 +15,7 @@ const Card = (props) => {
   const dispatch = useDispatch();
   const postInfo = props.data;
   const postId = props.data.postId;
-
+  
   const delete_post = () => {
     dispatch(postActions.deletePostDB(postId));
   };

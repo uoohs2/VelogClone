@@ -2,28 +2,28 @@ import React, { useEffect } from "react";
 import { actionCreators as commentsActions } from "../../redux/modules/comment";
 import styled from "styled-components";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import moment from "moment";
 import "moment/locale/ko";
 
+
 const CommentList = (props) => {
+  // const history = useHistory();
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   const postId = props.data.postId;
-  
-
 
   useEffect(() => {
     dispatch(commentsActions.getCommentsDB());
   }, []);
   const comments = useSelector((state) => state.comment.comments);
   console.log(comments);
- 
-  
+
   const deleteComment = (token, commentId) => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       dispatch(commentsActions.deleteCommentDB(token, commentId, postId));
       window.alert("댓글이 삭제되었습니다.");
+      // window.location.reload("/");
     } else {
       return;
     }
@@ -38,12 +38,16 @@ const CommentList = (props) => {
               <div className="userinfo">
                 <div className="name">{comment.userName}</div>
                 <div className="date">
-                  
                   {moment(comment.dateComment).fromNow()}
                 </div>
               </div>
-              <div className="delete" onClick={()=> {deleteComment(token, comment.commentId)}}>
-                
+              <div
+                className="delete"
+                onClick={() => {
+                  deleteComment(token, comment.commentId);
+                  
+                }}
+              >
                 삭제
               </div>
             </div>
