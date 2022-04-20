@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentsActions } from "../redux/modules/comment";
-import { actionCreators as postActions } from "../redux/modules/post";
 
 import {
   Header,
@@ -13,19 +12,33 @@ import {
 } from "../components/core";
 
 const Detail = (props) => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const data = location.state.postId;
   
+
+  // useEffect(() => {
+  //   dispatch(commentsActions.getCommentsDB());
+  // }, []);
+  // const comments_list = useSelector((state) => state.comment);
+  // console.log(comments_list);
+ 
+
+
   // const id = props.match.params.id;
 
   return (
-    <React.Fragment>
+    
+<React.Fragment>
       <Header data={data}></Header>
       <Card data={data} />
       <DetailUser data={data} />
       <CommentWrite postId={data} />
       <CommentList data={data} />
-    </React.Fragment>
+    </React.Fragment> 
+  
+   
+    
   );
 };
 

@@ -24,6 +24,7 @@ const Main = (props) => {
     dispatch(postActions.getPostDB());
   }, []);
 
+
   return (
     <React.Fragment>
       <Header></Header>

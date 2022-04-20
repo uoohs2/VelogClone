@@ -1,42 +1,60 @@
-import React from "react";
-
+import React, { useEffect } from "react";
+import { actionCreators as commentsActions } from "../../redux/modules/comment";
 import styled from "styled-components";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
+import "moment/locale/ko";
 
 const CommentList = (props) => {
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
+  const postId = props.data.postId;
+  
 
+
+  useEffect(() => {
+    dispatch(commentsActions.getCommentsDB());
+  }, []);
+  const comments = useSelector((state) => state.comment.comments);
+  console.log(comments);
+ 
+  
+  const deleteComment = (token, commentId) => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      dispatch(commentsActions.deleteCommentDB(token, commentId, postId));
+      window.alert("댓글이 삭제되었습니다.");
+    } else {
+      return;
+    }
+  };
   return (
     <>
-      <LowerBox>
-        <div className="user">
-          <div className="info">
-            <div className="image" src="" />
-            <div className="userinfo">
-              <div className="name">황현선매니저</div>
-              <div className="date">2022년 4월 18일</div>
+      {comments.map((comment) => (
+        <LowerBox>
+          <div className="user">
+            <div className="info">
+              <div className="image" src="" />
+              <div className="userinfo">
+                <div className="name">{comment.userName}</div>
+                <div className="date">
+                  
+                  {moment(comment.dateComment).fromNow()}
+                </div>
+              </div>
+              <div className="delete" onClick={()=> {deleteComment(token, comment.commentId)}}>
+                
+                삭제
+              </div>
             </div>
           </div>
-        </div>
-        <div className="comment">코드스니펫 딸깍~!</div>
-        <div className="reply">
-          <div className="p"> 1개의 답글</div>
-        </div>
-      </LowerBox>
-      <LowerBox>
-        <div className="user">
-          <div className="info">
-            <div className="image" src="" />
-            <div className="userinfo">
-              <div className="name">황현선매니저</div>
-              <div className="date">2022년 4월 18일</div>
-            </div>
+          <div className="comment">{comment.comment}</div>
+          <div className="reply">
+            <div className="p"> 2개의 답글</div>
           </div>
-        </div>
-        <div className="comment">코드스니펫 딸깍~!</div>
-        <div className="reply">
-          <div className="p"> 1개의 답글</div>
-        </div>
-      </LowerBox>
+        </LowerBox>
+      ))}
+      ;
     </>
   );
 };
@@ -62,13 +80,14 @@ const LowerBox = styled.div`
     .info {
       display: flex;
       height: 38px;
-      width: 98.1094px;
+      width: 900px;
       margin: 0 0 0 16px;
       min-height: auto;
       min-width: auto;
       background-color: #ffffff;
       background-position: 0% 0%;
       color: #212529;
+
       .image {
         background-color: black;
         min-width: 50px;
@@ -108,6 +127,17 @@ const LowerBox = styled.div`
           background-position: 0% 0%;
           color: #868e96;
         }
+      }
+      .delete {
+        margin-left: 450px;
+        margin-top: 10px;
+        width: 45px;
+        height: 25px;
+        justify-content: center;
+        padding: 6px 0px 0px 7px;
+        background-color: #dfdfdf;
+        border-radius: 5px;
+        cursor: pointer;
       }
     }
   }

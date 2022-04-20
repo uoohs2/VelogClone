@@ -33,11 +33,11 @@ const initialState = {
 // make axios.get call here (?)
 
 export const getCommentsDB = (postId) => async (dispatch, getState) => {
-  axios
-    .get(`http://3.38.253.146/api/comment/${postId}`)
+  await axios
+    .get(`http://3.38.253.146/api/detail/${postId}`)
     .then((response) => {
       console.log(response);
-      dispatch(getComments(response.data));
+      dispatch(getComments(response.data.comment));
     })
     .catch((error) => {
       console.log(error);
@@ -51,21 +51,18 @@ export const addCommentDB = (token, comment, postId) => {
       .post(
         `http://3.38.253.146/api/comment/${postId}`,
         {
-          token : token,
-          postId : postId,       
+          token: token,
+          postId: postId,
           comment: comment,
-
         },
-
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }
       )
       .then(function (response) {
         dispatch(addComment(response.data.list));
-    
       })
       .catch(function (error) {
         console.log(error);
@@ -73,40 +70,42 @@ export const addCommentDB = (token, comment, postId) => {
   };
 };
 
-export const deleteCommentDB =(commentId) => {
-  return async function (dispatch, getState){
-    const token = sessionStorage.getItem("token");
+
+const deleteCommentDB = (token, commentId, postId) => {
+  return async function (dispatch, getState) {
     await axios({
       method: "DELETE",
-      url: `http://3.38.253.146/api/comment/${commentId}`,
+      url: `http://3.38.253.146/api/comment/${postId}`,
+      data: {
+        commentId: commentId,
+      },
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,    
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
-    .then(function (response) {
-      dispatch(deleteComment(commentId));
-
-    })
-    .catch(function (error){
-      console.log(error);
-    })
-  }
-
-}
-
+      .then((response) => {
+        dispatch(deleteComment(commentId));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
 
 // reducer
 export default handleActions(
   {
     [ADD]: (state, action) => {
-      console.log(state);
+      console.log(action.payload.comments);
       return {
         ...state,
-        comments: state.comments.concat(action.payload.comment),
+        comments: state.comments.concat(action.payload.comments),
       };
     },
 
     [LOAD]: (state, action) => {
+      console.log(action.payload.comments);
+
       return {
         ...state,
         comments: action.payload.comment,
