@@ -1,6 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import axios from "axios";
-
+import produce from "immer";
 // action
 const ADD = "comment/ADD";
 const LOAD = "comment/LOAD";
@@ -45,24 +45,22 @@ export const getCommentsDB = (postId) => async (dispatch, getState) => {
 };
 
 export const addCommentDB = (token, comment, postId) => {
-  return function (dispatch, getState) {
-    console.log(token, comment, postId);
-    axios
-      .post(
-        `http://3.38.253.146/api/comment/${postId}`,
-        {
-          token: token,
-          postId: postId,
-          comment: comment,
-        },
-        {
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      )
-      .then(function (response) {
-        dispatch(addComment(response.data.list));
+  return async function (dispatch, getState, {history}) {
+    await axios({
+      method: "POST",
+      url: `http://3.38.253.146/api/comment/${postId}`,
+      data: {
+        token: token,
+        postId: postId,
+        comment: comment,
+      },
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        dispatch(addComment(token, postId, comment));
       })
       .catch(function (error) {
         console.log(error);
@@ -70,9 +68,8 @@ export const addCommentDB = (token, comment, postId) => {
   };
 };
 
-
 const deleteCommentDB = (token, commentId, postId) => {
-  return async function (dispatch, getState) {
+  return async function (dispatch, getState,{history}) {
     await axios({
       method: "DELETE",
       url: `http://3.38.253.146/api/comment/${postId}`,
@@ -104,7 +101,7 @@ export default handleActions(
     },
 
     [LOAD]: (state, action) => {
-      console.log(action.payload.comments);
+      console.log(action.payload.comment);
 
       return {
         ...state,
@@ -112,14 +109,27 @@ export default handleActions(
       };
     },
 
-    [DELETE]: (state, action) => {
-      return {
-        ...state,
-        comments: state.comments.filter(
-          (comment) => comment._id !== action.payload.commentId
-        ),
-      };
-    },
+    
+    [DELETE]: (state, action) =>
+    
+      produce(state, (draft) => {
+        console.log(state, draft);
+        draft.list = draft.list.filter((comment) => comment._id !== action.payload.commentId);
+      }),
+    
+    
+    
+    
+    
+    // [DELETE]: (state, action) => {
+    //   console.log(state, action);
+    //   return {
+    //     ...state,
+    //     comments: state.comments.filter(
+    //       (comment) => comment._id !== action.payload.commentId
+    //     ),
+    //   };
+    // },
 
     [EDIT]: (state, action) => {
       // 배열에서 특정값을 찾아서 불변성 유지하면서 수정해주기

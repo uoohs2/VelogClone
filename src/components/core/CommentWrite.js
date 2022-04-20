@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { actionCreators as commentsActions } from "../../redux/modules/comment";
 import { history } from "../../redux/configureStore";
 import styled from "styled-components";
@@ -24,6 +24,7 @@ const CommentWrite = (props) => {
     // }
     dispatch(commentsActions.addCommentDB(token, comment, postId));
     setComment("");
+    // window.location.replace("/");
   };
 
   React.useEffect(() => {

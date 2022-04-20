@@ -7,6 +7,7 @@ import moment from "moment";
 import "moment/locale/ko";
 
 const CommentList = (props) => {
+  // const history = useHistory();
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   const postId = props.data.postId;
@@ -17,11 +18,13 @@ const CommentList = (props) => {
   const comments = useSelector((state) => state.comment.comments);
   const _comments = useSelector((state) => state.comment);
   console.log(_comments);
+  console.log(comments);
 
   const deleteComment = (token, commentId) => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       dispatch(commentsActions.deleteCommentDB(token, commentId, postId));
       window.alert("댓글이 삭제되었습니다.");
+      // window.location.reload("/");
     } else {
       return;
     }
