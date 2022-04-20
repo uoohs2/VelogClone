@@ -101,16 +101,6 @@ export default handleActions(
     }),
    
    
-   
-   
-    [ADD]: (state, action) => {
-      
-      return {
-        ...state,
-        comments: state.comments.concat(action.payload.comments),
-      };
-    },
-
     [LOAD]: (state, action) => {
       console.log(action.payload.comment);
 
