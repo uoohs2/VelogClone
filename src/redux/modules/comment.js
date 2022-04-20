@@ -1,7 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import axios from "axios";
 import produce from "immer";
-import { CommentSharp } from "@material-ui/icons";
+
 // action
 const ADD = "comment/ADD";
 const LOAD = "comment/LOAD";

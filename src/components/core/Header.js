@@ -23,7 +23,7 @@ const Header = (props) => {
   const logoMain = window.location.pathname === "/";
 
   // 상세페이지일때
-  if()
+
   let _id = props.match.params.id;
   const logoDetail = window.location.pathname === `/detail/${_id}`;
   if (!logoMain && logoDetail) {
