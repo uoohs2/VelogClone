@@ -12,6 +12,10 @@ ${reset};
     color: #262626;
 };
 
+a{
+    display: block;
+    text-decoration: none;
+}
 input, textarea{
     outline: 1px solid lightgrey;
     border:none;

@@ -1,10 +1,12 @@
 import React from "react";
 import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 
 import Signup from "./Signup";
+// import { KAKAO_AUTH_URL } from "../shared/Auth";
 
 import styled from "styled-components";
 import { Button, Div, Image, Input, Text } from "../components/ui";
@@ -35,6 +37,12 @@ const Login = (props) => {
     return pattern.test(email); // 맞으면 true, 틀리면 false반환
   };
 
+  // 비밀번호형식 확인
+  const isPwd = (pwd) => {
+    let pattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    return pattern.test(pwd); // 맞으면 true, 틀리면 false반환
+  };
+
   //로그인함수
   const login = () => {
     if (id === "" || pwd === "") {
@@ -47,8 +55,47 @@ const Login = (props) => {
       return;
     }
 
+    if (!isPwd(pwd)) {
+      window.alert(
+        "비밀번호는 최소 8자, 하나 이상의 문자와 숫자로 입력해주세요."
+      );
+      return;
+    }
+
     dispatch(userActions.loginDB(id, pwd));
   };
+
+  //카카오
+  const REST_API_KEY = "ebb64769e9ae562700e77df6554c840d";
+  const REDIRECT_URI = "http://localhost:3000/oauth/kakao/callback";
+  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+
+  // const kakaoLogin = () => {
+  //   window.location.assign("http://3.38.253.146/auth/kakao/callback");
+  // };
+
+  // React.useEffect(async () => {
+  //   const getAccessToken = async (authorizationCode) => {
+  //     let tokenData = await axios
+  //       .get("http://3.38.253.146/auth/kakao", {
+  //         authorizationCode,
+  //       })
+  //       .then((res) => {
+  //         console.log(res.data);
+  //         let accessToken = res.data.accessToken;
+  //         let refreshToken = res.headers["refresh-token"];
+  //         localStorage.setItem("CC_Token", accessToken);
+  //         localStorage.setItem("RF_Token", refreshToken);
+  //         history.replace("/");
+  //       });
+  //   };
+  //   const url = new URL(window.location.href);
+  //   const authorizationCode = url.searchParams.get("code");
+  //   console.log("인증 코드", authorizationCode);
+  //   if (authorizationCode) {
+  //     await getAccessToken(authorizationCode);
+  //   }
+  // }, []);
 
   return (
     <React.Fragment>
@@ -135,8 +182,12 @@ const Login = (props) => {
                     width="20px"
                     height="20px"
                   />
-                  <Button margin="20px 10px" size="0.9em">
-                    KakaoTalk으로 로그인
+                  <Button
+                    margin="20px 10px"
+                    size="0.9em"
+                    // _onClick={KAKAO_AUTH_URL}
+                  >
+                    <a href={KAKAO_AUTH_URL}>KakaoTalk으로 로그인</a>
                   </Button>
                 </Div>
               </Div>
