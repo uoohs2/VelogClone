@@ -50,6 +50,11 @@ const Write = (props) => {
   //   for (var pair of formData.entries()) {
   // }
   const createPost = () => {
+    if (!fileInput.current || fileInput.current.files.length === 0) {
+      window.alert("게시물을 모두 작성해주세요.");
+      return;
+    }
+
     if (post.title === null || post.content === null) {
       window.alert("내용을 추가 해주세요");
       return;
@@ -67,7 +72,6 @@ const Write = (props) => {
     }
     console.log(formData);
     dispatch(postActions.addPostDB(formData));
-    
   };
 
   //해시태그
