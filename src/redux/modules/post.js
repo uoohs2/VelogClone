@@ -34,7 +34,7 @@ const addHashTagDB = (tagList) => {
   return async function (dispatch, getState) {
     console.log(tagList);
     let tag = {
-      tagList: tagList,
+      tagList,
     };
     await axios({
       method: "POST",
