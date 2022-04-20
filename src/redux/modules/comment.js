@@ -46,14 +46,15 @@ export const getCommentsDB = (postId) => async (dispatch, getState) => {
 
 export const addCommentDB = (token, comment, postId) => {
   return function (dispatch, getState) {
-    console.log(comment);
+    console.log(token, comment, postId);
     axios
       .post(
         `http://3.38.253.146/api/comment/${postId}`,
         {
-          userId: token,
-          postId: postId,
+          token : token,
+          postId : postId,       
           comment: comment,
+
         },
 
         {
@@ -64,7 +65,7 @@ export const addCommentDB = (token, comment, postId) => {
       )
       .then(function (response) {
         dispatch(addComment(response.data.list));
-        console.log(response);
+    
       })
       .catch(function (error) {
         console.log(error);

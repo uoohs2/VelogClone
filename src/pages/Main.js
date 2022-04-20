@@ -80,7 +80,7 @@ const Main = (props) => {
                     shape="circle"
                     src="https://velog.velcdn.com/images/syounglee012/profile/153e8e10-0a34-4939-be81-7244fa41347c/social.png"
                   />
-                  {post.userName} by 이성영
+                  by {post.userName} 
                 </div>{" "}
                 <div className="likes">
                   <GoHeart size="20" /> 15

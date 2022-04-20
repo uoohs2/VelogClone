@@ -23,7 +23,7 @@ const Detail = (props) => {
       <Header data={data}></Header>
       <Card data={data} />
       <DetailUser data={data} />
-      <CommentWrite postId={data._id} />
+      <CommentWrite postId={data} />
       <CommentList data={data} />
     </React.Fragment>
   );

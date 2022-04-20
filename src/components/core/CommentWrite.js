@@ -9,21 +9,21 @@ const CommentWrite = (props) => {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   const post = useSelector((state) => state.post.list);
-  const postId = props.postId;
-  console.log(token);
-  console.log(postId);
+  const postId = props.postId.postId;
+  const userId = props.postId.userId;
+  
+  console.log(postId, token);
 
   const [comment, setComment] = React.useState();
  
 
-  const user = useSelector((state) => state.user);
-
+ 
   const postComment = () => {
-    if (!user.is_login) {
-      alert("로그인이 필요합니다.");
-      history.replace("/login");
-      return;
-    }
+    // if (!user.is_login) {
+    //   alert("로그인이 필요합니다.");
+    //   history.replace("/login");
+    //   return;
+    // }
     dispatch(commentsActions.addCommentDB(token, comment, postId));
     setComment("");
   };
