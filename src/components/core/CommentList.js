@@ -24,7 +24,7 @@ const CommentList = (props) => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       dispatch(commentsActions.deleteCommentDB(token, commentId, postId));
       window.alert("댓글이 삭제되었습니다.");
-      // window.location.reload("/");
+      window.location.reload("/");
     } else {
       return;
     }

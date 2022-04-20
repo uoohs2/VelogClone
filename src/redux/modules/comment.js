@@ -114,7 +114,7 @@ export default handleActions(
     
       produce(state, (draft) => {
         console.log(state, draft);
-        draft.list = draft.list.filter((comment) => comment._id !== action.payload.commentId);
+        draft.comments = draft.comments.filter((comment) => comment._id !== action.payload.commentId);
       }),
     
     
