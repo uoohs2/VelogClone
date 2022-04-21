@@ -19,8 +19,6 @@ const Card = (props) => {
   const tagList = String(tag).split(",");
   
   const user_info = useSelector((state) => state.user.userInfo.userId);
-
-
   const checkLog = () => {
     if (user_info) {
       return user_info

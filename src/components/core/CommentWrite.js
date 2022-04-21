@@ -11,18 +11,22 @@ const CommentWrite = (props) => {
   const token = localStorage.getItem("token");
   const postId = props.postId.postId;
   const [comment, setComment] = React.useState();
-
+  const user = useSelector((state) => state.user);
+ 
+  console.log(user);
   const postComment = () => {
-    // if (!user.is_login) {
-    //   alert("로그인이 필요합니다.");
-    //   history.replace("/login");
-    //   return;
-    dispatch(commentsActions.addCommentDB(token, comment, postId));
-    setComment("");
-    setTimeout(function() {
-      window.location.reload('/');
-    }, 1000);
-   };
+    if (!user.is_login) {
+      alert("로그인이 필요합니다.");
+      history.replace("/login");
+    }
+     else {
+       dispatch(commentsActions.addCommentDB(token, comment, postId));
+        setComment("");
+        setTimeout(function() {
+        window.location.reload('/');
+      }, 1000);
+    };
+  };
   React.useEffect(() => {
     dispatch(commentsActions.getCommentsDB(postId));
   }, []);
