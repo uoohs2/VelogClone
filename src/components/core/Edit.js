@@ -14,12 +14,10 @@ const Edit = (props) => {
   const fileInput = React.useRef(null);
   const preview = useSelector((state) => state.image.preview);
   const posts = useSelector((state) => state.post.list);
-  // const [post, setPost] = useState({});
   const post_id = props.match.params.id;
-  console.log(posts);
   let post = posts.find((p) => p._id === post_id);
   let postId = post.postId;
-  console.log(postId);
+
 
   const [titles, setTitles] = React.useState(posts.title);
   const [contents, setContents] = React.useState(posts.content);
@@ -32,7 +30,6 @@ const Edit = (props) => {
   };
 
   const selectFile = (e) => {
-    console.log(e.target.files);
 
     const reader = new FileReader();
     const file = fileInput.current.files[0];

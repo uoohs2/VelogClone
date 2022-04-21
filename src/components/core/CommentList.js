@@ -17,9 +17,6 @@ const CommentList = (props) => {
     dispatch(commentsActions.getCommentsDB());
   }, []);
   const comments = useSelector((state) => state.comment.comments);
-  const _comments = useSelector((state) => state.comment);
-  console.log(_comments);
-  console.log(comments);
 
   const deleteComment = (token, commentId) => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
@@ -31,8 +28,6 @@ const CommentList = (props) => {
     }
   };
 
-  const inputEdit = React.useRef();
-  console.log(inputEdit);
 
   const editComment = (content, commentId) => {
   }
@@ -53,7 +48,6 @@ const CommentList = (props) => {
                 </div>
               </div>
               <div
-                ref={inputEdit}
                 placeholder={comment.content}
                 className="edit"
                 onClick={() => {
