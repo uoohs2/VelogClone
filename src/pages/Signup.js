@@ -4,6 +4,7 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
 import { history } from "../redux/configureStore";
 
+import Main from "./Main";
 import Login from "./Login";
 
 import styled from "styled-components";
@@ -87,6 +88,15 @@ const Signup = (props) => {
     <React.Fragment>
       <Div modalContainer>
         <Div modalBox>
+          {/* <Button
+            is_float
+            _onClick={(e) => {
+              e.preventDefault();
+              setModal(false);
+            }}
+          >
+            {modal ? <Main /> : null}X
+          </Button> */}
           <Div
             width="500px"
             height="680px"

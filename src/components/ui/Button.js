@@ -127,15 +127,16 @@ const ButtonDefault = styled.button`
 
 const FloatButton = styled.button`
   position: fixed;
-  bottom: 50px;
-  right: 16px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  font-size: 36px;
+  top: 10px;
+  right: 15px;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  border: 2px solid #63e6be;
   font-weight: bold;
-  background-color: #96f2d7;
-  color: white;
+  border-radius: 50%;
+  font-size: 16px;
+  color: #63e6be;
 `;
 
 const TagBtn = styled.button`

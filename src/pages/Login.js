@@ -5,6 +5,7 @@ import axios from "axios";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { history } from "../redux/configureStore";
 
+import Main from "./Main";
 import Signup from "./Signup";
 // import { KAKAO_AUTH_URL } from "../shared/Auth";
 
@@ -19,14 +20,17 @@ const Login = (props) => {
 
   //모달
   const [modal, setModal] = React.useState(false);
-  const _modal = props.modal;
-  const isModal = props.setModal;
-  const [_isModal, setIsModal] = useState(isModal === true);
-  // const [isOpen, setIsOpen] = useState(false);
-  // const outModal = useRef();
+  // const _modal = props.modal;
+  // console.log(_modal);
+  // const isModal = props.setModal;
+  // console.log(isModal);
+  // const [_isModal, setIsModal] = useState(isModal === true);
+  // // const [isOpen, setIsOpen] = useState(false);
+  // const outModal = React.useRef();
   // const closeModal = (e) => {
   //   if (_modal && outModal.current === e.target) {
-  //     isModal(!_modal);
+  //     // setIsModal(!_modal);
+  //     return _modal === false;
   //   }
   // };
 
@@ -75,10 +79,9 @@ const Login = (props) => {
     <React.Fragment>
       <Div
         modalContainer
-        //ref={outModal}
+        // ref={outModal}
         _onClick={(e) => {
-          _isModal(false);
-          //closeModal(e);
+          // closeModal(e);
         }}
       >
         <Div
@@ -87,6 +90,16 @@ const Login = (props) => {
             e.stopPropagation();
           }}
         >
+          {/* <Button
+            is_float
+            _onClick={(e) => {
+              e.preventDefault();
+              setModal(true);
+            }}
+          >
+            X
+          </Button>
+          {modal ? <Main /> : null} */}
           <Div
             width="500px"
             height="680px"
