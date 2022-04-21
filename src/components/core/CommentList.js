@@ -12,11 +12,14 @@ const CommentList = (props) => {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   const postId = props.data.postId;
+  console.log(props);
 
   useEffect(() => {
     dispatch(commentsActions.getCommentsDB());
   }, []);
   const comments = useSelector((state) => state.comment.comments);
+
+  console.log(comments);
 
   const deleteComment = (token, commentId) => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
@@ -44,15 +47,7 @@ const CommentList = (props) => {
                   {moment(comment.dateComment).fromNow()}
                 </div>
               </div>
-              <div
-                placeholder={comment.content}
-                className="edit"
-                onClick={() => {
-                  // editComment(comment.content, comment.commentId);
-                }}
-              >
-                수정
-              </div>
+         
               <div
                 className="delete"
                 onClick={() => {

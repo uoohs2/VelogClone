@@ -46,11 +46,11 @@ export const getCommentsDB = (postId) => async (dispatch, getState) => {
 };
 
 export const addCommentDB = (token, comment, postId) => {
-  return async function (dispatch, getState, {history}) {
+  return async function (dispatch, getState, { history }) {
     let comments = {
       postId: postId,
       comment: comment,
-    }
+    };
     await axios({
       method: "POST",
       url: `http://3.38.253.146/api/comment/${postId}`,
@@ -72,7 +72,7 @@ export const addCommentDB = (token, comment, postId) => {
 };
 
 const deleteCommentDB = (token, commentId, postId) => {
-  return async function (dispatch, getState,{history}) {
+  return async function (dispatch, getState, { history }) {
     await axios({
       method: "DELETE",
       url: `http://3.38.253.146/api/comment/${postId}`,
@@ -96,11 +96,10 @@ const deleteCommentDB = (token, commentId, postId) => {
 export default handleActions(
   {
     [ADD]: (state, action) =>
-    produce(state, (draft) => {
-      draft.comments.unshift(action.payload.comment);
-    }),
-   
-   
+      produce(state, (draft) => {
+        draft.comments.unshift(action.payload.comment);
+      }),
+
     [LOAD]: (state, action) => {
       console.log(action.payload.comment);
 
@@ -110,15 +109,14 @@ export default handleActions(
       };
     },
 
-    
     [DELETE]: (state, action) =>
-    
       produce(state, (draft) => {
         console.log(state, draft);
-        draft.comments = draft.comments.filter((comment) => comment._id !== action.payload.commentId);
+        draft.comments = draft.comments.filter(
+          (comment) => comment._id !== action.payload.commentId
+        );
       }),
-    
-    
+
     [EDIT]: (state, action) => {
       // 배열에서 특정값을 찾아서 불변성 유지하면서 수정해주기
       const data = action.payload.newContent;
