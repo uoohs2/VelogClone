@@ -206,7 +206,7 @@ const Write = (props) => {
             className="submit"
             onClick={() => {
               createPost();
-              // dispatch(postActions.addHashTagDB(tagList));
+             dispatch(postActions.addHashTagDB(tagList));
             }}
           >
             출간하기

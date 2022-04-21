@@ -12,7 +12,13 @@ const CommentList = (props) => {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
   const postId = props.data.postId;
-  console.log(props);
+  
+  const user_info = useSelector((state) => state.user.userInfo.userId);
+  const checkLog = () => {
+    if (user_info) {
+      return user_info
+    }
+  };
 
   useEffect(() => {
     dispatch(commentsActions.getCommentsDB());
@@ -60,14 +66,19 @@ const CommentList = (props) => {
                 </div>
               </div>
          
-              <div
-                className="delete"
-                onClick={() => {
-                  deleteComment(token, comment.commentId);
-                }}
-              >
-                삭제
-              </div>
+        
+              {comment.userId == checkLog() ? (
+                    <div
+                    className="delete"
+                    onClick={() => {
+                        deleteComment(comment.commentId);
+                      }}
+                    >
+                    삭제
+                    </div>
+                  ) : null}
+          
+
             </div>
           </div>
           <div className="comment">{comment.comment}</div>
@@ -160,7 +171,7 @@ const LowerBox = styled.div`
         }
       }
       .delete {
-        margin-left: 5px;
+        margin-left: 450px;
         margin-top: 10px;
         width: 45px;
         height: 30px;
@@ -170,17 +181,7 @@ const LowerBox = styled.div`
         cursor: pointer;
        
       }
-      .edit {
-        margin-left: 400px;
-        margin-top: 10px;
-        width: 45px;
-        height: 25px;
-        padding: 6px 0px 0px 7px;
-        background-color: #dfdfdf;
-        border-radius: 5px;
-        cursor: pointer;
-       
-      }
+    
     }
   }
   .comment {
