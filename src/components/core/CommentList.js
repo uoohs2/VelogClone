@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { actionCreators as commentsActions } from "../../redux/modules/comment";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,11 +8,11 @@ import "moment/locale/ko";
 const CommentList = (props) => {
   const dispatch = useDispatch();
   const postId = props.data.postId;
-  
+
   const user_info = useSelector((state) => state.user.userInfo.userId);
   const checkLog = () => {
     if (user_info) {
-      return user_info
+      return user_info;
     }
   };
 
@@ -24,18 +24,16 @@ const CommentList = (props) => {
   const deleteComment = (token, commentId) => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       dispatch(commentsActions.deleteCommentDB(token, commentId, postId));
-      window.alert("댓글이 삭제되었습니다.");
       window.location.reload("/");
     } else {
       return;
     }
   };
 
-
   return (
     <>
       {comments.map((comment, i) => (
-        <LowerBox key={comment+i}>
+        <LowerBox key={comment + i}>
           <div className="user">
             <div className="info">
               <div
@@ -57,20 +55,17 @@ const CommentList = (props) => {
                   {moment(comment.dateComment).fromNow()}
                 </div>
               </div>
-         
-        
-              {comment.userId == checkLog() ? (
-                    <div
-                    className="delete"
-                    onClick={() => {
-                        deleteComment(comment.commentId);
-                      }}
-                    >
-                    삭제
-                    </div>
-                  ) : null}
-          
 
+              {comment.userId == checkLog() ? (
+                <div
+                  className="delete"
+                  onClick={() => {
+                    deleteComment(comment.commentId);
+                  }}
+                >
+                  삭제
+                </div>
+              ) : null}
             </div>
           </div>
           <div className="comment">{comment.comment}</div>
@@ -118,7 +113,6 @@ const LowerBox = styled.div`
       background-color: #ffffff;
       background-position: 0% 0%;
       color: #212529;
-
 
       .image {
         background-color: black;
@@ -171,9 +165,7 @@ const LowerBox = styled.div`
         background-color: #e5eaef;
         border-radius: 5px;
         cursor: pointer;
-       
       }
-    
     }
   }
   .comment {

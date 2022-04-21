@@ -1,6 +1,5 @@
-
 import React from "react";
-import { useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentsActions } from "../../redux/modules/comment";
 import { history } from "../../redux/configureStore";
 import { Button, Div, Input, Text } from "../ui";
@@ -11,20 +10,19 @@ const CommentWrite = (props) => {
   const postId = props.postId.postId;
   const [comment, setComment] = React.useState();
   const user = useSelector((state) => state.user);
- 
+
   console.log(user);
   const postComment = () => {
     if (!user.is_login) {
       alert("로그인이 필요합니다.");
       history.replace("/login");
-    }
-     else {
-       dispatch(commentsActions.addCommentDB(token, comment, postId));
-        setComment("");
-        setTimeout(function() {
-        window.location.reload('/');
+    } else {
+      dispatch(commentsActions.addCommentDB(token, comment, postId));
+      setComment("");
+      setTimeout(function () {
+        window.location.reload("/");
       }, 1000);
-    };
+    }
   };
   React.useEffect(() => {
     dispatch(commentsActions.getCommentsDB(postId));
@@ -33,7 +31,6 @@ const CommentWrite = (props) => {
   const onChange = (e) => {
     setComment(e.target.value);
   };
-
 
   return (
     <Div
