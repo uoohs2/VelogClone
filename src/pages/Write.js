@@ -1,5 +1,9 @@
 import React from "react";
 import { useState } from "react";
+<<<<<<< HEAD
+=======
+import { useHistory } from "react-router-dom";
+>>>>>>> 23264cb072139dbfba054499b749fbee9967f99e
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { actionCreators as imageActions } from "../redux/modules/image";
@@ -14,6 +18,7 @@ import { BsCode } from "react-icons/bs";
 
 const Write = (props) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const fileInput = React.useRef(null);
   const preview = useSelector((state) => state.image.preview);
   const [post, setPost] = useState({});
@@ -152,11 +157,10 @@ const Write = (props) => {
               />
               <BsCode />
             </Wrapper1>
-            {preview && (
-              <AspectOutter>
-                <AspectInner src={preview ? preview : null}></AspectInner>
-              </AspectOutter>
-            )}
+
+            <AspectOutter>
+              <AspectInner src={preview ? preview : null}></AspectInner>
+            </AspectOutter>
             <Input2
               name="content"
               value={post.content || ""}
@@ -172,7 +176,7 @@ const Write = (props) => {
         <button
           className="exit"
           onClick={() => {
-            history.goBack();
+            props.history.push("/");
           }}
         >
           <span>나가기</span>
@@ -205,7 +209,7 @@ export default Write;
 
 const Container = styled.div`
   ${(props) => props.theme.border_box};
-  padding: 0 48px;
+  padding: 0 1rem;
   width: 100vw;
 `;
 
@@ -271,9 +275,9 @@ const Buttons = styled.div`
     }
   }
   & button.submit {
-    background-color: #12b886;
+    background-color:  #63e6be;
     &:hover {
-      background-color: #63e6be;
+      background-color: #12b886;
     }
   }
 `;
@@ -281,7 +285,10 @@ const Buttons = styled.div`
 const Wrapper1 = styled.div`
   width: 200px;
   justify-content: space-between;
+<<<<<<< HEAD
   margin: 10px 0px;
+=======
+>>>>>>> 23264cb072139dbfba054499b749fbee9967f99e
   padding: 1rem 0;
   background-color: white;
   font-size: xx-large;
@@ -293,16 +300,15 @@ const Line = styled.div`
   background: rgb(73, 80, 87);
   height: 6px;
   width: 4rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   margin-bottom: 1rem;
   border-radius: 1px;
 `;
 const Title = styled.input`
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   outline: none;
   border: none;
   font-weight: bold;
-  padding: 30px 0px 0px 0px;
   width: 100%;
   ${(props) => props.theme.border_box}
 `;
@@ -315,7 +321,6 @@ const Input2 = styled.textarea`
   line-height: 1.5rem;
   font-size: 1rem;
   width: 50vw;
-  margin: 10px 0px;
   white-space: normal;
 `;
 
@@ -328,8 +333,7 @@ const AspectInner = styled.div`
   padding-top: 75%;
   overflow: hidden;
   background-image: url("${(props) => props.src}");
-  background-size: contain;
-  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 //해시태그

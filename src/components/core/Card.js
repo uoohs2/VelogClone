@@ -16,11 +16,11 @@ const Card = (props) => {
   const tag = postInfo.tagList;
   const postId = props.data.postId;
   const tagList = String(tag).split(",");
-  
+
   const user_info = useSelector((state) => state.user.userInfo.userId);
   const checkLog = () => {
     if (user_info) {
-      return user_info
+      return user_info;
     }
   };
 
@@ -82,42 +82,37 @@ const Card = (props) => {
             {moment(postInfo.date).fromNow()}
           </Text>
           <Div float="right">
-       
             {props.data.userId == checkLog() ? (
-                    <Button
-                    width="32px"
-                    height="21px"
-                    margin="0px 0px 0px 0.5rem "
-                    size="16px"
-                    color="#868e96"
-                    colorHover="#212529"
-                    _onClick={() => {
-                        history.push(`/Edit/${postInfo._id}`);
-                      }}
-                    >
-                    수정
-                    </Button>
-                  ) : null}
-      
-          
+              <Button
+                width="32px"
+                height="21px"
+                margin="0px 0px 0px 0.5rem "
+                size="16px"
+                color="#868e96"
+                colorHover="#212529"
+                _onClick={() => {
+                  history.push(`/Edit/${postInfo._id}`);
+                }}
+              >
+                수정
+              </Button>
+            ) : null}
+
             {props.data.userId == checkLog() ? (
-                    <Button
-                    width="32px"
-                    height="21px"
-                    margin="0px 0px 0px 0.5rem "
-                    size="16px"
-                    color="#868e96"
-                    colorHover="#212529"
-                    _onClick={() => {
-                        delete_post(props.data._id);
-                      }}
-                    >
-                    삭제
-                    </Button>
-                  ) : null}
-          
-          
-          
+              <Button
+                width="32px"
+                height="21px"
+                margin="0px 0px 0px 0.5rem "
+                size="16px"
+                color="#868e96"
+                colorHover="#212529"
+                _onClick={() => {
+                  delete_post(props.data._id);
+                }}
+              >
+                삭제
+              </Button>
+            ) : null}
           </Div>
         </Div>
         <Div
