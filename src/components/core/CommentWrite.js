@@ -24,7 +24,7 @@ const CommentWrite = (props) => {
     // }
     dispatch(commentsActions.addCommentDB(token, comment, postId));
     setComment("");
-    // window.location.replace("/");
+    window.location.reload("/");
   };
 
   React.useEffect(() => {
@@ -45,18 +45,10 @@ const CommentWrite = (props) => {
   //   }
   // };
 
-  // const deleteComment = (Id) => {
-  //   if (window.confirm("정말 삭제하시겠습니까?")) {
-  //     dispatch(commentsActions.deleteCommentDB(Id));
-  //     window.alert("댓글이 삭제되었습니다.");
-  //   } else {
-  //     return;
-  //   }
-  // };
   return (
     <Div
       width="768px"
-      height="158px"
+      height="250px"
       margin="100px auto 0px auto"
       color="#212529"
     >

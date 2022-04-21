@@ -10,6 +10,7 @@ const Input = (props) => {
     margin,
     padding,
     border,
+    borderRadius,
     label,
     placeholder,
     _onChange,
@@ -29,6 +30,7 @@ const Input = (props) => {
     margin,
     padding,
     border,
+    borderRadius,
   };
   if (multiLine) {
     return (
@@ -92,6 +94,7 @@ Input.defaultProps = {
   margin: "",
   padding: "",
   border: "",
+  borderRadius: "",
   multiLine: false,
   repeat: false,
   label: false,
@@ -111,6 +114,7 @@ const InputDefault = styled.input`
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   border: ${(props) => props.border};
+  border-radius: ${(props) => props.borderRadius};
 `;
 
 const UserInput = styled.input`
@@ -143,7 +147,8 @@ const CommentInput = styled.input`
   color: #212529;
   height: 98px;
   width: 100%;
-  border: 1px solid #f1f3f5;
+  border: 1px solid #e7e8e9;
+  border-radius: 5px;
   margin: 0 0 24px 0;
   padding: 16px 16px 24px 16px;
   min-height: 98px;
@@ -156,6 +161,7 @@ const CommentInput = styled.input`
   border-top-right-radius: 4px;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
+  outline: none;
 `;
 
 export default Input;

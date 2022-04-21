@@ -20,7 +20,11 @@ const Card = (props) => {
   console.log(tagList);
 
   const delete_post = () => {
-    dispatch(postActions.deletePostDB(postId));
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      dispatch(postActions.deletePostDB(postId));
+    } else {
+      return;
+    }
   };
 
   return (

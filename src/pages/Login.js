@@ -157,10 +157,13 @@ const Login = (props) => {
                   borderRadius="5px"
                 >
                   <Image
-                    src="https://w.namu.la/s/059f8bf3e629d3f2e343fe3f3f10809022d58800962db675d233429660bf98d9ceccd60e23b1324d090c87485833b10c2c4503c93a230003ba67d5fcafa527930174f8daf70b9e9cb534ed3c2d096f775663373e7e848fad3f0e0445cf2a9e7e"
+                    src="https://t1.daumcdn.net/cfile/tistory/99792D425D0895002A"
                     alt="kakao"
                     width="20px"
                     height="20px"
+                    size="cover"
+                    position="center"
+                    radius="3px"
                   />
                   <Button margin="20px 10px" size="0.9em">
                     <a href={KAKAO_AUTH_URL}>KakaoTalk으로 로그인</a>

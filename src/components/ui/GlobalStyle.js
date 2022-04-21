@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
+import "../../shared/App.css";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -10,7 +11,12 @@ ${reset};
     padding: 0;
     box-sizing: border-box;
     color: #262626;
+    
 };
+
+html{
+    font-family: "NotoSans";
+}
 
 a{
     text-decoration: none;
