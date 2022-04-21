@@ -169,7 +169,6 @@ const CmtBtn = styled.button`
   text-align: center;
   word-spacing: 0px;
   background-color: #20c997;
-  background-position: 0% 0%;
   color: #ffffff;
   height: 32px;
   width: 109.625px;

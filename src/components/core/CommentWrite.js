@@ -32,11 +32,10 @@ const CommentWrite = (props) => {
   };
 
 
-
   return (
     <Div
       width="768px"
-      height="158px"
+      height="250px"
       margin="100px auto 0px auto"
       color="#212529"
     >

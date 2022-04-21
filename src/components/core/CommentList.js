@@ -40,9 +40,21 @@ const CommentList = (props) => {
         <LowerBox key={comment+i}>
           <div className="user">
             <div className="info">
-              <div className="image" src="" />
+              <div
+                className="image"
+                onClick={(e) => {
+                  window.alert("Comming Soon!");
+                }}
+              />
               <div className="userinfo">
-                <div className="name">{comments.userName}</div>
+                <div
+                  className="name"
+                  onClick={(e) => {
+                    window.alert("Comming Soon!");
+                  }}
+                >
+                  {comment.userName}
+                </div>
                 <div className="date">
                   {moment(comment.dateComment).fromNow()}
                 </div>
@@ -60,7 +72,14 @@ const CommentList = (props) => {
           </div>
           <div className="comment">{comment.comment}</div>
           <div className="reply">
-            <div className="p"> 2개의 답글</div>
+            <div
+              className="p"
+              onClick={(e) => {
+                window.alert("Comming Soon!");
+              }}
+            >
+              답글
+            </div>
           </div>
         </LowerBox>
       ))}
@@ -77,9 +96,8 @@ const LowerBox = styled.div`
   color: #212529;
   height: 100%;
   width: 768px;
-  margin: 0px auto;
   display: block;
-  margin-top: 50px;
+  margin: 50px auto;
   border-bottom: 1px solid #d2d2d2;
   .user {
     height: 54px;
@@ -145,9 +163,9 @@ const LowerBox = styled.div`
         margin-left: 5px;
         margin-top: 10px;
         width: 45px;
-        height: 25px;
+        height: 30px;
         padding: 6px 0px 0px 7px;
-        background-color: #dfdfdf;
+        background-color: #e5eaef;
         border-radius: 5px;
         cursor: pointer;
        

@@ -251,15 +251,15 @@ const VelogCard = styled.div`
   justify-content: space-between;
   width: 320px;
   height: 400px;
-  margin: 16px 16px 13px 16px;
+  margin: 16px;
   border-radius: 4px;
   background-color: #f8f9fa;
-  box-shadow: rgb(0 0 0 / 4%) 0px 4px 16px 0px;
+  box-shadow: rgb(0 0 0 / 7%) 0px 4px 16px 0px;
   transition: box-shadow 0.25s ease-in 0s, transform 0.25s ease-in 0s;
   overflow: hidden;
   &:hover {
     transform: translateY(-8px);
-    box-shadow: rgb(0 0 0 / 8%) 0px 12px 20px 0px;
+    box-shadow: rgb(0 0 0 / 11%) 0px 12px 20px 0px;
   }
 `;
 
