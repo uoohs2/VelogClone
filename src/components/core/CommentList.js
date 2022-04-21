@@ -29,9 +29,6 @@ const CommentList = (props) => {
   };
 
 
-  const editComment = (content, commentId) => {
-  }
-
 
 
   return (
@@ -51,7 +48,7 @@ const CommentList = (props) => {
                 placeholder={comment.content}
                 className="edit"
                 onClick={() => {
-                  editComment(comment.content, comment.commentId);
+                  // editComment(comment.content, comment.commentId);
                 }}
               >
                 수정

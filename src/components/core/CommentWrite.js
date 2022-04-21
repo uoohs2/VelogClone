@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, useState } from "react-redux";
 import { actionCreators as commentsActions } from "../../redux/modules/comment";
 import { history } from "../../redux/configureStore";
 import styled from "styled-components";
@@ -10,9 +10,6 @@ const CommentWrite = (props) => {
   const token = localStorage.getItem("token");
   const postId = props.postId.postId;
   const [comment, setComment] = React.useState();
-  const inputEdit = useRef();
-  
-  console.log(inputEdit);
 
   const postComment = () => {
     // if (!user.is_login) {
@@ -33,7 +30,7 @@ const CommentWrite = (props) => {
     setComment(e.target.value);
   };
 
-  
+
 
   return (
     <Div
@@ -55,7 +52,6 @@ const CommentWrite = (props) => {
         8개의 댓글
       </Text>
       <Input
-        ref={inputEdit}
         placeholder="댓글을 작성하세요."
         _onChange={onChange}
         value={comment}
