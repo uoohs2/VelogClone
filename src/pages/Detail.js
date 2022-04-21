@@ -17,15 +17,6 @@ const Detail = (props) => {
   const data = location.state.postId;
   
 
-  // useEffect(() => {
-  //   dispatch(commentsActions.getCommentsDB());
-  // }, []);
-  // const comments_list = useSelector((state) => state.comment);
-  // console.log(comments_list);
- 
-
-
-  // const id = props.match.params.id;
 
   return (
     

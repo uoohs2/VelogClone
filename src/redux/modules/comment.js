@@ -97,7 +97,7 @@ export default handleActions(
   {
     [ADD]: (state, action) =>
     produce(state, (draft) => {
-      draft.comments[action.payload.postId] = action.payload.comment;
+      draft.comments.unshift(action.payload.comment);
     }),
    
    
@@ -119,19 +119,6 @@ export default handleActions(
       }),
     
     
-    
-    
-    
-    // [DELETE]: (state, action) => {
-    //   console.log(state, action);
-    //   return {
-    //     ...state,
-    //     comments: state.comments.filter(
-    //       (comment) => comment._id !== action.payload.commentId
-    //     ),
-    //   };
-    // },
-
     [EDIT]: (state, action) => {
       // 배열에서 특정값을 찾아서 불변성 유지하면서 수정해주기
       const data = action.payload.newContent;

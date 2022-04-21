@@ -24,11 +24,12 @@ const Header = (props) => {
 
   // 상세페이지일때
 
-  let _id = props.match.params.id;
-  const logoDetail = window.location.pathname === `/detail/${_id}`;
-  if (!logoMain && logoDetail) {
-    console.log(props.data);
-  }
+  // let _id = props.match.params.id;
+  // console.log(_id);
+  // const logoDetail = window.location.pathname === `/detail/${_id}`;
+  // if (!logoMain && logoDetail) {
+  //   console.log(props.data);
+  // }
 
   //로그인 후
   if (isLocal && is_login) {

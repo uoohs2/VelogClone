@@ -196,7 +196,7 @@ const Write = (props) => {
           <button
             className="submit"
             onClick={() => {
-              // createPost();
+              createPost();
               dispatch(postActions.addHashTagDB(tagList));
             }}
           >

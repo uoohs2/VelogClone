@@ -55,14 +55,12 @@ const addHashTagDB = (tagList) => {
   };
 };
 
-const addPostDB = (tagList, formData) => {
+const addPostDB = (formData) => {
   return async function (dispatch, getState) {
-    // for (var pair of formData.entries()) {
-    //   console.log(pair[0] + ", " + pair[1]);
-    console.log(tagList);
+
+ 
     let post = {
       ...initialPost,
-      tagList,
       formData,
     };
 
@@ -70,7 +68,7 @@ const addPostDB = (tagList, formData) => {
       await axios({
         method: "POST",
         url: "http://3.38.253.146/api/post",
-        data: tagList,
+        data: 
         formData,
         headers: {
           "Content-Type": "multipart/form-data",
@@ -84,14 +82,7 @@ const addPostDB = (tagList, formData) => {
       console.log(error);
     }
 
-    // axios({
-    //   method: "post",
-    //   url: 'http://3.38.253.146/write_modify/user/postadd',
-    //   data: formData,
-    // headers:
-    // { "Content-Type": "multipart/form-data",
-    // Authorization: localStorage.getItem("access_token") }
-    // })
+  
   };
 };
 

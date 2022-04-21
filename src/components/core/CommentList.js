@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { actionCreators as commentsActions } from "../../redux/modules/comment";
 import styled from "styled-components";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import "moment/locale/ko";
+import { PropaneSharp } from "@mui/icons-material";
 
 const CommentList = (props) => {
   // const history = useHistory();
@@ -29,10 +30,19 @@ const CommentList = (props) => {
       return;
     }
   };
+
+  const inputEdit = React.useRef();
+  console.log(inputEdit);
+
+  const editComment = (content, commentId) => {
+  }
+
+
+
   return (
     <>
-      {comments.map((comment) => (
-        <LowerBox>
+      {comments.map((comment, i) => (
+        <LowerBox key={comment+i}>
           <div className="user">
             <div className="info">
               <div className="image" src="" />
@@ -41,6 +51,16 @@ const CommentList = (props) => {
                 <div className="date">
                   {moment(comment.dateComment).fromNow()}
                 </div>
+              </div>
+              <div
+                ref={inputEdit}
+                placeholder={comment.content}
+                className="edit"
+                onClick={() => {
+                  editComment(comment.content, comment.commentId);
+                }}
+              >
+                수정
               </div>
               <div
                 className="delete"
@@ -92,6 +112,7 @@ const LowerBox = styled.div`
       background-position: 0% 0%;
       color: #212529;
 
+
       .image {
         background-color: black;
         min-width: 50px;
@@ -133,15 +154,26 @@ const LowerBox = styled.div`
         }
       }
       .delete {
-        margin-left: 450px;
+        margin-left: 5px;
         margin-top: 10px;
         width: 45px;
         height: 25px;
-        justify-content: center;
         padding: 6px 0px 0px 7px;
         background-color: #dfdfdf;
         border-radius: 5px;
         cursor: pointer;
+       
+      }
+      .edit {
+        margin-left: 400px;
+        margin-top: 10px;
+        width: 45px;
+        height: 25px;
+        padding: 6px 0px 0px 7px;
+        background-color: #dfdfdf;
+        border-radius: 5px;
+        cursor: pointer;
+       
       }
     }
   }
