@@ -1,12 +1,10 @@
 import React from "react";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../../redux/modules/user";
 import { history } from "../../redux/configureStore";
 
 import Login from "../../pages/Login";
 
-import styled from "styled-components";
 import { Button, Div, Image, Text } from "../ui";
 import { BsFillSunFill, BsSearch } from "react-icons/bs";
 
@@ -14,24 +12,10 @@ const Header = (props) => {
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
   const isLocal = localStorage.getItem("token") ? true : false;
-  // const user = useSelector((state) => state.user.userInfo);
-  // const post = useSelector((state) => state.comment);
-  // console.log(post._id);
   const [modal, setModal] = React.useState(false);
 
   // 메인페이지일때
   const logoMain = window.location.pathname === "/";
-
-  // 상세페이지일때
-  // if (!logoMain) {
-  //   let _id = props.data._id;
-  //   console.log(_id);
-  //   const logoDetail = window.location.pathname === `/detail/${_id}`;
-  //   if (!logoMain && logoDetail) {
-  //     const userName = props.data.userName;
-  //     console.log(userName);
-  //   }
-  // }
 
   //로그인 후
   if (isLocal && is_login) {

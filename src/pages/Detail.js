@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useParams, useHistory, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as commentsActions } from "../redux/modules/comment";
+import React from "react";
+import {  useLocation } from "react-router-dom";
 
 import {
   Header,
@@ -12,7 +10,6 @@ import {
 } from "../components/core";
 
 const Detail = (props) => {
-  const dispatch = useDispatch();
   const location = useLocation();
   const data = location.state.postId;
 

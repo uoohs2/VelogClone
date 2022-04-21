@@ -11,26 +11,16 @@ import styled from "styled-components";
 import { IoMdImage } from "react-icons/io";
 import { MdLink } from "react-icons/md";
 import { BsCode } from "react-icons/bs";
-import { push } from "connected-react-router";
 
 const Write = (props) => {
   const dispatch = useDispatch();
   const fileInput = React.useRef(null);
   const preview = useSelector((state) => state.image.preview);
-  const posts = useSelector((state) => state.post.list);
   const [post, setPost] = useState({});
 
-  const postId = props.match.params.id;
-
-  const is_edit = postId ? true : false;
-  let _post = is_edit ? posts.find((p) => p.id === postId) : null;
-
   const selectFile = (e) => {
-    console.log(e.target.files);
-
     const reader = new FileReader();
     const file = fileInput.current.files[0];
-
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       dispatch(imageActions.setPreview(reader.result));
@@ -38,19 +28,12 @@ const Write = (props) => {
   };
 
   const is_uploading = useSelector((state) => state.image.uploading);
-  // computed property names 문법 (키값 동적 할당)
   const handleForm = (e) => {
     setPost({
       ...post,
       [e.target.name]: e.target.value,
     });
   };
-
-  //  폼데이터 콘솔 찍기
-  //   for (var pair of formData.entries()) {
-  // }
-
-  //해시태그
   const [tagItem, setTagItem] = React.useState("");
   const [tagList, setTagList] = React.useState([]);
 
@@ -144,6 +127,7 @@ const Write = (props) => {
               })}
               <TagInput
                 type="text"
+
                 placeholder="태그를 입력하세요"
                 tabIndex={2}
                 onChange={(e) => setTagItem(e.target.value)}

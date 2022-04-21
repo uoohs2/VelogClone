@@ -1,6 +1,5 @@
 import React from "react";
 import { history } from "../../redux/configureStore";
-import post from "../../redux/modules/post";
 import { Button, Div, Image, Input, Text } from "../ui";
 
 import moment from "moment";
@@ -83,19 +82,7 @@ const Card = (props) => {
             {moment(postInfo.date).fromNow()}
           </Text>
           <Div float="right">
-            {/* <Button
-              width="32px"
-              height="21px"
-              margin="0px 0px 0px 0.5rem "
-              size="16px"
-              color="#868e96"
-              colorHover="#212529"
-              _onClick={(e) => {
-                window.alert("Comming Soon!");
-              }}
-            >
-              통계
-            </Button> */}
+       
             {props.data.userId == checkLog() ? (
                     <Button
                     width="32px"

@@ -1,16 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect} from "react";
 import { actionCreators as commentsActions } from "../../redux/modules/comment";
 import styled from "styled-components";
-import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import "moment/locale/ko";
-import { PropaneSharp } from "@mui/icons-material";
 
 const CommentList = (props) => {
-  // const history = useHistory();
   const dispatch = useDispatch();
-  const token = localStorage.getItem("token");
   const postId = props.data.postId;
   
   const user_info = useSelector((state) => state.user.userInfo.userId);
@@ -25,8 +21,6 @@ const CommentList = (props) => {
   }, []);
   const comments = useSelector((state) => state.comment.comments);
 
-  console.log(comments);
-
   const deleteComment = (token, commentId) => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       dispatch(commentsActions.deleteCommentDB(token, commentId, postId));
@@ -36,8 +30,6 @@ const CommentList = (props) => {
       return;
     }
   };
-
-
 
 
   return (
