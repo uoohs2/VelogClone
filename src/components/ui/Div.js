@@ -16,8 +16,10 @@ const Div = (props) => {
     border,
     borderRadius,
     shadow,
+    boxShadow,
     transition,
     backgroundColor,
+    overflow,
     color,
     cursor,
     opacity,
@@ -34,6 +36,7 @@ const Div = (props) => {
     bookMark,
     modalContainer,
     modalBox,
+    velogCard,
     _onClick,
   } = props;
 
@@ -51,8 +54,10 @@ const Div = (props) => {
     border,
     borderRadius,
     shadow,
+    boxShadow,
     transition,
     backgroundColor,
+    overflow,
     color,
     cursor,
     opacity,
@@ -69,6 +74,7 @@ const Div = (props) => {
     bookMark,
     modalContainer,
     modalBox,
+    velogCard,
   };
   if (bookMark) {
     return (
@@ -100,6 +106,16 @@ const Div = (props) => {
     );
   }
 
+  if (velogCard) {
+    return (
+      <React.Fragment>
+        <VelogCard onClick={_onClick} {...styles}>
+          {children}
+        </VelogCard>
+      </React.Fragment>
+    );
+  }
+
   return (
     <Box onClick={_onClick} {...styles}>
       {children}
@@ -121,8 +137,10 @@ Div.defaultProps = {
   border: "",
   borderRadius: "",
   shadow: false,
+  boxShadow: "",
   transition: "",
   backgroundColor: "",
+  overflow: "",
   color: "",
   cursor: "",
   opacity: "",
@@ -138,6 +156,7 @@ Div.defaultProps = {
   inline: false,
   bookMark: false,
   modal: false,
+  velogCard: false,
   _onClick: () => {},
 };
 
@@ -180,6 +199,7 @@ const Box = styled.div`
   box-shadow: ${(props) => props.shadow};
   transition: ${(props) => props.transition};
   background-color: ${(props) => props.backgroundColor};
+  overflow: hidden;
   ${(props) => (props.textCenter ? `text-align:center;` : "")};
   font-size: ${(props) => props.fontSize};
   color: ${(props) => props.color};
@@ -223,6 +243,24 @@ const ModalBox = styled.div`
   transform: translate(-50%, -50%);
   background: #fff;
   border-radius: 10px;
+`;
+
+const VelogCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 320px;
+  height: 400px;
+  margin: 16px 16px 13px 16px;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  box-shadow: rgb(0 0 0 / 4%) 0px 4px 16px 0px;
+  transition: box-shadow 0.25s ease-in 0s, transform 0.25s ease-in 0s;
+  overflow: hidden;
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: rgb(0 0 0 / 8%) 0px 12px 20px 0px;
+  }
 `;
 
 export default Div;

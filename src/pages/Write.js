@@ -49,30 +49,6 @@ const Write = (props) => {
   //  폼데이터 콘솔 찍기
   //   for (var pair of formData.entries()) {
   // }
-  const createPost = () => {
-    if (!fileInput.current || fileInput.current.files.length === 0) {
-      window.alert("게시물을 모두 작성해주세요.");
-      return;
-    }
-
-    if (post.title === null || post.content === null) {
-      window.alert("내용을 추가 해주세요");
-      return;
-    }
-    if (fileInput === null) {
-      window.alert("이미지를 추가 해주세요");
-      return;
-    }
-
-    const formData = new FormData();
-    if (fileInput.current) {
-      formData.append("title", post.title);
-      formData.append("content", post.content);
-      formData.append("image", fileInput.current.files[0]);
-    }
-    console.log(formData);
-    dispatch(postActions.addPostDB(formData));
-  };
 
   //해시태그
   const [tagItem, setTagItem] = React.useState("");
@@ -98,6 +74,32 @@ const Write = (props) => {
       (tagItem) => tagItem !== deleteTagItem
     );
     setTagList(filteredTagList);
+  };
+
+  const createPost = () => {
+    if (!fileInput.current || fileInput.current.files.length === 0) {
+      window.alert("게시물을 모두 작성해주세요.");
+      return;
+    }
+
+    if (post.title === null || post.content === null) {
+      window.alert("내용을 추가 해주세요");
+      return;
+    }
+    if (fileInput === null) {
+      window.alert("이미지를 추가 해주세요");
+      return;
+    }
+
+    const formData = new FormData();
+    if (fileInput.current) {
+      formData.append("title", post.title);
+      formData.append("content", post.content);
+      formData.append("tagList", tagList);
+      formData.append("image", fileInput.current.files[0]);
+    }
+    console.log(formData);
+    dispatch(postActions.addPostDB(formData));
   };
 
   return (
@@ -192,12 +194,19 @@ const Write = (props) => {
           <span>나가기</span>
         </button>
         <Buttons>
-          <button className="cancle">임시저장</button>
+          <button
+            className="cancle"
+            onClick={() => {
+              window.alert("Comming Soon!");
+            }}
+          >
+            임시저장
+          </button>
           <button
             className="submit"
             onClick={() => {
-              // createPost();
-              dispatch(postActions.addHashTagDB(tagList));
+              createPost();
+              // dispatch(postActions.addHashTagDB(tagList));
             }}
           >
             출간하기
@@ -285,13 +294,6 @@ const Buttons = styled.div`
   }
 `;
 
-// const Wrapper = styled.div`
-//   width: 100%;
-//   padding: 1rem 0;
-//   background-color: white;
-//   ${(props) => props.theme.border_box}
-// `;
-
 const Wrapper1 = styled.div`
   width: 200px;
   justify-content: space-between;
@@ -321,14 +323,9 @@ const Title = styled.input`
   ${(props) => props.theme.border_box}
 `;
 
-const HashTagWrapper = styled.div`
-  /* flex-wrap: wrap; */
-  /* justify-content: flex; */
-  /* align-items: center; */
-  /* display: grid; */
-`;
+const HashTagWrapper = styled.div``;
 
-const Input2 = styled.input`
+const Input2 = styled.textarea`
   outline: none;
   border: none;
   line-height: 1.5rem;
@@ -351,75 +348,7 @@ const AspectInner = styled.div`
   background-repeat: no-repeat;
 `;
 
-// const HashTag = (props) => {
-//   const [tagItem, setTagItem] = React.useState("");
-//   const [tagList, setTagList] = React.useState([]);
-
-//   const onKeyPress = (e) => {
-//     if (e.target.value.length !== 0 && e.key === "Enter") {
-//       submitTagItem();
-//     }
-//   };
-
-//   const submitTagItem = () => {
-//     let updatedTagList = [...tagList];
-//     updatedTagList.push(tagItem);
-//     setTagList(updatedTagList);
-//     setTagItem("");
-//     console.log(updatedTagList);
-//   };
-
-//   const deleteTagItem = (e) => {
-//     const deleteTagItem = e.target.parentElement.firstChild.innerText;
-//     const filteredTagList = tagList.filter(
-//       (tagItem) => tagItem !== deleteTagItem
-//     );
-//     setTagList(filteredTagList);
-//   };
-
-//   return (
-//     <WholeBox>
-//       <TagBox>
-//         {tagList.map((tagItem, index) => {
-//           return (
-//             <Div
-//               key={index}
-//               spaceBetween
-//               width="auto"
-//               height="30px"
-//               lineHeight="20px"
-//               margin="0px 0px 10px 10px"
-//               borderRadius="30px"
-//               backgroundColor="#f8f9fa"
-//               cursor="pointer"
-//               _onClick={deleteTagItem}
-//             >
-//               <Text
-//                 display="flex"
-//                 justifyContent="space-between"
-//                 margin="5px"
-//                 padding="10px"
-//                 size="16px"
-//                 color="#12b886"
-//               >
-//                 {tagItem}
-//               </Text>
-//             </Div>
-//           );
-//         })}
-//         <TagInput
-//           type="text"
-//           placeholder="태그를 입력하세요"
-//           tabIndex={2}
-//           onChange={(e) => setTagItem(e.target.value)}
-//           value={tagItem}
-//           onKeyPress={onKeyPress}
-//         />
-//       </TagBox>
-//     </WholeBox>
-//   );
-// };
-
+//해시태그
 const WholeBox = styled.div`
   height: 50px;
 `;

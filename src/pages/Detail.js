@@ -15,30 +15,23 @@ const Detail = (props) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const data = location.state.postId;
-  
 
   // useEffect(() => {
   //   dispatch(commentsActions.getCommentsDB());
   // }, []);
   // const comments_list = useSelector((state) => state.comment);
   // console.log(comments_list);
- 
-
 
   // const id = props.match.params.id;
 
   return (
-    
-<React.Fragment>
+    <React.Fragment>
       <Header data={data}></Header>
       <Card data={data} />
       <DetailUser data={data} />
       <CommentWrite postId={data} />
       <CommentList data={data} />
-    </React.Fragment> 
-  
-   
-    
+    </React.Fragment>
   );
 };
 

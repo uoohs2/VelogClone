@@ -146,7 +146,7 @@ const TagBtn = styled.button`
   background-color: #f8f9fa;
   color: #12b886;
   height: 32px;
-  width: 112px;
+  min-width: 60px;
   margin: 0 14px 14px 0;
   padding: 5px 16px 0 16px;
   display: inline-flex;
@@ -158,7 +158,7 @@ const TagBtn = styled.button`
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   &:hover {
-    opacity: 0.7;
+    opacity: 0.6;
   }
 `;
 

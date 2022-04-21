@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentsActions } from "../../redux/modules/comment";
 import { history } from "../../redux/configureStore";
 import styled from "styled-components";
@@ -70,7 +70,7 @@ const CommentWrite = (props) => {
         decoration="none solid rgb(33, 37, 41);"
         bold
       >
-        8개의 댓글
+        댓글
       </Text>
       <Input
         placeholder="댓글을 작성하세요."

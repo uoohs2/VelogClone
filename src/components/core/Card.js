@@ -14,8 +14,11 @@ import { ImBookmark } from "react-icons/im";
 const Card = (props) => {
   const dispatch = useDispatch();
   const postInfo = props.data;
+  const tag = postInfo.tagList;
   const postId = props.data.postId;
-  
+  const tagList = String(tag).split(",");
+  console.log(tagList);
+
   const delete_post = () => {
     dispatch(postActions.deletePostDB(postId));
   };
@@ -55,6 +58,9 @@ const Card = (props) => {
             colorHover="#495057"
             decorationHover="underline"
             size="16px"
+            _onClick={(e) => {
+              window.alert("Comming Soon!");
+            }}
           >
             {postInfo.userName}
           </Text>
@@ -67,17 +73,19 @@ const Card = (props) => {
             {moment(postInfo.date).fromNow()}
           </Text>
           <Div float="right">
-            <Button
+            {/* <Button
               width="32px"
               height="21px"
               margin="0px 0px 0px 0.5rem "
               size="16px"
               color="#868e96"
               colorHover="#212529"
-              _onClick={() => {}}
+              _onClick={(e) => {
+                window.alert("Comming Soon!");
+              }}
             >
               통계
-            </Button>
+            </Button> */}
             <Button
               width="32px"
               height="21px"
@@ -110,9 +118,17 @@ const Card = (props) => {
           margin="14px 0px -14px 0px"
           backgroundColor="#ffffff"
         >
-          <Button tagBtn>네이버웹툰</Button>
-          <Button tagBtn> 신입개발자</Button>
-          <Button tagBtn> 회고</Button>
+          {tagList.map((tag, i) => (
+            <Button
+              key={tag + i}
+              tagBtn
+              _onClick={(e) => {
+                window.alert("Comming Soon!");
+              }}
+            >
+              {tag}
+            </Button>
+          ))}
         </Div>
         <Div
           position="relative"
@@ -139,8 +155,11 @@ const Card = (props) => {
               cursor="pointer"
               colorHover=" #868e96"
               decorationHover="underline solid rgb(134, 142, 150);"
+              _onClick={(e) => {
+                window.alert("Comming Soon!");
+              }}
             >
-              {postInfo.title}
+              Series
             </Text>
           </Div>
           <Div bookMark>
@@ -154,13 +173,26 @@ const Card = (props) => {
             backgroundColor="#f8f9fa"
             color="#212529"
           >
-            <Div cursor="pointer">
+            <Div
+              cursor="pointer"
+              _onClick={(e) => {
+                window.alert("Comming Soon!");
+              }}
+            >
               <GoTriangleDown />
               <Text display="inline-block" margin="0px 0px 0px 4px" size="16px">
                 목록 보기
               </Text>
             </Div>
-            <Div spaceBetween width="80px" height="24px" font-size="14px">
+            <Div
+              spaceBetween
+              width="80px"
+              height="24px"
+              font-size="14px"
+              _onClick={(e) => {
+                window.alert("Comming Soon!");
+              }}
+            >
               1/3
               <Button
                 width="24px"
@@ -188,7 +220,6 @@ const Card = (props) => {
         width="768px"
         height="auto"
         margin="18px auto"
-        padding="36px 0px 0px 0px"
         backgroundColor="#ffffff"
       >
         <Div>
