@@ -199,10 +199,26 @@ const Header = (props) => {
           </Div>
         )}
         <Div spaceBetween width="172px" height="40px">
-          <Button width="40px" height="40px" radius="50%" BG="#ECECEC">
+          <Button
+            width="40px"
+            height="40px"
+            radius="50%"
+            BG="#ECECEC"
+            _onClick={(e) => {
+              window.alert("Comming Soon!");
+            }}
+          >
             <BsFillSunFill size="24" />
           </Button>
-          <Button width="40px" height="40px" radius="50%" BG="#ECECEC">
+          <Button
+            width="40px"
+            height="40px"
+            radius="50%"
+            BG="#ECECEC"
+            _onClick={(e) => {
+              window.alert("Comming Soon!");
+            }}
+          >
             <BsSearch size="18" />
           </Button>
 
