@@ -14,21 +14,23 @@ const Header = (props) => {
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
   const isLocal = localStorage.getItem("token") ? true : false;
-  const user = useSelector((state) => state.user.userInfo);
-  const post = useSelector((state) => state.comment);
-  console.log(post._id);
+  // const user = useSelector((state) => state.user.userInfo);
+  // const post = useSelector((state) => state.comment);
+  // console.log(post._id);
   const [modal, setModal] = React.useState(false);
 
   // 메인페이지일때
   const logoMain = window.location.pathname === "/";
 
   // 상세페이지일때
-
-  // let _id = props.match.params.id;
-  // console.log(_id);
-  // const logoDetail = window.location.pathname === `/detail/${_id}`;
-  // if (!logoMain && logoDetail) {
-  //   console.log(props.data);
+  // if (!logoMain) {
+  //   let _id = props.data._id;
+  //   console.log(_id);
+  //   const logoDetail = window.location.pathname === `/detail/${_id}`;
+  //   if (!logoMain && logoDetail) {
+  //     const userName = props.data.userName;
+  //     console.log(userName);
+  //   }
   // }
 
   //로그인 후
@@ -41,7 +43,7 @@ const Header = (props) => {
               <Text
                 font="FiraMono"
                 width="auto"
-                height="24px"
+                height="30px"
                 size="24px"
                 weight="700"
                 wordSpacing="0px"
@@ -80,15 +82,31 @@ const Header = (props) => {
                   history.push("/");
                 }}
               >
-                {post.userName}.log
+                {props.data.userName}.log
               </Text>
             </Div>
           )}
           <Div spaceBetween width="350px" height="40px">
-            <Button width="40px" height="40px" radius="50%" BG="#ECECEC">
+            <Button
+              width="40px"
+              height="40px"
+              radius="50%"
+              BG="#ECECEC"
+              _onClick={(e) => {
+                window.alert("Comming Soon!");
+              }}
+            >
               <BsFillSunFill size="24" />
             </Button>
-            <Button width="40px" height="40px" radius="50%" BG="#ECECEC">
+            <Button
+              width="40px"
+              height="40px"
+              radius="50%"
+              BG="#ECECEC"
+              _onClick={(e) => {
+                window.alert("Comming Soon!");
+              }}
+            >
               <BsSearch size="18" />
             </Button>
             <Button
@@ -122,13 +140,20 @@ const Header = (props) => {
             >
               로그아웃
             </Button>
-            <Image
-              shape="circle"
-              width="40px"
-              height="40px"
-              size="cover"
-              position="center"
-            />
+            <Div
+              cursor="pointer"
+              _onClick={(e) => {
+                window.alert("Comming Soon!");
+              }}
+            >
+              <Image
+                shape="circle"
+                width="40px"
+                height="40px"
+                size="cover"
+                position="center"
+              />
+            </Div>
           </Div>
         </Div>
       </React.Fragment>
@@ -139,52 +164,54 @@ const Header = (props) => {
   return (
     <React.Fragment>
       <Div spaceBetween container height="64px" padding="0px 88px">
-        <Div row>
-          <Text
-            font="FiraMono"
-            width="auto"
-            height="24px"
-            size="24px"
-            weight="700"
-            wordSpacing="0px"
-            decoration="none solid rgb(33, 37, 41);"
-            cursor="pointer"
-            _onClick={() => {
-              history.push("/");
-            }}
-          >
-            velog
-          </Text>
-        </Div>
-        {/* {logoDetail && (
-            <Div row>
-              <Image
-                width="28px"
-                height="28px"
-                src="https://nitter.net/pic/pbs.twimg.com%2Fprofile_images%2F1228368893321736193%2FOv0og7E8_400x400.jpg"
-                alt="logo"
-                size="cover"
-                position="center"
-                radius="4px"
-              />
-              <Text
-                font="FiraMono"
-                width="auto"
-                height="24px"
-                margin="0px 0px 0px 16px"
-                size="24px"
-                weight="700"
-                wordSpacing="0px"
-                decoration="none solid rgb(33, 37, 41);"
-                cursor="pointer"
-                _onClick={() => {
-                  history.push("/");
-                }}
-              >
-                {post.userName}.log
-              </Text>
-            </Div>
-          )} */}
+        {logoMain && (
+          <Div row>
+            <Text
+              font="FiraMono"
+              width="auto"
+              height="30px"
+              size="24px"
+              weight="700"
+              wordSpacing="0px"
+              decoration="none solid rgb(33, 37, 41);"
+              cursor="pointer"
+              _onClick={() => {
+                history.push("/");
+              }}
+            >
+              velog
+            </Text>
+          </Div>
+        )}
+        {!logoMain && (
+          <Div row>
+            <Image
+              width="28px"
+              height="28px"
+              src="https://nitter.net/pic/pbs.twimg.com%2Fprofile_images%2F1228368893321736193%2FOv0og7E8_400x400.jpg"
+              alt="logo"
+              size="cover"
+              position="center"
+              radius="4px"
+            />
+            <Text
+              font="FiraMono"
+              width="auto"
+              height="24px"
+              margin="0px 0px 0px 16px"
+              size="24px"
+              weight="700"
+              wordSpacing="0px"
+              decoration="none solid rgb(33, 37, 41);"
+              cursor="pointer"
+              _onClick={() => {
+                history.push("/");
+              }}
+            >
+              {props.data.userName}.log
+            </Text>
+          </Div>
+        )}
         <Div spaceBetween width="172px" height="40px">
           <Button width="40px" height="40px" radius="50%" BG="#ECECEC">
             <BsFillSunFill size="24" />

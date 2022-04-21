@@ -110,8 +110,10 @@ const LowerBox = styled.div`
         width: 50px;
         height: 50px;
         border-radius: 50px;
-        background-image: url("https://media-exp1.licdn.com/dms/image/C4E03AQGtG9jkaxC8fA/profile-displayphoto-shrink_200_200/0/1642491716240?e=1654732800&v=beta&t=ybTk8DM0kp5ikq_66mSvLYb0oqmSOjiOFJ636kjGfHs");
-        background-size: cover;
+        background-image: url("https://static.velog.io/static/media/undraw_joyride_hnno.fae6b95e.svg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
         margin: 3px 15px 3px -15px;
         cursor: pointer;
       }

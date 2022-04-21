@@ -70,34 +70,6 @@ const Login = (props) => {
   const REDIRECT_URI =
     "http://inburst.shop.s3-website.ap-northeast-2.amazonaws.com/oauth/kakao/callback";
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-  // const KAKAO_AUTH_URL = `http://3.38.253.146/oauth/kakao`;
-
-  // const kakaoLogin = () => {
-  //   window.location.assign("http://3.38.253.146/auth/kakao/callback");
-  // };
-
-  // React.useEffect(async () => {
-  //   const getAccessToken = async (authorizationCode) => {
-  //     let tokenData = await axios
-  //       .get("http://3.38.253.146/auth/kakao", {
-  //         authorizationCode,
-  //       })
-  //       .then((res) => {
-  //         console.log(res.data);
-  //         let accessToken = res.data.accessToken;
-  //         let refreshToken = res.headers["refresh-token"];
-  //         localStorage.setItem("CC_Token", accessToken);
-  //         localStorage.setItem("RF_Token", refreshToken);
-  //         history.replace("/");
-  //       });
-  //   };
-  //   const url = new URL(window.location.href);
-  //   const authorizationCode = url.searchParams.get("code");
-  //   console.log("인증 코드", authorizationCode);
-  //   if (authorizationCode) {
-  //     await getAccessToken(authorizationCode);
-  //   }
-  // }, []);
 
   return (
     <React.Fragment>
@@ -190,11 +162,7 @@ const Login = (props) => {
                     width="20px"
                     height="20px"
                   />
-                  <Button
-                    margin="20px 10px"
-                    size="0.9em"
-                    // _onClick={KAKAO_AUTH_URL}
-                  >
+                  <Button margin="20px 10px" size="0.9em">
                     <a href={KAKAO_AUTH_URL}>KakaoTalk으로 로그인</a>
                   </Button>
                 </Div>

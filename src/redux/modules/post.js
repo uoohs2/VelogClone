@@ -27,19 +27,17 @@ const initialState = {
 const initialPost = {
   title: "",
   content: "",
+  tagList: ["", ""],
   image: "",
 };
 
 const addHashTagDB = (tagList) => {
   return async function (dispatch, getState) {
     console.log(tagList);
-    let tag = {
-      tagList,
-    };
     await axios({
       method: "POST",
       url: "http://3.38.253.146/api/post",
-      data: JSON.stringify(tag),
+      data: JSON.stringify(tagList),
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -47,7 +45,7 @@ const addHashTagDB = (tagList) => {
     })
       .then((res) => {
         console.log(res);
-        dispatch(addHashTag(tag));
+        dispatch(addHashTag(tagList));
       })
       .catch((err) => {
         console.log(err);
@@ -57,32 +55,31 @@ const addHashTagDB = (tagList) => {
 
 const addPostDB = (formData) => {
   return async function (dispatch, getState) {
-
- 
+    // for (var pair of formData.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
     let post = {
-      ...initialPost,
       formData,
     };
-
-    try {
-      await axios({
-        method: "POST",
-        url: "http://3.38.253.146/api/post",
-        data: 
-        formData,
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
+    await axios({
+      method: "POST",
+      url: "http://3.38.253.146/api/post",
+      data: formData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => {
+     
+        dispatch(addPost(post));
+        dispatch(imageActions.resetPreview(post));
+        window.location.replace("/");
+      })
+      .catch((err) => {
+        console.log(err);
       });
 
-      dispatch(addPost(post));
-      dispatch(imageActions.resetPreview(post));
-    } catch (error) {
-      console.log(error);
-    }
 
-  
   };
 };
 

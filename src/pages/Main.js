@@ -5,7 +5,7 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configureStore";
 
 import { Header } from "../components/core";
-import { Div } from "../components/ui";
+import { Div, Image, Text, Button } from "../components/ui";
 
 import moment from "moment";
 import "moment/locale/ko";
@@ -24,7 +24,6 @@ const Main = (props) => {
     dispatch(postActions.getPostDB());
   }, []);
 
-
   return (
     <React.Fragment>
       <Header></Header>
@@ -33,17 +32,41 @@ const Main = (props) => {
           <div className="menu">
             <div className="menu0">
               <TrendingUpIcon sx={{ fontSize: 30 }} />
-              <div className="menu0_1">트렌딩</div>
+              <div
+                className="menu0_1"
+                onClick={(e) => {
+                  window.alert("Comming Soon!");
+                }}
+              >
+                트렌딩
+              </div>
             </div>
             <div className="menu1">
               <AccessTimeIcon color="disabled" />
-              <div className="menu1_1"> 최신 </div>
+              <div
+                className="menu1_1"
+                onClick={(e) => {
+                  window.alert("Comming Soon!");
+                }}
+              >
+                최신
+              </div>
             </div>
-            <div className="menu2">
+            <div
+              className="menu2"
+              onClick={(e) => {
+                window.alert("Comming Soon!");
+              }}
+            >
               이번 주 <GoTriangleDown />
             </div>
           </div>
-          <div className="menu3">
+          <div
+            className="menu3"
+            onClick={(e) => {
+              window.alert("Comming Soon!");
+            }}
+          >
             <MoreVertIcon color="disabled" />
           </div>
         </MenuBar>
@@ -51,13 +74,7 @@ const Main = (props) => {
           {post_list.map((post, i) => (
             <Div
               key={post + i}
-              display="flex"
-              flexDirection="row"
-              justifyContent="space-between"
-              width="320px"
-              height="332px"
-              margin="16px 16px 130px 16px"
-              background-color="#f8f9fa"
+              velogCard
               _onClick={() => {
                 history.push({
                   pathname: `/detail/${post._id}`,
@@ -70,21 +87,29 @@ const Main = (props) => {
                 <H4>{post.title}</H4>
                 <P>{post.content}</P>
               </Box1>
-
               <Box2>
-                {post.comment}
-                {moment(post.date).fromNow()}
+                <Text size="12px">{moment(post.date).fromNow()}</Text>
               </Box2>
               <Box3>
                 <div className="userinfo">
-                  <ImageCircle
+                  <Image
                     shape="circle"
-                    src="https://velog.velcdn.com/images/syounglee012/profile/153e8e10-0a34-4939-be81-7244fa41347c/social.png"
+                    width="20px"
+                    height="20px"
+                    size="cover"
+                    position="center"
                   />
-                  by {post.userName} 
-                </div>{" "}
-                <div className="likes">
-                  <GoHeart size="20" /> 15
+                  <Text margin=" 0px 10px">by {post.userName}</Text>
+                </div>
+                <div>
+                  <Button
+                    _onClick={(e) => {
+                      e.stopPropagation();
+                      window.alert("Comming Soon!");
+                    }}
+                  >
+                    <GoHeart size="20" />
+                  </Button>
                 </div>
               </Box3>
             </Div>
@@ -98,7 +123,7 @@ const Main = (props) => {
 export default Main;
 
 const MenuBar = styled.div`
-  background-color: #f8f9fa;
+  /* background-color: #f8f9fa; */
   background-position: 0% 0%;
   color: #212529;
   height: 48px;
@@ -120,7 +145,7 @@ const MenuBar = styled.div`
   .menu0 {
     font-size: 18px;
     font-weight: 700;
-    background-color: #f8f9fa;
+    /* background-color: #f8f9fa; */
     color: #212529;
     height: 48px;
     width: 112px;
@@ -134,7 +159,7 @@ const MenuBar = styled.div`
   }
   .menu1 {
     font-size: 18px;
-    background-color: #f8f9fa;
+    /* background-color: #f8f9fa; */
     color: #868e96;
     height: 48px;
     width: 80px;
@@ -144,9 +169,9 @@ const MenuBar = styled.div`
     cursor: pointer;
     justify-content: space-evenly;
     padding-top: 15px;
-    margin: auto 15px;
+    margin: 3px 15px;
     .menu1_1 {
-      padding-top: 5px;
+      padding-top: 2px;
     }
   }
   .menu2 {
@@ -154,7 +179,7 @@ const MenuBar = styled.div`
     font-weight: 600;
     text-decoration: none solid rgb(73, 80, 87);
     word-spacing: 0px;
-    background-color: #ffffff;
+    background-color: #f8f9fa;
     background-position: 0% 0%;
     color: #495057;
     height: 32px;
@@ -176,14 +201,13 @@ const MenuBar = styled.div`
   }
   .menu3 {
     padding-top: 15px;
-    background-color: #f8f9fa;
+    /* background-color: #f8f9fa; */
   }
 `;
 
 const Box = styled.div`
-  height: 60%;
+  height: 180px;
   width: 100%;
-  /* position: absolute; */
   top: 0px;
   bottom: 0px;
   right: 0px;
@@ -204,22 +228,16 @@ const Box = styled.div`
 const Box1 = styled.div`
   font-size: 16px;
   text-decoration: none solid rgb(33, 37, 41);
-  word-spacing: 0px;
-  background-color: #ffffff;
+  background-color: #f8f9fa;
   background-position: 0% 0%;
   position: color;
-  height: 200px;
-  width: 100%;
-  min-height: auto;
-  min-width: auto;
-  display: block;
+  height: 130px;
+  width: 320px;
   cursor: pointer;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  box-sizing: border-box;
   padding-top: 10px;
-  padding-left: 20px;
 `;
 const H4 = styled.p`
   font-size: 19px;
@@ -228,10 +246,10 @@ const H4 = styled.p`
   text-decoration: none solid rgb(33, 37, 41);
   white-space: nowrap;
   word-spacing: 0px;
-  background-color: #ffffff;
+  /* background-color: #f8f9fa; */
   height: 23%;
-  width: 100%;
-  margin: 0 0 4px 0;
+  width: 320px;
+  padding: 0px 15px;
   display: block;
   overflow: hidden;
   cursor: pointer;
@@ -245,10 +263,11 @@ const P = styled.div`
   line-height: 21px;
   text-decoration: none solid rgb(73, 80, 87);
   word-spacing: 0px;
-  background-color: #ffffff;
+  /* background-color: #f8f9fa; */
   height: 68%;
-  width: 100%;
-  margin: 0 0 24px 0;
+  width: 320px;
+  margin-top: 10px;
+  padding: 0px 15px;
   display: -webkit-box;
   overflow: hidden;
   cursor: pointer;
@@ -256,44 +275,38 @@ const P = styled.div`
   transition: all 0s ease 0s;
   box-sizing: border-box;
   text-overflow: ellipsis;
+  white-space: normal;
   word-wrap: break-word;
-  padding-right: 22px;
 `;
 const Box2 = styled.div`
-  height: 10%;
-  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  width: 320px;
   min-height: auto;
   min-width: auto;
   display: block;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
   cursor: pointer;
-  background-color: #ffffff;
+  background-color: #f8f9fa;
   box-sizing: border-box;
   padding-left: 20px;
 `;
 
 const Box3 = styled.div`
-  height: 15%;
+  height: 11%;
   width: 100%;
   border-top: 1px solid #f1f3f5;
   padding: 10px 16px 10px 16px;
   min-height: auto;
   min-width: auto;
   display: flex;
-  background-color: #ffffff;
+  background-color: #f8f9fa;
   font-size: 12px;
-  line-height: 18px;
   text-decoration: none solid rgb(33, 37, 41);
   word-spacing: 0px;
   cursor: pointer;
   justify-content: space-between;
   box-sizing: border-box;
   .userinfo {
-    display: flex;
-  }
-  .likes {
     display: flex;
   }
 `;
@@ -313,40 +326,11 @@ const Responsive = styled.div`
   display: block;
   height: 3272px;
   width: 92.5%;
-  background-color: #f8f9fa;
+  /* background-color: #f8f9fa; */
   background-position: 0% 0%;
   position: color;
   transform: none;
   transition: all 0s ease 0s;
   margin: 0 auto;
   box-sizing: border-box;
-`;
-
-const ImageCircle = styled.div`
-  min-width: 20px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50px;
-  background-image: url(${(props) => props.src});
-  background-size: cover;
-  margin: 3px 10px 3px 3px;
-`;
-
-const TabContainer = styled.div`
-  display: flex;
-  width: 93%;
-  margin: auto;
-  flex-direction: column;
-  height: 100%;
-  margin-top: 2rem;
-  border: 2px solid red;
-`;
-
-const ListContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  border: 2px solid blue;
 `;

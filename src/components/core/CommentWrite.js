@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector, useState } from "react-redux";
 import { actionCreators as commentsActions } from "../../redux/modules/comment";
@@ -49,7 +50,7 @@ const CommentWrite = (props) => {
         decoration="none solid rgb(33, 37, 41);"
         bold
       >
-        8개의 댓글
+        댓글
       </Text>
       <Input
         placeholder="댓글을 작성하세요."

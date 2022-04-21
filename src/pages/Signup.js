@@ -79,7 +79,8 @@ const Signup = (props) => {
   //카카오
   //카카오
   const REST_API_KEY = "ebb64769e9ae562700e77df6554c840d";
-  const REDIRECT_URI = "http://localhost:3000/oauth/kakao/callback";
+  const REDIRECT_URI =
+    "http://inburst.shop.s3-website.ap-northeast-2.amazonaws.com/oauth/kakao/callback";
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
   return (
@@ -104,7 +105,7 @@ const Signup = (props) => {
           </Div>
           <Div
             width="350px"
-            height="700px"
+            height="680px"
             margin="20px auto"
             padding="32px 0px"
             textCenter
@@ -119,23 +120,23 @@ const Signup = (props) => {
                 <Text
                   font="FiraMono"
                   size="2rem"
-                  lineHeight="55px"
+                  lineHeight="30px"
                   margin="5px 0px 15px 0px"
                   bold
                 >
                   Velog Signup
                 </Text>
-                <Text width="270px" size="1.2rem">
+                <Text width="270px" size="1.1rem" lineHeight="25px">
                   개발자를 위한 블로그 서비스에 가입해보세요.
                 </Text>
               </Div>
-              <Div height="360px">
+              <Div height="340px">
                 <Div row margin="5px 0px 15px 0px">
                   <Div
                     row
                     width="300px"
                     height="35px"
-                    margin="20px 0px 10px 0px"
+                    margin="10px 0px"
                     borderRadius="5px"
                     backgroundColor="#63e6be"
                   >
@@ -145,11 +146,7 @@ const Signup = (props) => {
                       width="20px"
                       height="20px"
                     />
-                    <Button
-                      width="170px"
-                      backgroundColor="#63e6be"
-                      // _onClick={kakaoLogin}
-                    >
+                    <Button width="170px" backgroundColor="#63e6be">
                       <a href={KAKAO_AUTH_URL}>KakaoTalk으로 로그인</a>
                     </Button>
                   </Div>

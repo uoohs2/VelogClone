@@ -15,21 +15,15 @@ const Detail = (props) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const data = location.state.postId;
-  
-
 
   return (
-    
-<React.Fragment>
+    <React.Fragment>
       <Header data={data}></Header>
       <Card data={data} />
       <DetailUser data={data} />
       <CommentWrite postId={data} />
       <CommentList data={data} />
-    </React.Fragment> 
-  
-   
-    
+    </React.Fragment>
   );
 };
 
