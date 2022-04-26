@@ -212,3 +212,8 @@ const Login = (props) => {
 };
 
 export default Login;
+
+const Line = styled.hr`
+  margin: 10px 25px;
+  border: 1px dotted lightgrey;
+`;

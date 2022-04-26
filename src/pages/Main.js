@@ -292,7 +292,7 @@ const Box2 = styled.div`
 `;
 
 const Box3 = styled.div`
-  height: 14%;
+  height: 11%;
   width: 100%;
   border-top: 1px solid #f1f3f5;
   padding: 10px 16px 10px 16px;
@@ -301,7 +301,6 @@ const Box3 = styled.div`
   display: flex;
   background-color: #f8f9fa;
   font-size: 12px;
-  line-height: 25px;
   text-decoration: none solid rgb(33, 37, 41);
   word-spacing: 0px;
   cursor: pointer;

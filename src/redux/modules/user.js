@@ -63,7 +63,6 @@ const loginDB = (id, pwd) => {
   };
 };
 
-<<<<<<< HEAD
 //카카오로그인
 const kakaoLogin = (code) => {
   return function (dispatch, getState, { history }) {
@@ -102,24 +101,9 @@ const loginCheckDB = () => {
       })
       .then((res) => {
         dispatch(setUser(res.data));
-=======
-// 로그인 유지
-const loginCheckDB = () => {
-  return (dispatch, getState, { history }) => {
-    let user = getState().user.userInfo;
-    console.log(user);
-    axios
-      .post("http://3.38.253.146/user/login", {
-        token: localStorage.getItem("token"),
->>>>>>> 23264cb072139dbfba054499b749fbee9967f99e
       })
-      .then((res) => {
-        console.log(user);
-        dispatch(setUser({ ...user }));
-        console.log(user);
-      })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        console.log(err);
       });
   };
 };
@@ -131,6 +115,7 @@ const logoutDB = () => {
     localStorage.removeItem("userId");
     localStorage.removeItem("userName");
     dispatch(logout());
+    history.replace("/");
   };
 };
 

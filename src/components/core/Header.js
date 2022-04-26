@@ -7,8 +7,6 @@ import Login from "../../pages/Login";
 
 import { Button, Div, Image, Text } from "../ui";
 import { BsFillSunFill, BsSearch } from "react-icons/bs";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 
 const Header = (props) => {
   const dispatch = useDispatch();

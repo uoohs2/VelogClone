@@ -25,9 +25,11 @@ const Div = (props) => {
     opacity,
     colorHover,
     container,
-    box,
+    start,
     center,
     row,
+    spaceBetween,
+    spaceAround,
     textCenter,
     fontSize,
     inline,
@@ -61,9 +63,11 @@ const Div = (props) => {
     opacity,
     colorHover,
     container,
-    box,
+    start,
     center,
     row,
+    spaceBetween,
+    spaceAround,
     textCenter,
     fontSize,
     inline,
@@ -113,11 +117,9 @@ const Div = (props) => {
   }
 
   return (
-    <React.Fragment>
-      <Box onClick={_onClick} {...styles}>
-        {children}
-      </Box>
-    </React.Fragment>
+    <Box onClick={_onClick} {...styles}>
+      {children}
+    </Box>
   );
 };
 
@@ -147,6 +149,8 @@ Div.defaultProps = {
   start: "",
   center: false,
   row: false,
+  spaceBetween: false,
+  spaceAround: false,
   textCenter: false,
   fontSize: "false",
   inline: false,
@@ -166,13 +170,26 @@ const Box = styled.div`
   float: ${(props) => props.float};
   ${(props) => (props.inline ? "display:inline-block;" : "display:block")};
   ${(props) =>
+    props.start
+      ? "display:flex; flex-direction:column; align-items:center; justify-content:flex-start;"
+      : ""};
+  ${(props) =>
     props.center
-      ? "display:flex; flex-direction:column; align-items:center; justify-content:center"
+      ? "display:flex; flex-direction:column; align-items:center; justify-content:center;"
       : ""};
   ${(props) =>
     props.row
-      ? "display:flex; flex-direction:row; align-items:center; justify-content:center"
+      ? "display:flex; flex-direction:row; align-items:center; justify-content:center;"
       : ""};
+  ${(props) =>
+    props.spaceBetween
+      ? "display:flex; flex-direction:row; align-items:center; justify-content:space-between;"
+      : ""};
+  ${(props) =>
+    props.spaceAround
+      ? "display:flex; flex-direction:row; align-items:center; justify-content:space-around;"
+      : ""};
+
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};

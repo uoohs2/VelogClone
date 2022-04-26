@@ -164,6 +164,7 @@ const Signup = (props) => {
                     </Button>
                   </Div>
                 </Div>
+                <Line />
                 <Input
                   repeat
                   type="text"
@@ -236,3 +237,8 @@ const Signup = (props) => {
 };
 
 export default Signup;
+
+const Line = styled.hr`
+  margin: 10px 25px 15px 25px;
+  border: 1px dotted lightgrey;
+`;
